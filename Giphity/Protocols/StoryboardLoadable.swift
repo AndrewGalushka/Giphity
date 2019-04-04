@@ -19,3 +19,9 @@ extension StoryboardLoadable where Self: UIViewController {
         return storyboard.instantiate(self)
     }
 }
+
+extension UIViewController: StoryboardLoadable {
+    static var associatedStoryboard: String {
+        return "\(self)"
+    }
+}
