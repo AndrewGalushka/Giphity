@@ -53,6 +53,21 @@
 			path = GifDataEngine;
 			sourceTree = "<group>";
 		};
+		8DC6C41922564EC100C2FAF2 /* Controlls */ = {
+			isa = PBXGroup;
+			children = (
+				8DC6C41A22564ECD00C2FAF2 /* PoweredByGiphyButton */,
+			);
+			path = Controlls;
+			sourceTree = "<group>";
+		};
+		8DC6C41A22564ECD00C2FAF2 /* PoweredByGiphyButton */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PoweredByGiphyButton;
+			sourceTree = "<group>";
+		};
 		8DDBFB8222560BC7009F7286 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +87,7 @@
 		8DDBFB8D22560BC7009F7286 /* Giphity */ = {
 			isa = PBXGroup;
 			children = (
+				8DC6C41922564EC100C2FAF2 /* Controlls */,
 				8DDBFBAF22562524009F7286 /* Extension */,
 				8DDBFBAA22561F70009F7286 /* Protocols */,
 				8DDBFBA422561A32009F7286 /* CoreServices */,

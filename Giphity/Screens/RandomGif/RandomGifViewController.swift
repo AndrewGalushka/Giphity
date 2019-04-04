@@ -18,6 +18,7 @@ class RandomGifViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
+        fetchAndDisplayNextRandomGif()
     }
     
     func setupUI() {
@@ -28,10 +29,14 @@ class RandomGifViewController: UIViewController {
         
         nextRandomGifButton.setNeedsLayout()
         nextRandomGifButton.layoutIfNeeded()
-        nextRandomGifButton.widthAnchor.constraint(equalToConstant: nextRandomGifButton.bounds.width + 20).isActive = true
+        nextRandomGifButton.widthAnchor.constraint(equalToConstant: nextRandomGifButton.bounds.width + 40).isActive = true
     }
     
     @IBAction func nextRandomGifButtonTouchUpInsideActionHandler(_ sender: Any) {
+        fetchAndDisplayNextRandomGif()
+    }
+    
+    func fetchAndDisplayNextRandomGif() {
         imageView.image = nil
         
         let buttonActivityIndicatorCancelationToken = setLoadingState(for: self.imageView)

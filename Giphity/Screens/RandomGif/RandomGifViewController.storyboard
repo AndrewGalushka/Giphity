@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kgC-vb-AWq">
-                                <rect key="frame" x="10" y="210.5" width="355" height="266"/>
+                                <rect key="frame" x="10" y="190.5" width="355" height="266"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dhY-in-iU1">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="266"/>
@@ -35,14 +35,14 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EaB-M4-jVE">
-                                <rect key="frame" x="164.5" y="496.5" width="46" height="30"/>
+                                <rect key="frame" x="164.5" y="476.5" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="nextRandomGifButtonTouchUpInsideActionHandler:" destination="AfZ-R9-eH6" eventType="touchUpInside" id="221-hO-1Wp"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by GIPHY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uY8-5v-C6M">
-                                <rect key="frame" x="0.0" y="639" width="375" height="18"/>
+                                <rect key="frame" x="0.0" y="629" width="375" height="18"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -51,11 +51,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Lci-bJ-zsv" firstAttribute="trailing" secondItem="kgC-vb-AWq" secondAttribute="trailing" constant="10" id="33w-VB-h3l"/>
-                            <constraint firstItem="kgC-vb-AWq" firstAttribute="centerY" secondItem="Lci-bJ-zsv" secondAttribute="centerY" id="JaY-br-ldf"/>
+                            <constraint firstItem="kgC-vb-AWq" firstAttribute="centerY" secondItem="Lci-bJ-zsv" secondAttribute="centerY" constant="-20" id="JaY-br-ldf"/>
                             <constraint firstItem="Lci-bJ-zsv" firstAttribute="trailing" secondItem="uY8-5v-C6M" secondAttribute="trailing" id="Oar-Gu-4RV"/>
                             <constraint firstItem="EaB-M4-jVE" firstAttribute="top" secondItem="kgC-vb-AWq" secondAttribute="bottom" constant="20" id="aXw-uS-jer"/>
                             <constraint firstItem="kgC-vb-AWq" firstAttribute="leading" secondItem="Lci-bJ-zsv" secondAttribute="leading" constant="10" id="dCS-L8-bun"/>
-                            <constraint firstItem="Lci-bJ-zsv" firstAttribute="bottom" secondItem="uY8-5v-C6M" secondAttribute="bottom" constant="10" id="g68-XC-eKX"/>
+                            <constraint firstItem="Lci-bJ-zsv" firstAttribute="bottom" secondItem="uY8-5v-C6M" secondAttribute="bottom" constant="20" id="g68-XC-eKX"/>
                             <constraint firstItem="EaB-M4-jVE" firstAttribute="centerX" secondItem="Lci-bJ-zsv" secondAttribute="centerX" id="ufI-qp-qfl"/>
                             <constraint firstItem="uY8-5v-C6M" firstAttribute="leading" secondItem="Lci-bJ-zsv" secondAttribute="leading" id="uhg-Qg-CRk"/>
                         </constraints>
