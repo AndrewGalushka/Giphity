@@ -382,8 +382,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YDDE2DY87F;
 				INFOPLIST_FILE = Giphity/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -402,8 +403,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YDDE2DY87F;
 				INFOPLIST_FILE = Giphity/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1.4;
 				LD_RUNPATH_SEARCH_PATHS = (
