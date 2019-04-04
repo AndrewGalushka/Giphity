@@ -101,13 +101,9 @@ class RandomGifViewController: UIViewController {
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             
-            if let data = data, let imageSource = CGImageSourceCreateWithData(data as CFData, nil) {
-                
-                if let firstCGImage = CGImageSourceCreateImageAtIndex(imageSource, 0, nil) {
-                    competion(UIImage(cgImage: firstCGImage))
-                } else {
-                    competion(nil)
-                }
+            if let data = data {
+                let gifDataEngine = GifDataEngine()
+                competion(gifDataEngine.gifImage(from: data))
             } else {
                 competion(nil)
             }

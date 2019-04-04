@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8DC6C418225642E600C2FAF2 /* GifDataEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC6C417225642E600C2FAF2 /* GifDataEngine.swift */; };
 		8DDBFB8F22560BC7009F7286 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBFB8E22560BC7009F7286 /* AppDelegate.swift */; };
 		8DDBFB9122560BC7009F7286 /* RandomGifViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBFB9022560BC7009F7286 /* RandomGifViewController.swift */; };
 		8DDBFB9622560BC9009F7286 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DDBFB9522560BC9009F7286 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8DC6C417225642E600C2FAF2 /* GifDataEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifDataEngine.swift; sourceTree = "<group>"; };
 		8DDBFB8B22560BC7009F7286 /* Giphity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Giphity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DDBFB8E22560BC7009F7286 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DDBFB9022560BC7009F7286 /* RandomGifViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomGifViewController.swift; sourceTree = "<group>"; };
@@ -43,6 +45,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8DC6C416225642CD00C2FAF2 /* GifDataEngine */ = {
+			isa = PBXGroup;
+			children = (
+				8DC6C417225642E600C2FAF2 /* GifDataEngine.swift */,
+			);
+			path = GifDataEngine;
+			sourceTree = "<group>";
+		};
 		8DDBFB8222560BC7009F7286 = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +120,7 @@
 		8DDBFBA422561A32009F7286 /* CoreServices */ = {
 			isa = PBXGroup;
 			children = (
+				8DC6C416225642CD00C2FAF2 /* GifDataEngine */,
 				8DDBFBA522561A47009F7286 /* GiphyRequestManager */,
 			);
 			path = CoreServices;
@@ -217,6 +228,7 @@
 				8DDBFB8F22560BC7009F7286 /* AppDelegate.swift in Sources */,
 				8DDBFBA722561A6C009F7286 /* GiphyRequestManager.swift in Sources */,
 				8DDBFBB122562594009F7286 /* UIStoryboard+ViewControllerInstantiation.swift in Sources */,
+				8DC6C418225642E600C2FAF2 /* GifDataEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
