@@ -29,7 +29,8 @@ class RandomGifViewController: UIViewController {
         
         nextRandomGifButton.setNeedsLayout()
         nextRandomGifButton.layoutIfNeeded()
-        nextRandomGifButton.widthAnchor.constraint(equalToConstant: nextRandomGifButton.bounds.width + 40).isActive = true
+        nextRandomGifButton.heightAnchor.constraint(equalToConstant: nextRandomGifButton.bounds.height + 10).isActive = true
+        nextRandomGifButton.widthAnchor.constraint(equalToConstant: nextRandomGifButton.bounds.width + 70).isActive = true
     }
     
     @IBAction func nextRandomGifButtonTouchUpInsideActionHandler(_ sender: Any) {
