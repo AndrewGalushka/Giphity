@@ -30,7 +30,7 @@ class GifDataEngine {
                 continue
             }
         
-            images.append( UIImage(cgImage: cgImage) )
+            images.append(UIImage(cgImage: cgImage))
             duration += delay
         }
         
