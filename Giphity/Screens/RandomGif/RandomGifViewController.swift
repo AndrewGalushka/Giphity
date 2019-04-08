@@ -95,7 +95,9 @@ class RandomGifViewController: UIViewController {
         guard
             let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
             let dataDict = json["data"] as? [String: Any],
-            let urlString = dataDict["image_url"] as? String,
+            let images = dataDict["images"] as? [String: Any],
+            let fixedHeightImage = images["fixed_height"] as? [String: String],
+            let urlString = fixedHeightImage["url"],
             let url = URL(string: urlString)
         else {
             competion(nil)
