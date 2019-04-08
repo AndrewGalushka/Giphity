@@ -92,30 +92,32 @@ class RandomGifViewController: UIViewController {
     }
     
     func fetchGifDataFromRandomImageResponse(data: Data, competion: @escaping (UIImage?) -> Void) {
+        
+        guard let response = try? JSONDecoder().decode(GiphyResponse<GifObject>.self, from: data) else {
+            competion(nil)
+            return
+        }
+        
         guard
-            let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-            let dataDict = json["data"] as? [String: Any],
-            let images = dataDict["images"] as? [String: Any],
-            let fixedHeightImage = images["downsized"] as? [String: String],
-            let urlString = fixedHeightImage["url"],
+            let urlString = response.data?.images?.imageObject(for: .downsized)?.url,
             let url = URL(string: urlString)
         else {
             competion(nil)
             return
         }
-        
+
         var request = URLRequest(url: url)
         request.httpMethod = "get"
-        
+
         URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
+
             if let data = data {
                 let gifDataEngine = GifDataEngine()
                 competion(gifDataEngine.gifImage(from: data))
             } else {
                 competion(nil)
             }
-            
+
         }.resume()
     }
 }
