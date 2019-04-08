@@ -163,7 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				8D410E3C225B4B10001F5132 /* Models */,
-				8DDBFBAF22562524009F7286 /* Extension */,
+				8DDBFBAF22562524009F7286 /* Extensions */,
 				8DDBFBAA22561F70009F7286 /* Protocols */,
 				8DDBFBA422561A32009F7286 /* CoreServices */,
 				8DDBFBA1225614AF009F7286 /* Main */,
@@ -237,12 +237,12 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		8DDBFBAF22562524009F7286 /* Extension */ = {
+		8DDBFBAF22562524009F7286 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				8DDBFBB022562594009F7286 /* UIStoryboard+ViewControllerInstantiation.swift */,
 			);
-			path = Extension;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
