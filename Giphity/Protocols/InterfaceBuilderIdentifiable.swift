@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol InterfaceBuilderIdentifiable: AnyObject {
+protocol InterfaceBuilderIdentifiable {
     static var interfaceBuilderIdentifier: String { get }
 }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol StoryboardLoadable: InterfaceBuilderIdentifiable {
+protocol StoryboardLoadable: AnyObject, InterfaceBuilderIdentifiable {
     static var associatedStoryboard: String { get }
     static func loadFromStoryboard() -> Self
 }
