@@ -12,10 +12,16 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var flowCoordinator: FlowCoordinator!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = RandomGifViewController.loadFromStoryboard()
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        let flowCoordinator: FlowCoordinator = MainFlowCoordinator(window: window)
+        
+        self.window = window
+        self.flowCoordinator = flowCoordinator
+        
+        self.flowCoordinator.start()
         self.window?.makeKeyAndVisible()
         
         return true
