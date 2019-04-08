@@ -17,9 +17,9 @@ class MainFlowCoordinator: FlowCoordinator {
     
     func start() {
         let randomGifViewController = RandomGifViewController.loadFromStoryboard()
-        randomGifViewController.tabBarItem = UITabBarItem(title: "Search", image: nil, selectedImage: nil)
+        randomGifViewController.tabBarItem = UITabBarItem(title: "Random", image: nil, selectedImage: nil)
         let searchGifsViewController = SearchGifsViewController.loadFromStoryboard()
-        searchGifsViewController.tabBarItem = UITabBarItem(title: "Random", image: nil, selectedImage: nil)
+        searchGifsViewController.tabBarItem = UITabBarItem(title: "Search", image: nil, selectedImage: nil)
         
         let tabbarController = UITabBarController()
         tabbarController.setViewControllers([searchGifsViewController, randomGifViewController], animated: false)
