@@ -96,7 +96,7 @@ class RandomGifViewController: UIViewController {
             let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
             let dataDict = json["data"] as? [String: Any],
             let images = dataDict["images"] as? [String: Any],
-            let fixedHeightImage = images["fixed_height"] as? [String: String],
+            let fixedHeightImage = images["downsized"] as? [String: String],
             let urlString = fixedHeightImage["url"],
             let url = URL(string: urlString)
         else {
