@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D09203D225C83C8004D6F90 /* CollectionViewConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09203C225C83C8004D6F90 /* CollectionViewConfigurator.swift */; };
 		8D410E40225B4B45001F5132 /* GifObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D410E3F225B4B45001F5132 /* GifObject.swift */; };
 		8D410E46225B68DB001F5132 /* ImagesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D410E45225B68DB001F5132 /* ImagesObject.swift */; };
 		8D410E4D225B91F2001F5132 /* GiphyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D410E4C225B91F2001F5132 /* GiphyResponse.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8D09203C225C83C8004D6F90 /* CollectionViewConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewConfigurator.swift; sourceTree = "<group>"; };
 		8D410E3F225B4B45001F5132 /* GifObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifObject.swift; sourceTree = "<group>"; };
 		8D410E45225B68DB001F5132 /* ImagesObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesObject.swift; sourceTree = "<group>"; };
 		8D410E4C225B91F2001F5132 /* GiphyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyResponse.swift; sourceTree = "<group>"; };
@@ -69,6 +71,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D09203B225C83B6004D6F90 /* CollectionViewConfigurator */ = {
+			isa = PBXGroup;
+			children = (
+				8D09203C225C83C8004D6F90 /* CollectionViewConfigurator.swift */,
+			);
+			path = CollectionViewConfigurator;
+			sourceTree = "<group>";
+		};
 		8D410E3C225B4B10001F5132 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +133,7 @@
 		8D410E54225BA2C0001F5132 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				8D09203B225C83B6004D6F90 /* CollectionViewConfigurator */,
 				8D410E51225BA1D0001F5132 /* DataSource */,
 			);
 			path = Utils;
@@ -352,6 +363,7 @@
 				8DDBFBA722561A6C009F7286 /* GiphyRequestManager.swift in Sources */,
 				8D9A491B225B2E9600F0AFE8 /* FlowCoordinator.swift in Sources */,
 				8DDBFBB122562594009F7286 /* UIStoryboard+ViewControllerInstantiation.swift in Sources */,
+				8D09203D225C83C8004D6F90 /* CollectionViewConfigurator.swift in Sources */,
 				8D410E46225B68DB001F5132 /* ImagesObject.swift in Sources */,
 				8D6424672257A482001579F3 /* XibLoadable.swift in Sources */,
 				8DC6C418225642E600C2FAF2 /* GifDataEngine.swift in Sources */,
