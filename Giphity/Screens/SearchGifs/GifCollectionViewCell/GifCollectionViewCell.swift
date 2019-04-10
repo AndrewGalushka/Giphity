@@ -23,11 +23,13 @@ class GifCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         
         self.viewModel = nil
-        self.imageView = nil
+        self.imageView.image = nil
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        self.contentView.backgroundColor = UIColor.rgba(255, 254, 212)
     }
     
     func configure(_ viewModel: ViewModel) {

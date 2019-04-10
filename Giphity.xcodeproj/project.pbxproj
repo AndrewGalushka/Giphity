@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8D08DB88225DD36C004959D8 /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D08DB87225DD36C004959D8 /* CollectionViewDataSource.swift */; };
 		8D08DB8C225DDBD5004959D8 /* GiphySearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D08DB8B225DDBD5004959D8 /* GiphySearchResponse.swift */; };
+		8D08DB8F225DF10D004959D8 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D08DB8E225DF10D004959D8 /* UIColor.swift */; };
 		8D09203D225C83C8004D6F90 /* CollectionViewCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09203C225C83C8004D6F90 /* CollectionViewCellConfigurator.swift */; };
 		8D410E40225B4B45001F5132 /* GifObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D410E3F225B4B45001F5132 /* GifObject.swift */; };
 		8D410E46225B68DB001F5132 /* ImagesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D410E45225B68DB001F5132 /* ImagesObject.swift */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		8D08DB87225DD36C004959D8 /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
 		8D08DB8B225DDBD5004959D8 /* GiphySearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphySearchResponse.swift; sourceTree = "<group>"; };
+		8D08DB8E225DF10D004959D8 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		8D09203C225C83C8004D6F90 /* CollectionViewCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCellConfigurator.swift; sourceTree = "<group>"; };
 		8D410E3F225B4B45001F5132 /* GifObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifObject.swift; sourceTree = "<group>"; };
 		8D410E45225B68DB001F5132 /* ImagesObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesObject.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				8DDBFBB022562594009F7286 /* UIStoryboard+ViewControllerInstantiation.swift */,
+				8D08DB8E225DF10D004959D8 /* UIColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				8D9A491D225B2EC500F0AFE8 /* MainFlowCoordinator.swift in Sources */,
 				8D410E4F225B9FE8001F5132 /* DataSource.swift in Sources */,
 				8D410E40225B4B45001F5132 /* GifObject.swift in Sources */,
+				8D08DB8F225DF10D004959D8 /* UIColor.swift in Sources */,
 				8DDBFBA722561A6C009F7286 /* GiphyRequestManager.swift in Sources */,
 				8D9A491B225B2E9600F0AFE8 /* FlowCoordinator.swift in Sources */,
 				8DDBFBB122562594009F7286 /* UIStoryboard+ViewControllerInstantiation.swift in Sources */,

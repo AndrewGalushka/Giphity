@@ -71,11 +71,6 @@ class RandomGifViewController: UIViewController {
                     })
                 }
                 
-                
-//                strongSelf.fetchGifDataFromRandomImageResponse(data: data, competion: { (image) in
-//                    resultCompletion(image)
-//                })
-                
             case .failure(let error):
                 print(error.localizedDescription)
                 resultCompletion(nil)
