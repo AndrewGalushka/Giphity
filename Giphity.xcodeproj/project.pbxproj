@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52547EA5395B0107D447F622 /* Pods_Giphity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5803908CFF37BC9C3D9867C /* Pods_Giphity.framework */; };
 		8D08DB88225DD36C004959D8 /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D08DB87225DD36C004959D8 /* CollectionViewDataSource.swift */; };
 		8D08DB8C225DDBD5004959D8 /* GiphySearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D08DB8B225DDBD5004959D8 /* GiphySearchResponse.swift */; };
 		8D08DB8F225DF10D004959D8 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D08DB8E225DF10D004959D8 /* UIColor.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A1F3841D49BE85F8A481E6C /* Pods-Giphity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Giphity.debug.xcconfig"; path = "Target Support Files/Pods-Giphity/Pods-Giphity.debug.xcconfig"; sourceTree = "<group>"; };
 		8D08DB87225DD36C004959D8 /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
 		8D08DB8B225DDBD5004959D8 /* GiphySearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphySearchResponse.swift; sourceTree = "<group>"; };
 		8D08DB8E225DF10D004959D8 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -68,6 +70,8 @@
 		8DDBFBAB22561F89009F7286 /* StoryboardLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardLoadable.swift; sourceTree = "<group>"; };
 		8DDBFBAD22561FBB009F7286 /* InterfaceBuilderIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceBuilderIdentifiable.swift; sourceTree = "<group>"; };
 		8DDBFBB022562594009F7286 /* UIStoryboard+ViewControllerInstantiation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+ViewControllerInstantiation.swift"; sourceTree = "<group>"; };
+		A5803908CFF37BC9C3D9867C /* Pods_Giphity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Giphity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D524A7D9CD259B0B4BF6F805 /* Pods-Giphity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Giphity.release.xcconfig"; path = "Target Support Files/Pods-Giphity/Pods-Giphity.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52547EA5395B0107D447F622 /* Pods_Giphity.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +230,8 @@
 			children = (
 				8DDBFB8D22560BC7009F7286 /* Giphity */,
 				8DDBFB8C22560BC7009F7286 /* Products */,
+				9FD3F905CE40CA5B0DBD1C4F /* Pods */,
+				BC1297B2CDE4ED2C22F379B5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -325,6 +332,24 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		9FD3F905CE40CA5B0DBD1C4F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8A1F3841D49BE85F8A481E6C /* Pods-Giphity.debug.xcconfig */,
+				D524A7D9CD259B0B4BF6F805 /* Pods-Giphity.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		BC1297B2CDE4ED2C22F379B5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A5803908CFF37BC9C3D9867C /* Pods_Giphity.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -332,9 +357,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8DDBFB9D22560BC9009F7286 /* Build configuration list for PBXNativeTarget "Giphity" */;
 			buildPhases = (
+				A4C90C726B8A522D9FA0B578 /* [CP] Check Pods Manifest.lock */,
 				8DDBFB8722560BC7009F7286 /* Sources */,
 				8DDBFB8822560BC7009F7286 /* Frameworks */,
 				8DDBFB8922560BC7009F7286 /* Resources */,
+				BAEADCE29758B6A060FF8B2F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -392,6 +419,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A4C90C726B8A522D9FA0B578 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Giphity-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BAEADCE29758B6A060FF8B2F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Giphity/Pods-Giphity-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Giphity/Pods-Giphity-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8DDBFB8722560BC7009F7286 /* Sources */ = {
@@ -556,6 +630,7 @@
 		};
 		8DDBFB9E22560BC9009F7286 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8A1F3841D49BE85F8A481E6C /* Pods-Giphity.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -577,6 +652,7 @@
 		};
 		8DDBFB9F22560BC9009F7286 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D524A7D9CD259B0B4BF6F805 /* Pods-Giphity.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
