@@ -54,20 +54,22 @@ class GiphyRequestManager {
         var urlRequest = URLRequest(url: urlComponents.url!)
         urlRequest.httpMethod = "get"
         
-        self.execute(urlRequest) { [weak self] (reponse) in
-            guard let `self` = self else { return }
-            
-            switch reponse {
-            case .success(let data):
-                let mappingResult = self.map(data, to: GiphyResponse<GifObject>.self)
-                completion(mappingResult)
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
+        self.execute(urlRequest, mapDataTo: GiphyResponse<GifObject>.self, completion: completion)
+        
+//        self.execute(urlRequest) { [weak self] (reponse) in
+//            guard let `self` = self else { return }
+//
+//            switch reponse {
+//            case .success(let data):
+//                let mappingResult = self.map(data, to: GiphyResponse<GifObject>.self)
+//                completion(mappingResult)
+//            case .failure(let error):
+//                completion(.failure(error))
+//            }
+//        }
     }
     
-    func searchGif(name query: String, limit: Int = 25, offset: Int = 0, completion: @escaping (_ result: Result<Data, GiphyRequestManagerError>) -> Void) {
+    func searchGifs(name query: String, limit: Int = 25, offset: Int = 0, completion: @escaping (_ result: Result<GiphySearchResponse, GiphyRequestManagerError>) -> Void) {
         var urlComponents = URLComponents(string: "https://api.giphy.com/v1/gifs/search")!
         urlComponents.queryItems = [URLQueryItem(name: "api_key", value: apiKey),
                                     URLQueryItem(name: "q", value: query),
@@ -77,7 +79,7 @@ class GiphyRequestManager {
         var urlRequest = URLRequest(url: urlComponents.url!)
         urlRequest.httpMethod = "get"
         
-        self.execute(urlRequest, completion: completion)
+        self.execute(urlRequest, mapDataTo: GiphySearchResponse.self, completion: completion)
     }
     
     private func validateForError(response: URLResponse?, error: Error?) -> GiphyRequestManagerError? {
@@ -107,6 +109,21 @@ class GiphyRequestManager {
         task.resume()
         
         return task
+    }
+    
+    @discardableResult private func execute<Model: Decodable>(_ urlRequest: URLRequest,
+                                                              mapDataTo: Model.Type,
+                                                              completion: @escaping (_ result: Result<Model, GiphyRequestManagerError>) -> Void) -> URLSessionDataTask {
+        return self.execute(urlRequest) { (requestResult) in
+            
+            switch requestResult {
+            case .success(let data):
+                let mappingResult = self.map(data, to: Model.self)
+                completion(mappingResult)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
     
     func map<Model: Decodable>(_ data: Data, to: Model.Type) -> Result<Model, GiphyRequestManagerError> {

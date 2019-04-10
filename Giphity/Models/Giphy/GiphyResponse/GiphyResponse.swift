@@ -10,12 +10,11 @@ import Foundation
 
 struct GiphyResponse<DataType: Decodable>: Decodable {
     let data: DataType?
-    let meta: Meta
+    let meta: GiphyResponseMeta
 }
 
-extension GiphyResponse {
-    struct Meta: Decodable {
-        let status: Int
-        let msg: String
-    }
+struct GiphyResponseMeta: Decodable {
+    let status: Int
+    let msg: String
 }
+

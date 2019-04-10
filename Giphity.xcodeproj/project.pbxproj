@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8D09203D225C83C8004D6F90 /* CollectionViewConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09203C225C83C8004D6F90 /* CollectionViewConfigurator.swift */; };
+		8D08DB88225DD36C004959D8 /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D08DB87225DD36C004959D8 /* CollectionViewDataSource.swift */; };
+		8D08DB8C225DDBD5004959D8 /* GiphySearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D08DB8B225DDBD5004959D8 /* GiphySearchResponse.swift */; };
+		8D09203D225C83C8004D6F90 /* CollectionViewCellConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D09203C225C83C8004D6F90 /* CollectionViewCellConfigurator.swift */; };
 		8D410E40225B4B45001F5132 /* GifObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D410E3F225B4B45001F5132 /* GifObject.swift */; };
 		8D410E46225B68DB001F5132 /* ImagesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D410E45225B68DB001F5132 /* ImagesObject.swift */; };
 		8D410E4D225B91F2001F5132 /* GiphyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D410E4C225B91F2001F5132 /* GiphyResponse.swift */; };
@@ -35,7 +37,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8D09203C225C83C8004D6F90 /* CollectionViewConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewConfigurator.swift; sourceTree = "<group>"; };
+		8D08DB87225DD36C004959D8 /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
+		8D08DB8B225DDBD5004959D8 /* GiphySearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphySearchResponse.swift; sourceTree = "<group>"; };
+		8D09203C225C83C8004D6F90 /* CollectionViewCellConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCellConfigurator.swift; sourceTree = "<group>"; };
 		8D410E3F225B4B45001F5132 /* GifObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifObject.swift; sourceTree = "<group>"; };
 		8D410E45225B68DB001F5132 /* ImagesObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesObject.swift; sourceTree = "<group>"; };
 		8D410E4C225B91F2001F5132 /* GiphyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyResponse.swift; sourceTree = "<group>"; };
@@ -75,10 +79,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D08DB85225DD349004959D8 /* CollectionViewDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				8D08DB87225DD36C004959D8 /* CollectionViewDataSource.swift */,
+			);
+			path = CollectionViewDataSource;
+			sourceTree = "<group>";
+		};
+		8D08DB86225DD357004959D8 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				8D08DB85225DD349004959D8 /* CollectionViewDataSource */,
+				8D09203B225C83B6004D6F90 /* CollectionViewConfigurator */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		8D08DB8D225DDBE2004959D8 /* GiphySearchResponse */ = {
+			isa = PBXGroup;
+			children = (
+				8D08DB8B225DDBD5004959D8 /* GiphySearchResponse.swift */,
+			);
+			path = GiphySearchResponse;
+			sourceTree = "<group>";
+		};
 		8D09203B225C83B6004D6F90 /* CollectionViewConfigurator */ = {
 			isa = PBXGroup;
 			children = (
-				8D09203C225C83C8004D6F90 /* CollectionViewConfigurator.swift */,
+				8D09203C225C83C8004D6F90 /* CollectionViewCellConfigurator.swift */,
 			);
 			path = CollectionViewConfigurator;
 			sourceTree = "<group>";
@@ -94,6 +123,7 @@
 		8D410E3D225B4B18001F5132 /* Giphy */ = {
 			isa = PBXGroup;
 			children = (
+				8D08DB8D225DDBE2004959D8 /* GiphySearchResponse */,
 				8D410E4B225B91CC001F5132 /* GiphyResponse */,
 				8D410E44225B6893001F5132 /* ImagesObject */,
 				8D410E3E225B4B34001F5132 /* GifObject */,
@@ -137,7 +167,7 @@
 		8D410E54225BA2C0001F5132 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				8D09203B225C83B6004D6F90 /* CollectionViewConfigurator */,
+				8D08DB86225DD357004959D8 /* CollectionView */,
 				8D410E51225BA1D0001F5132 /* DataSource */,
 			);
 			path = Utils;
@@ -367,6 +397,7 @@
 			files = (
 				8D410E53225BA1E9001F5132 /* Section.swift in Sources */,
 				8D6F924C22576C3500D43279 /* GifCollectionViewCell.swift in Sources */,
+				8D08DB8C225DDBD5004959D8 /* GiphySearchResponse.swift in Sources */,
 				8DDBFBAC22561F89009F7286 /* StoryboardLoadable.swift in Sources */,
 				8DDBFBAE22561FBB009F7286 /* InterfaceBuilderIdentifiable.swift in Sources */,
 				8DDBFB9122560BC7009F7286 /* RandomGifViewController.swift in Sources */,
@@ -377,7 +408,8 @@
 				8DDBFBA722561A6C009F7286 /* GiphyRequestManager.swift in Sources */,
 				8D9A491B225B2E9600F0AFE8 /* FlowCoordinator.swift in Sources */,
 				8DDBFBB122562594009F7286 /* UIStoryboard+ViewControllerInstantiation.swift in Sources */,
-				8D09203D225C83C8004D6F90 /* CollectionViewConfigurator.swift in Sources */,
+				8D09203D225C83C8004D6F90 /* CollectionViewCellConfigurator.swift in Sources */,
+				8D08DB88225DD36C004959D8 /* CollectionViewDataSource.swift in Sources */,
 				8D410E46225B68DB001F5132 /* ImagesObject.swift in Sources */,
 				8D6424672257A482001579F3 /* XibLoadable.swift in Sources */,
 				8DC6C418225642E600C2FAF2 /* GifDataEngine.swift in Sources */,

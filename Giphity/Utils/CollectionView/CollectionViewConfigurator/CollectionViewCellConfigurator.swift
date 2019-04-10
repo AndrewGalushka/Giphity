@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol CollectionViewConfiguratorType {
+protocol CollectionViewCellConfiguratorType {
     associatedtype Item
     associatedtype Cell: UICollectionViewCell
     
@@ -17,9 +17,9 @@ protocol CollectionViewConfiguratorType {
     func registerCells(in collectionView: UICollectionView)
 }
 
-extension CollectionViewConfiguratorType {
+extension CollectionViewCellConfiguratorType {
     
-    func configuretedCell(for item: Item, collectionView: UICollectionView, indexPath: IndexPath) -> Cell {
+    func configuredCell(for item: Item, collectionView: UICollectionView, indexPath: IndexPath) -> Cell {
         let reuseIdentifier = self.reuseIdentifier(for: item, indexPath: indexPath)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! Cell
         
@@ -27,7 +27,7 @@ extension CollectionViewConfiguratorType {
     }
 }
 
-struct CollectionViewConfigurator<Item, Cell: UICollectionViewCell>: CollectionViewConfiguratorType {
+struct CollectionViewCellConfigurator<Item, Cell: UICollectionViewCell>: CollectionViewCellConfiguratorType {
     typealias CellConfigurator = (Cell, Item, UICollectionView, IndexPath) -> Cell
     
     let reuseIdentifier: String = "\(Cell.self)"
