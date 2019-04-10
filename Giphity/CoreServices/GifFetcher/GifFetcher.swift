@@ -24,6 +24,23 @@ class GifFetcher {
             return
         }
         
+        self.fetch(url, competion: competion)
+    }
+    
+    func fetch(_ url: String, competion: @escaping (_: Result<UIImage, Error>) -> Void) {
+        guard
+            let url = URL(string: url)
+        else {
+            competion(.failure(NSError(domain: "", code: 0, userInfo: nil)))
+            return
+        }
+        
+        self.fetch(url, competion: competion)
+    }
+    
+    func fetch(_ url: URL, competion: @escaping (_: Result<UIImage, Error>) -> Void) {
+        let stabError = NSError(domain: "", code: 0, userInfo: nil)
+        
         var request = URLRequest(url: url)
         request.httpMethod = "get"
         
