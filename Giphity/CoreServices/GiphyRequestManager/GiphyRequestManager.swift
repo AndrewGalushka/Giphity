@@ -47,23 +47,37 @@ enum GiphyRequestManagerError: RawRepresentable, Error {
 class GiphyRequestManager {
     private let apiKey = "cS2x8egoJJkpGz9takXkr2O2Cf1OSPJr"
     
-    func randomGif(completion: @escaping (_ result: Result<Data, GiphyRequestManagerError>) -> Void) {
+    func randomGif(completion: @escaping (_ result: Result<GiphyResponse<GifObject>, GiphyRequestManagerError>) -> Void) {
         var urlComponents = URLComponents(string: "https://api.giphy.com/v1/gifs/random")!
         urlComponents.queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
         
         var urlRequest = URLRequest(url: urlComponents.url!)
         urlRequest.httpMethod = "get"
         
-        URLSession.shared.dataTask(with: urlRequest) { [weak self] (data, response, error) in
+        self.execute(urlRequest) { [weak self] (reponse) in
+            guard let `self` = self else { return }
             
-            if let validationError = self?.validateForError(response: response, error: error) {
-                completion(.failure(validationError))
-            } else if let data = data {
-                completion(.success(data))
-            } else {
-                completion(.failure(.other(0)))
+            switch reponse {
+            case .success(let data):
+                let mappingResult = self.map(data, to: GiphyResponse<GifObject>.self)
+                completion(mappingResult)
+            case .failure(let error):
+                completion(.failure(error))
             }
-        }.resume()
+        }
+    }
+    
+    func searchGif(name query: String, limit: Int = 25, offset: Int = 0, completion: @escaping (_ result: Result<Data, GiphyRequestManagerError>) -> Void) {
+        var urlComponents = URLComponents(string: "https://api.giphy.com/v1/gifs/search")!
+        urlComponents.queryItems = [URLQueryItem(name: "api_key", value: apiKey),
+                                    URLQueryItem(name: "q", value: query),
+                                    URLQueryItem(name: "limit", value: "\(limit)"),
+                                    URLQueryItem(name: "offset", value: "\(offset)")];
+        
+        var urlRequest = URLRequest(url: urlComponents.url!)
+        urlRequest.httpMethod = "get"
+        
+        self.execute(urlRequest, completion: completion)
     }
     
     private func validateForError(response: URLResponse?, error: Error?) -> GiphyRequestManagerError? {
@@ -75,5 +89,33 @@ class GiphyRequestManager {
         }
         
         return nil
+    }
+    
+    @discardableResult private func execute(_ urlRequest: URLRequest,
+                                            completion: @escaping (_ result: Result<Data, GiphyRequestManagerError>) -> Void) -> URLSessionDataTask {
+        let task = URLSession.shared.dataTask(with: urlRequest) { [weak self] (data, response, error) in
+            
+            if let validationError = self?.validateForError(response: response, error: error) {
+                completion(.failure(validationError))
+            } else if let data = data {
+                completion(.success(data))
+            } else {
+                completion(.failure(.other(0)))
+            }
+        }
+        
+        task.resume()
+        
+        return task
+    }
+    
+    func map<Model: Decodable>(_ data: Data, to: Model.Type) -> Result<Model, GiphyRequestManagerError> {
+        
+        do {
+            let model = try JSONDecoder().decode(Model.self, from: data)
+            return .success(model)
+        } catch (let error as NSError) {
+            return .failure(GiphyRequestManagerError.other(error.code))
+        }
     }
 }
