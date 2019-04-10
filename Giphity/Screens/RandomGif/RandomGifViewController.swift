@@ -13,6 +13,7 @@ class RandomGifViewController: UIViewController {
     @IBOutlet weak var nextRandomGifButton: UIButton!
     
     let giphyRequestManager = GiphyRequestManager()
+    let gifFetcher = GifFetcher()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,15 +53,28 @@ class RandomGifViewController: UIViewController {
             }
         }
         
-        self.giphyRequestManager.randomGif { [weak self] (result) in
+        self.giphyRequestManager.randomGif { [weak self] (response) in
             guard let strongSelf = self else { return }
             
-            switch result {
-            case .success(let data):
+            switch response {
+            case .success(let result):
                 
-                strongSelf.fetchGifDataFromRandomImageResponse(data: data, competion: { (image) in
-                    resultCompletion(image)
-                })
+                if let gifObject = result.data {
+                    strongSelf.gifFetcher.fetch(gifObject, competion: { (response) in
+                        
+                        switch response {
+                        case .success(let image):
+                            resultCompletion(image)
+                        case .failure(_):
+                            resultCompletion(nil)
+                        }
+                    })
+                }
+                
+                
+//                strongSelf.fetchGifDataFromRandomImageResponse(data: data, competion: { (image) in
+//                    resultCompletion(image)
+//                })
                 
             case .failure(let error):
                 print(error.localizedDescription)
@@ -89,36 +103,6 @@ class RandomGifViewController: UIViewController {
                 view.isUserInteractionEnabled = true
             }
         }
-    }
-    
-    func fetchGifDataFromRandomImageResponse(data: Data, competion: @escaping (UIImage?) -> Void) {
-        
-        guard let response = try? JSONDecoder().decode(GiphyResponse<GifObject>.self, from: data) else {
-            competion(nil)
-            return
-        }
-        
-        guard
-            let urlString = response.data?.images?.imageObject(for: .downsized)?.url,
-            let url = URL(string: urlString)
-        else {
-            competion(nil)
-            return
-        }
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "get"
-
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-
-            if let data = data {
-                let gifDataEngine = GifDataEngine()
-                competion(gifDataEngine.gifImage(from: data))
-            } else {
-                competion(nil)
-            }
-
-        }.resume()
     }
 }
 
