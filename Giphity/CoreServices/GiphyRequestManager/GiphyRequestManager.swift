@@ -48,6 +48,22 @@ enum GiphyRequestManagerError: RawRepresentable, Error {
 class GiphyRequestManager {
     private let apiKey = "cS2x8egoJJkpGz9takXkr2O2Cf1OSPJr"
     
+    func randomGif() -> Promise<GiphyResponse<GifObject>> {
+        let pendingPromise = Promise<GiphyResponse<GifObject>>.pending()
+            
+        self.randomGif { (response) in
+            
+            switch response {
+            case .success(let gifObject):
+                pendingPromise.resolver.fulfill(gifObject)
+            case .failure(let error):
+                pendingPromise.resolver.reject(error)
+            }
+        }
+        
+        return pendingPromise.promise
+    }
+    
     func randomGif(completion: @escaping (_ result: Swift.Result<GiphyResponse<GifObject>, GiphyRequestManagerError>) -> Void) {
         var urlComponents = URLComponents(string: "https://api.giphy.com/v1/gifs/random")!
         urlComponents.queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
