@@ -49,19 +49,19 @@ class GiphyRequestManager {
     private let apiKey = "cS2x8egoJJkpGz9takXkr2O2Cf1OSPJr"
     
     func randomGif() -> Promise<GiphyResponse<GifObject>> {
-        let pendingPromise = Promise<GiphyResponse<GifObject>>.pending()
-            
-        self.randomGif { (response) in
-            
-            switch response {
-            case .success(let gifObject):
-                pendingPromise.resolver.fulfill(gifObject)
-            case .failure(let error):
-                pendingPromise.resolver.reject(error)
+        return Promise<GiphyResponse<GifObject>>.init(resolver: { (resolver) in
+            self.randomGif { (response) in
+                resolver.resolve(response)
             }
-        }
-        
-        return pendingPromise.promise
+        })
+    }
+    
+    func searchGifs(name query: String, limit: Int = 25, offset: Int = 0) -> Promise<GiphySearchResponse> {
+        return Promise<GiphySearchResponse>.init(resolver: { (resolver) in
+            self.searchGifs(name: query, limit: limit, offset: offset, completion: { (response) in
+                resolver.resolve(response)
+            })
+        })
     }
     
     func randomGif(completion: @escaping (_ result: Swift.Result<GiphyResponse<GifObject>, GiphyRequestManagerError>) -> Void) {
