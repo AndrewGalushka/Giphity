@@ -7,8 +7,25 @@
 //
 
 import UIKit
+import PromiseKit
+
+enum GifDataEngineError: Error {
+    case couldNotCreateImageSource
+}
 
 class GifDataEngine {
+    
+    func asynchronouslyConvertDataToGifImage(data: Data, queue: DispatchQueue = DispatchQueue.global()) -> Guarantee<UIImage?> {
+        
+        return Guarantee<UIImage?>.init(resolver: { (completion) in
+            queue.async { [weak self] in
+                guard let `self` = self else { return }
+                
+                let image = self.gifImage(from: data)
+                completion(image)
+            }
+        })
+    }
     
     func gifImage(from data: Data) -> UIImage? {
         guard let imageSource = CGImageSourceCreateWithData(data as CFData, nil) else {
