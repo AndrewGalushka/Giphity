@@ -7,13 +7,44 @@
 //
 
 import UIKit
+import PromiseKit
 
 
 class GifFetcher {
     
     let gifEngine: GifDataEngine = GifDataEngine()
     
-    func fetch(_ gifObject: GifObject, competion: @escaping (_: Result<UIImage, Error>) -> Void) {
+    func fetch(_ url: String) -> Promise<UIImage> {
+        let pendingPromise = Promise<UIImage>.pending()
+        
+        self.fetch(url) { (result) in
+            switch result {
+            case .success(let image):
+                pendingPromise.resolver.resolve(Result<UIImage>.fulfilled(image))
+            case .failure(let error):
+                pendingPromise.resolver.reject(error)
+            }
+        }
+        
+        return pendingPromise.promise
+    }
+    
+    func fetch(_ url: URL) -> Promise<UIImage> {
+        let pendingPromise = Promise<UIImage>.pending()
+        
+        self.fetch(url) { (result) in
+            switch result {
+            case .success(let image):
+                pendingPromise.resolver.resolve(Result<UIImage>.fulfilled(image))
+            case .failure(let error):
+                pendingPromise.resolver.reject(error)
+            }
+        }
+        
+        return pendingPromise.promise
+    }
+    
+    func fetch(_ gifObject: GifObject, competion: @escaping (_: Swift.Result<UIImage, Error>) -> Void) {
         let stabError = NSError(domain: "", code: 0, userInfo: nil)
         
         guard
@@ -27,7 +58,7 @@ class GifFetcher {
         self.fetch(url, competion: competion)
     }
     
-    func fetch(_ url: String, competion: @escaping (_: Result<UIImage, Error>) -> Void) {
+    func fetch(_ url: String, competion: @escaping (_: Swift.Result<UIImage, Error>) -> Void) {
         guard
             let url = URL(string: url)
         else {
@@ -38,7 +69,7 @@ class GifFetcher {
         self.fetch(url, competion: competion)
     }
     
-    func fetch(_ url: URL, competion: @escaping (_: Result<UIImage, Error>) -> Void) {
+    func fetch(_ url: URL, competion: @escaping (_: Swift.Result<UIImage, Error>) -> Void) {
         let stabError = NSError(domain: "", code: 0, userInfo: nil)
         
         var request = URLRequest(url: url)
@@ -57,8 +88,4 @@ class GifFetcher {
         
         task.resume()
     }
-}
-
-extension GifFetcher {
-    
 }
