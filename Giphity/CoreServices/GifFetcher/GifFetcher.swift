@@ -8,7 +8,21 @@
 
 import UIKit
 import PromiseKit
+import Alamofire
 
+enum GifFetcherError: Error {
+    case coundNotConvertDataToGif
+    case unknown
+    
+    var localizedDescription: String {
+        switch self {
+        case .coundNotConvertDataToGif:
+            return "Could not convert data to gif"
+        case .unknown:
+            return "Unknown error"
+        }
+    }
+}
 
 class GifFetcher: GifFetcherType {
    
@@ -74,22 +88,22 @@ class GifFetcher: GifFetcherType {
     }
     
     func fetch(_ url: URL, competion: @escaping (_: Swift.Result<UIImage, Error>) -> Void) {
-        let stabError = NSError(domain: "", code: 0, userInfo: nil)
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "get"
-        
-        let task = URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
+        Alamofire.request(url, method: .get).responseData { [weak self] (dataResponse) in
+            guard let `self` = self else { return }
             
-            if let data = data, let gif = self?.gifEngine.gifImage(from: data) {
-                competion(.success(gif))
-            } else if let error = error {
+            if let error = dataResponse.error {
                 competion(.failure(error))
+            } else if let data = dataResponse.data {
+                
+                if let gifImage = self.gifEngine.gifImage(from: data) {
+                    competion(.success(gifImage))
+                } else {
+                    competion(.failure(GifFetcherError.coundNotConvertDataToGif))
+                }
             } else {
-                competion(.failure(stabError))
+                competion(.failure(GifFetcherError.unknown))
             }
         }
-        
-        task.resume()
     }
 }
