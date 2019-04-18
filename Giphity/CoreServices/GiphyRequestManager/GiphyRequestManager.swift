@@ -8,6 +8,7 @@
 
 import Foundation
 import PromiseKit
+import Alamofire
 
 enum GiphyRequestManagerError: RawRepresentable, Error {
     
@@ -47,6 +48,7 @@ enum GiphyRequestManagerError: RawRepresentable, Error {
 
 class GiphyRequestManager: RandomGifRequestPerformable {
     private let apiKey = "cS2x8egoJJkpGz9takXkr2O2Cf1OSPJr"
+    private let sessionManager = Alamofire.SessionManager()
     
     func randomGif() -> Promise<GiphyResponse<GifObject>> {
         return Promise<GiphyResponse<GifObject>>.init(resolver: { (resolver) in
@@ -68,8 +70,7 @@ class GiphyRequestManager: RandomGifRequestPerformable {
         var urlComponents = URLComponents(string: "https://api.giphy.com/v1/gifs/random")!
         urlComponents.queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
         
-        var urlRequest = URLRequest(url: urlComponents.url!)
-        urlRequest.httpMethod = "get"
+        let urlRequest = try! URLRequest(url: urlComponents, method: .get)
         
         self.execute(urlRequest, mapDataTo: GiphyResponse<GifObject>.self, completion: completion)
     }
@@ -81,8 +82,7 @@ class GiphyRequestManager: RandomGifRequestPerformable {
                                     URLQueryItem(name: "limit", value: "\(limit)"),
                                     URLQueryItem(name: "offset", value: "\(offset)")];
         
-        var urlRequest = URLRequest(url: urlComponents.url!)
-        urlRequest.httpMethod = "get"
+        let urlRequest = try! URLRequest(url: urlComponents, method: .get)
         
         self.execute(urlRequest, mapDataTo: GiphySearchResponse.self, completion: completion)
     }
@@ -98,28 +98,10 @@ class GiphyRequestManager: RandomGifRequestPerformable {
         return nil
     }
     
-    @discardableResult private func execute(_ urlRequest: URLRequest,
-                                            completion: @escaping (_ result: Swift.Result<Data, GiphyRequestManagerError>) -> Void) -> URLSessionDataTask {
-        let task = URLSession.shared.dataTask(with: urlRequest) { [weak self] (data, response, error) in
-            
-            if let validationError = self?.validateForError(response: response, error: error) {
-                completion(.failure(validationError))
-            } else if let data = data {
-                completion(.success(data))
-            } else {
-                completion(.failure(.other(0)))
-            }
-        }
-        
-        task.resume()
-        
-        return task
-    }
-    
-    @discardableResult private func execute<Model: Decodable>(_ urlRequest: URLRequest,
+    private func execute<Model: Decodable>(_ urlRequest: URLRequest,
                                                               mapDataTo: Model.Type,
-                                                              completion: @escaping (_ result: Swift.Result<Model, GiphyRequestManagerError>) -> Void) -> URLSessionDataTask {
-        return self.execute(urlRequest) { (requestResult) in
+                                                              completion: @escaping (_ result: Swift.Result<Model, GiphyRequestManagerError>) -> Void) {
+        self.execute(urlRequest) { (requestResult) in
             
             switch requestResult {
             case .success(let data):
@@ -127,6 +109,26 @@ class GiphyRequestManager: RandomGifRequestPerformable {
                 completion(mappingResult)
             case .failure(let error):
                 completion(.failure(error))
+            }
+        }
+    }
+    
+    private func execute(_ urlRequest: URLRequest,
+                         completion: @escaping (_ result: Swift.Result<Data, GiphyRequestManagerError>) -> Void) {
+        
+        self.sessionManager.request(urlRequest).responseData { [weak self] (dataResponse) in
+            guard let `self` = self else { return }
+            
+            if let error = self.validateForError(response: dataResponse.response, error: dataResponse.error) {
+                completion(.failure(error))
+                return
+            }
+            
+            switch dataResponse.result {
+            case .success(let data):
+                completion(.success(data))
+            case .failure(let error):
+                completion(.failure(.other(0)))
             }
         }
     }
