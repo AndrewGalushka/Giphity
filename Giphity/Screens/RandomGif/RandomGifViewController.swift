@@ -28,7 +28,7 @@ class RandomGifViewController: UIViewController {
     }
     
     func setupUI() {
-        nextRandomGifButton.setTitle("Next Random Gif", for: .normal)
+        nextRandomGifButton.setTitle("Next Random GIF", for: .normal)
         nextRandomGifButton.backgroundColor = .orange
         nextRandomGifButton.tintColor = .white
         nextRandomGifButton.layer.cornerRadius = 5.0
