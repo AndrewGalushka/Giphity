@@ -10,9 +10,13 @@ import UIKit
 import PromiseKit
 
 
-class GifFetcher {
+class GifFetcher: GifFetcherType {
     
-    let gifEngine: GifDataEngine = GifDataEngine()
+    let gifEngine: GifDataEngineType
+    
+    init(gifDataEngine: GifDataEngine = GifDataEngine()) {
+        self.gifEngine = gifDataEngine
+    }
     
     func fetch(_ url: String) -> Promise<UIImage> {
         let pendingPromise = Promise<UIImage>.pending()

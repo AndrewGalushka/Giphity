@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PromiseKit
 
 class RandomGifViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!

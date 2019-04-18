@@ -9,13 +9,12 @@
 import UIKit
 import PromiseKit
 
-enum GifDataEngineError: Error {
-    case couldNotCreateImageSource
-}
-
-class GifDataEngine {
+class GifDataEngine: GifDataEngineType {
+    func asynchronouslyConvertDataToGifImage(data: Data) -> Guarantee<UIImage?> {
+        return self.asynchronouslyConvertDataToGifImage(data: data, queue: DispatchQueue.global())
+    }
     
-    func asynchronouslyConvertDataToGifImage(data: Data, queue: DispatchQueue = DispatchQueue.global()) -> Guarantee<UIImage?> {
+    func asynchronouslyConvertDataToGifImage(data: Data, queue: DispatchQueue) -> Guarantee<UIImage?> {
         
         return Guarantee<UIImage?>.init(resolver: { (completion) in
             queue.async { [weak self] in
