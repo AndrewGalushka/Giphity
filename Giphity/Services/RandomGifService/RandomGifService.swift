@@ -9,7 +9,7 @@
 import Foundation
 import PromiseKit
 
-class RandomGifService {
+class RandomGifService: RandomGifServiceType {
     private let gifFetcher: GifFetcherType
     private let requestManager: RandomGifRequestPerformable
     
