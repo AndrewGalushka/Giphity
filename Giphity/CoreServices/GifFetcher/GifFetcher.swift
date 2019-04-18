@@ -10,20 +10,6 @@ import UIKit
 import PromiseKit
 import Alamofire
 
-enum GifFetcherError: Error {
-    case coundNotConvertDataToGif
-    case unknown
-    
-    var localizedDescription: String {
-        switch self {
-        case .coundNotConvertDataToGif:
-            return "Could not convert data to gif"
-        case .unknown:
-            return "Unknown error"
-        }
-    }
-}
-
 class GifFetcher: GifFetcherType {
    
     let gifEngine: GifDataEngineType

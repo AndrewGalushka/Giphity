@@ -43,6 +43,7 @@
 		8DDBFBAC22561F89009F7286 /* StoryboardLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBFBAB22561F89009F7286 /* StoryboardLoadable.swift */; };
 		8DDBFBAE22561FBB009F7286 /* InterfaceBuilderIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBFBAD22561FBB009F7286 /* InterfaceBuilderIdentifiable.swift */; };
 		8DDBFBB122562594009F7286 /* UIStoryboard+ViewControllerInstantiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBFBB022562594009F7286 /* UIStoryboard+ViewControllerInstantiation.swift */; };
+		8DFCF4582268C0CF007327F6 /* GifFetcher+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFCF4572268C0CF007327F6 /* GifFetcher+Error.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		8DDBFBAB22561F89009F7286 /* StoryboardLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardLoadable.swift; sourceTree = "<group>"; };
 		8DDBFBAD22561FBB009F7286 /* InterfaceBuilderIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceBuilderIdentifiable.swift; sourceTree = "<group>"; };
 		8DDBFBB022562594009F7286 /* UIStoryboard+ViewControllerInstantiation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+ViewControllerInstantiation.swift"; sourceTree = "<group>"; };
+		8DFCF4572268C0CF007327F6 /* GifFetcher+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GifFetcher+Error.swift"; sourceTree = "<group>"; };
 		A5803908CFF37BC9C3D9867C /* Pods_Giphity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Giphity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D524A7D9CD259B0B4BF6F805 /* Pods-Giphity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Giphity.release.xcconfig"; path = "Target Support Files/Pods-Giphity/Pods-Giphity.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -237,6 +239,7 @@
 			children = (
 				8D954DDB225CF70C003A0195 /* GifFetcher.swift */,
 				8D0D6234226858FF0011FF04 /* GifFetcherType.swift */,
+				8DFCF4572268C0CF007327F6 /* GifFetcher+Error.swift */,
 			);
 			path = GifFetcher;
 			sourceTree = "<group>";
@@ -532,6 +535,7 @@
 				8D09203D225C83C8004D6F90 /* CollectionViewCellConfigurator.swift in Sources */,
 				8D08DB88225DD36C004959D8 /* CollectionViewDataSource.swift in Sources */,
 				8D0D6233226857B90011FF04 /* RandomGifService.swift in Sources */,
+				8DFCF4582268C0CF007327F6 /* GifFetcher+Error.swift in Sources */,
 				8D410E46225B68DB001F5132 /* ImagesObject.swift in Sources */,
 				8D6424672257A482001579F3 /* XibLoadable.swift in Sources */,
 				8DC6C418225642E600C2FAF2 /* GifDataEngine.swift in Sources */,
