@@ -13,14 +13,18 @@ class RandomGifViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nextRandomGifButton: UIButton!
     
-    let giphyRequestManager = GiphyRequestManager()
-    let gifFetcher = GifFetcher()
+    let randomGifService: RandomGifServiceType = RandomGifService(gifFetcher: GifFetcher(gifDataEngine: GifDataEngine()), requestManager: GiphyRequestManager())
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
-        fetchAndDisplayNextRandomGif()
+        
+        self.randomGifService.randomGif().done(on: DispatchQueue.main) {
+            self.imageView.image = $0
+        }.catch(on: DispatchQueue.main) { error in
+            self.imageView.image = nil
+        }
     }
     
     func setupUI() {
@@ -40,42 +44,16 @@ class RandomGifViewController: UIViewController {
     }
     
     func fetchAndDisplayNextRandomGif() {
-        imageView.image = nil
         
-        let buttonActivityIndicatorCancelationToken = setLoadingState(for: self.imageView)
-        let imageActivityIndicatorCancelationToken = setLoadingState(for: self.nextRandomGifButton)
-        
-        let resultCompletion: ((UIImage?) -> Void) = { [weak self] image in
-            
-            DispatchQueue.main.async {
-                buttonActivityIndicatorCancelationToken()
-                imageActivityIndicatorCancelationToken()
-                self?.imageView.image = image
-            }
-        }
-        
-        self.giphyRequestManager.randomGif { [weak self] (response) in
-            guard let strongSelf = self else { return }
-            
-            switch response {
-            case .success(let result):
-                
-                if let gifObject = result.data {
-                    strongSelf.gifFetcher.fetch(gifObject, competion: { (response) in
-                        
-                        switch response {
-                        case .success(let image):
-                            resultCompletion(image)
-                        case .failure(_):
-                            resultCompletion(nil)
-                        }
-                    })
-                }
-                
-            case .failure(let error):
-                print(error.localizedDescription)
-                resultCompletion(nil)
-            }
+        PromiseKit.firstly { () -> Promise<UIImage> in
+            self.nextRandomGifButton.isEnabled = false
+            return self.randomGifService.randomGif()
+        }.done(on: DispatchQueue.main) {
+            self.imageView.image = $0
+        }.ensure {
+            self.nextRandomGifButton.isEnabled = true
+        }.catch(on: DispatchQueue.main) { error in
+            self.imageView.image = nil
         }
     }
     
