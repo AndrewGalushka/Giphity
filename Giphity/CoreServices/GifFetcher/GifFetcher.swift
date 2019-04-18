@@ -11,7 +11,7 @@ import PromiseKit
 
 
 class GifFetcher: GifFetcherType {
-    
+   
     let gifEngine: GifDataEngineType
     
     init(gifDataEngine: GifDataEngine = GifDataEngine()) {
@@ -31,6 +31,21 @@ class GifFetcher: GifFetcherType {
         }
         
         return pendingPromise.promise
+    }
+    
+    func fetch(_ gifObject: GifObject) -> Promise<UIImage> {
+        let (promise, promiseResolver) = Promise<UIImage>.pending()
+        
+        self.fetch(gifObject) { (response) in
+            switch response {
+            case .success(let gifImage):
+                promiseResolver.fulfill(gifImage)
+            case .failure(let error):
+                promiseResolver.reject(error)
+            }
+        }
+        
+        return promise
     }
     
     func fetch(_ url: URL) -> Promise<UIImage> {
