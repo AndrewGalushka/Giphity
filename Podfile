@@ -6,7 +6,8 @@ target 'Giphity' do
   use_frameworks!
 
   pod "PromiseKit", "~> 6.8"
-
+  pod 'Alamofire'
+  
 end
 
 post_install do |installer_representation|
