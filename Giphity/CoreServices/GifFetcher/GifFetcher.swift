@@ -19,48 +19,33 @@ class GifFetcher: GifFetcherType {
     }
     
     func fetch(_ url: String) -> Promise<UIImage> {
-        let pendingPromise = Promise<UIImage>.pending()
+        let (promise, promiseResolver) = Promise<UIImage>.pending()
         
         self.fetch(url) { (result) in
-            switch result {
-            case .success(let image):
-                pendingPromise.resolver.resolve(Result<UIImage>.fulfilled(image))
-            case .failure(let error):
-                pendingPromise.resolver.reject(error)
-            }
+            promiseResolver.resolve(result)
         }
         
-        return pendingPromise.promise
+        return promise
     }
     
     func fetch(_ gifObject: GifObject) -> Promise<UIImage> {
         let (promise, promiseResolver) = Promise<UIImage>.pending()
         
-        self.fetch(gifObject) { (response) in
-            switch response {
-            case .success(let gifImage):
-                promiseResolver.fulfill(gifImage)
-            case .failure(let error):
-                promiseResolver.reject(error)
-            }
+        self.fetch(gifObject) { (result) in
+            promiseResolver.resolve(result)
         }
         
         return promise
     }
     
     func fetch(_ url: URL) -> Promise<UIImage> {
-        let pendingPromise = Promise<UIImage>.pending()
+        let (promise, promiseResolver) = Promise<UIImage>.pending()
         
         self.fetch(url) { (result) in
-            switch result {
-            case .success(let image):
-                pendingPromise.resolver.resolve(Result<UIImage>.fulfilled(image))
-            case .failure(let error):
-                pendingPromise.resolver.reject(error)
-            }
+            promiseResolver.resolve(result)
         }
         
-        return pendingPromise.promise
+        return promise
     }
     
     func fetch(_ gifObject: GifObject, competion: @escaping (_: Swift.Result<UIImage, Error>) -> Void) {
