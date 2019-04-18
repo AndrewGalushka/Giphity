@@ -45,7 +45,7 @@ enum GiphyRequestManagerError: RawRepresentable, Error {
     }
 }
 
-class GiphyRequestManager {
+class GiphyRequestManager: RandomGifRequestPerformable {
     private let apiKey = "cS2x8egoJJkpGz9takXkr2O2Cf1OSPJr"
     
     func randomGif() -> Promise<GiphyResponse<GifObject>> {
