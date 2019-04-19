@@ -10,25 +10,32 @@ import Foundation
 import UIKit
 
 class AppCoordinator: AppCoordinatorType {
-//    let window: UIWindow
-//
-//    init(window: UIWindow) {
-//        self.window = window
-//    }
-//
-//    func start() {
-//        let randomGifViewController = RandomGifViewController.loadFromStoryboard()
-//        randomGifViewController.tabBarItem = UITabBarItem(title: "Random", image: UIImage(named: "tab_bar_cube_icon"), selectedImage: nil)
-//        let searchGifsViewController = SearchGifsViewController.loadFromStoryboard()
-//        searchGifsViewController.tabBarItem = UITabBarItem(title: "Search", image: UIImage(named: "tab_bar_search_icon"), selectedImage: nil)
-//
-//        let tabbarController = UITabBarController()
-//        tabbarController.setViewControllers([searchGifsViewController, randomGifViewController], animated: false)
-//        tabbarController.selectedIndex = 1
-//
-//        window.rootViewController = tabbarController
-//    }
+    private let window: UIWindow
+    private let appAssembler: ApplicationAssemblerType
+    private let coordinatorsFactory: CoordinatorsFactoryType
+    private var childCoordinators = [FlowCoordinatorType]()
+    
+    init(window: UIWindow,
+         applicationAssembler: ApplicationAssemblerType = ApplicationAssembler(),
+         coordinatorsFactory: CoordinatorsFactoryType = CoordinatorsFactory()) {
+        self.window = window
+        self.appAssembler = applicationAssembler
+        self.coordinatorsFactory = coordinatorsFactory
+    }
     
     func start() {
+        let mainFlowCoordinator = coordinatorsFactory.makeMainFlowCoordinator(window: self.window, assemler: appAssembler)
+        mainFlowCoordinator.start()
+        self.addChildCoordinator(mainFlowCoordinator)
+    }
+    
+    // MARK: - Methods(Private)
+    
+    private func addChildCoordinator(_ coordinator: FlowCoordinatorType) {
+        childCoordinators.append(coordinator)
+    }
+    
+    private func removeChildCoordinator(_ coordinator: FlowCoordinatorType) {
+        childCoordinators.removeAll { $0 === coordinator }
     }
 }

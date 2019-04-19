@@ -8,11 +8,13 @@
 
 import UIKit
 
-class MainFlowCoordinator: FlowCoordinator {
-    let window: UIWindow
+class MainFlowCoordinator: FlowCoordinatorType {
+    private let window: UIWindow
+    private let tabbarController: UITabBarController
     
     init(window: UIWindow) {
         self.window = window
+        self.tabbarController = UITabBarController()
     }
     
     func start() {
@@ -21,7 +23,6 @@ class MainFlowCoordinator: FlowCoordinator {
         let searchGifsViewController = SearchGifsViewController.loadFromStoryboard()
         searchGifsViewController.tabBarItem = UITabBarItem(title: "Search", image: UIImage(named: "tab_bar_search_icon"), selectedImage: nil)
         
-        let tabbarController = UITabBarController()
         tabbarController.setViewControllers([searchGifsViewController, randomGifViewController], animated: false)
         tabbarController.selectedIndex = 1
         

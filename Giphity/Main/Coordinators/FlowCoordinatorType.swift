@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol FlowCoordinator {
+protocol FlowCoordinatorType: AnyObject {
     func start()
 }
