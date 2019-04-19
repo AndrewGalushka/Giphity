@@ -32,6 +32,9 @@ class GifDataEngine: GifDataEngineType {
         }
         
         let imagesCount = CGImageSourceGetCount(imageSource)
+        
+        guard imagesCount > 0 else { return nil }
+        
         var images = [UIImage]()
         var duration: Double = 0.0
         
