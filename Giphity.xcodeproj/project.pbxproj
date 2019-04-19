@@ -24,6 +24,7 @@
 		8D3253462269C90200A0F090 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3253452269C90200A0F090 /* AppCoordinator.swift */; };
 		8D325348226A12E500A0F090 /* CoordinatorsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D325347226A12E500A0F090 /* CoordinatorsFactory.swift */; };
 		8D32534B226A192500A0F090 /* CoordinatorsFactoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32534A226A192500A0F090 /* CoordinatorsFactoryType.swift */; };
+		8D32534E226A1E6800A0F090 /* ChildCoordinatorsHoldable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32534D226A1E6800A0F090 /* ChildCoordinatorsHoldable.swift */; };
 		8D410E40225B4B45001F5132 /* GifObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D410E3F225B4B45001F5132 /* GifObject.swift */; };
 		8D410E46225B68DB001F5132 /* ImagesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D410E45225B68DB001F5132 /* ImagesObject.swift */; };
 		8D410E4D225B91F2001F5132 /* GiphyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D410E4C225B91F2001F5132 /* GiphyResponse.swift */; };
@@ -70,6 +71,7 @@
 		8D3253452269C90200A0F090 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		8D325347226A12E500A0F090 /* CoordinatorsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorsFactory.swift; sourceTree = "<group>"; };
 		8D32534A226A192500A0F090 /* CoordinatorsFactoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorsFactoryType.swift; sourceTree = "<group>"; };
+		8D32534D226A1E6800A0F090 /* ChildCoordinatorsHoldable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildCoordinatorsHoldable.swift; sourceTree = "<group>"; };
 		8D410E3F225B4B45001F5132 /* GifObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifObject.swift; sourceTree = "<group>"; };
 		8D410E45225B68DB001F5132 /* ImagesObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesObject.swift; sourceTree = "<group>"; };
 		8D410E4C225B91F2001F5132 /* GiphyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyResponse.swift; sourceTree = "<group>"; };
@@ -416,6 +418,7 @@
 				8DDBFBAB22561F89009F7286 /* StoryboardLoadable.swift */,
 				8DDBFBAD22561FBB009F7286 /* InterfaceBuilderIdentifiable.swift */,
 				8D6424662257A482001579F3 /* XibLoadable.swift */,
+				8D32534D226A1E6800A0F090 /* ChildCoordinatorsHoldable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -587,6 +590,7 @@
 				8D410E4F225B9FE8001F5132 /* DataSource.swift in Sources */,
 				8D410E40225B4B45001F5132 /* GifObject.swift in Sources */,
 				8D08DB8F225DF10D004959D8 /* UIColor.swift in Sources */,
+				8D32534E226A1E6800A0F090 /* ChildCoordinatorsHoldable.swift in Sources */,
 				8DDBFBA722561A6C009F7286 /* GiphyRequestManager.swift in Sources */,
 				8D0D624122687E5E0011FF04 /* RandomGifServiceType.swift in Sources */,
 				8D9A491B225B2E9600F0AFE8 /* FlowCoordinatorType.swift in Sources */,
