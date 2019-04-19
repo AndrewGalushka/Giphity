@@ -48,11 +48,13 @@ class GifDataEngine: GifDataEngineType {
             else {
                 continue
             }
-        
+            
             images.append(UIImage(cgImage: cgImage))
             duration += delay
         }
         
-       return UIImage.animatedImage(with: images, duration: duration)
+        guard images.count > 0 else { return nil }
+        
+        return UIImage.animatedImage(with: images, duration: duration)
     }
 }
