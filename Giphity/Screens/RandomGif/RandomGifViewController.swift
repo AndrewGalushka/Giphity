@@ -45,10 +45,13 @@ class RandomGifViewController: UIViewController {
     
     func fetchAndDisplayNextRandomGif() {
         
+        let animator = self.alphaAnimator(for: self.imageView)
+        
         PromiseKit.firstly { () -> Promise<UIImage> in
             self.nextRandomGifButton.isEnabled = false
             return self.randomGifService.randomGif()
         }.done(on: DispatchQueue.main) {
+            animator.startAnimation()
             self.imageView.image = $0
         }.ensure {
             self.nextRandomGifButton.isEnabled = true
@@ -77,6 +80,30 @@ class RandomGifViewController: UIViewController {
                 view.isUserInteractionEnabled = true
             }
         }
+    }
+    
+    func alphaAnimator(for view: UIView, duration animationTotalDuration: TimeInterval = 0.25) -> UIViewPropertyAnimator {
+        let alphaDecreaseStartTime = 0.0
+        let alphaDecreaseDuration = animationTotalDuration * 0.2
+        let alphaIncreaseStartTime = alphaDecreaseDuration
+        let alphaIncreaseDuration = animationTotalDuration - alphaDecreaseDuration
+        
+        let alphaDecreaseValue: CGFloat = 0.6
+        let alphaIncreaseValue: CGFloat = 1.0
+        
+        let animator = UIViewPropertyAnimator(duration: 0.25, curve: UIView.AnimationCurve.easeOut) {
+            UIView.animateKeyframes(withDuration: 0.25, delay: 0.0,animations: {
+                UIView.addKeyframe(withRelativeStartTime: alphaDecreaseStartTime, relativeDuration: alphaDecreaseDuration, animations: {
+                    view.alpha = alphaDecreaseValue
+                })
+                
+                UIView.addKeyframe(withRelativeStartTime: alphaIncreaseStartTime, relativeDuration: alphaIncreaseDuration, animations: {
+                    view.alpha = alphaIncreaseValue
+                })
+            })
+        }
+        
+        return animator
     }
 }
 
