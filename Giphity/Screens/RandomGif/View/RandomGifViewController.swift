@@ -13,7 +13,7 @@ class RandomGifViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nextRandomGifButton: UIButton!
     
-    weak var presentor: RandomGifViewPresentor?
+    weak var presentor: RandomGifViewPresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()

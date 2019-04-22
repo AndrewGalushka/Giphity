@@ -19,7 +19,7 @@ class MainFlowCoordinatorModulesAssembler: MainFlowCoordinatorModulesAssemblerTy
         let randomGifService = self.assemblyRandomGifService()
         
         let viewController = RandomGifViewController.loadFromStoryboard()
-        let presentor = RandomGifPresentor(randomGifService: randomGifService)
+        let presentor = RandomGifPresenter(randomGifService: randomGifService)
         
         return RandomGifModule(view: viewController, presentor: presentor)
     }

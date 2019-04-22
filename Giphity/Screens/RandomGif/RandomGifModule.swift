@@ -9,10 +9,10 @@
 import UIKit
 
 class RandomGifModule: ViewControllerModule {
-    let presentor: RandomGifPresentor
+    let presentor: RandomGifPresenter
     let randomGifView: RandomGifViewController
     
-    init(view: RandomGifViewController, presentor: RandomGifPresentor) {
+    init(view: RandomGifViewController, presentor: RandomGifPresenter) {
         self.randomGifView = view
         self.presentor = presentor
         
