@@ -15,7 +15,7 @@ class MainFlowCoordinatorModulesAssembler: MainFlowCoordinatorModulesAssemblerTy
         self.assembler = assembler
     }
     
-    func asseblyRandomGifModule() -> RandomGifModule {
+    func assemblyRandomGifModule() -> RandomGifModule {
         let randomGifService = self.assemblyRandomGifService()
         
         let viewController = RandomGifViewController.loadFromStoryboard()
@@ -24,8 +24,21 @@ class MainFlowCoordinatorModulesAssembler: MainFlowCoordinatorModulesAssemblerTy
         return RandomGifModule(view: viewController, presentor: presentor)
     }
     
+    func assemblySearchGIFsModule() -> ViewControllerModule {
+        let searchGIFsService = self.assemblySearchGIFsService()
+        
+        let viewController = SearchGifsViewController.loadFromStoryboard()
+        let presenter = SearchGifsPresenter(searchService: searchGIFsService)
+        
+        return SearchGIFsModule(view: viewController, presenter: presenter)
+    }
+    
     private func assemblyRandomGifService() -> RandomGifServiceType {
         return RandomGifService(gifFetcher: assembler.assemblyGifFetcher(),
                                 requestManager: assembler.assemblyGiphyRequestManager())
+    }
+    
+    private func assemblySearchGIFsService() -> SearchGIFsServiceType {
+        return SearchGIFsService(requestManager: assembler.assemblyGiphyRequestManager())
     }
 }
