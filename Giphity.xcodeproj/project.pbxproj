@@ -333,8 +333,8 @@
 			isa = PBXGroup;
 			children = (
 				8D6F924A22576C3500D43279 /* GifCollectionViewCell.swift */,
-				8D6F924B22576C3500D43279 /* GifCollectionViewCell.xib */,
 				8D954DD7225CF1AD003A0195 /* GifCollectionViewCellViewModel.swift */,
+				8D6F924B22576C3500D43279 /* GifCollectionViewCell.xib */,
 			);
 			path = GifCollectionViewCell;
 			sourceTree = "<group>";
