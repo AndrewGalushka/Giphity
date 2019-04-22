@@ -116,7 +116,7 @@ class GiphyRequestManager: RandomGifRequestPerformable {
     private func execute(_ urlRequest: URLRequest,
                          completion: @escaping (_ result: Swift.Result<Data, GiphyRequestManagerError>) -> Void) {
         
-        self.sessionManager.request(urlRequest).responseData { [weak self] (dataResponse) in
+        self.sessionManager.request(urlRequest).responseData(queue: .global()) { [weak self] (dataResponse) in
             guard let `self` = self else { return }
             
             if let error = self.validateForError(response: dataResponse.response, error: dataResponse.error) {
