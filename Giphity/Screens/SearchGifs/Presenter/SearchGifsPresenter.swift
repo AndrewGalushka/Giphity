@@ -11,6 +11,8 @@ import Foundation
 class SearchGifsPresenter: SearchGifsViewPresenter {
     private let searchService: SearchGIFsServiceType
     
+    weak var view: SearchGIFsView?
+    
     // MARK: - Initializers
     
     init(searchService: SearchGIFsServiceType) {
@@ -20,5 +22,32 @@ class SearchGifsPresenter: SearchGifsViewPresenter {
     // MARK: - SearchGifsViewPresenter
     
     func searchGIFs(by name: String) {
+        guard !name.isEmpty else {
+            view?.displaySearchResults([])
+            return
+        }
+        
+        searchService.searchGifs(by: name).done(on: .main) { (response) in
+            let viewModels = self.convertResponseToViewModels(response: response)
+            self.view?.displaySearchResults(viewModels)
+        }.catch(on: .global()) { (error) in
+            self.view?.displaySearchFailed(error: error)
+        }
+    }
+    
+    private func convertResponseToViewModels(response: GiphySearchResponse,
+                                             ofImageType imageObjectType: ImageObject.ImageType = .downsized) -> [GifCollectionViewCell.ViewModel] {
+        guard let gifObjects = response.gifObjects, !gifObjects.isEmpty else { return [] }
+        
+        var viewModels = [GifCollectionViewCell.ViewModel]()
+        
+        for gifObject in gifObjects {
+            guard let url = gifObject.images?.imageObject(for: imageObjectType)?.url else { continue }
+            let viewModel = GifCollectionViewCell.ViewModel(identifier: gifObject.identifier, gifURL: url)
+            
+            viewModels.append(viewModel)
+        }
+        
+        return viewModels
     }
 }

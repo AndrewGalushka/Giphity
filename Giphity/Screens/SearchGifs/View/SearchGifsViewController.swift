@@ -110,3 +110,19 @@ extension SearchGifsViewController: UICollectionViewDelegateFlowLayout {
         self.searchBar.resignFirstResponder()
     }
 }
+
+extension SearchGifsViewController: SearchGIFsView {
+    
+    func displaySearchResults(_ searchResults: [GifCollectionViewCell.ViewModel]) {
+        let section = Section<GifCollectionViewCell.ViewModel>.init(items: searchResults)
+        
+        self.collectionViewDataSource.dataSource.sections = [section]
+        self.collectionView.reloadData()
+    }
+    
+    func displaySearchFailed(error: Error) {
+        print(error)
+        self.collectionViewDataSource.dataSource.sections.removeAll()
+        self.collectionView.reloadData()
+    }
+}
