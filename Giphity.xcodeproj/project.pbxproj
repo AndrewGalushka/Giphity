@@ -63,6 +63,7 @@
 		8DF57057226E0BEC00DFA9B3 /* SearchGIFsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF57056226E0BEC00DFA9B3 /* SearchGIFsService.swift */; };
 		8DF57059226E0BFD00DFA9B3 /* SearchGIFsServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF57058226E0BFD00DFA9B3 /* SearchGIFsServiceType.swift */; };
 		8DF5705C226E0DDE00DFA9B3 /* SearchGIFsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5705B226E0DDE00DFA9B3 /* SearchGIFsView.swift */; };
+		8DF5705F226E195500DFA9B3 /* SearchGIFsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5705E226E195500DFA9B3 /* SearchGIFsModule.swift */; };
 		8DFCF4582268C0CF007327F6 /* GifFetcher+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFCF4572268C0CF007327F6 /* GifFetcher+Error.swift */; };
 /* End PBXBuildFile section */
 
@@ -125,6 +126,7 @@
 		8DF57056226E0BEC00DFA9B3 /* SearchGIFsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGIFsService.swift; sourceTree = "<group>"; };
 		8DF57058226E0BFD00DFA9B3 /* SearchGIFsServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGIFsServiceType.swift; sourceTree = "<group>"; };
 		8DF5705B226E0DDE00DFA9B3 /* SearchGIFsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGIFsView.swift; sourceTree = "<group>"; };
+		8DF5705E226E195500DFA9B3 /* SearchGIFsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGIFsModule.swift; sourceTree = "<group>"; };
 		8DFCF4572268C0CF007327F6 /* GifFetcher+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GifFetcher+Error.swift"; sourceTree = "<group>"; };
 		A5803908CFF37BC9C3D9867C /* Pods_Giphity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Giphity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D524A7D9CD259B0B4BF6F805 /* Pods-Giphity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Giphity.release.xcconfig"; path = "Target Support Files/Pods-Giphity/Pods-Giphity.release.xcconfig"; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 		8D6F924222576AAF00D43279 /* SearchGifs */ = {
 			isa = PBXGroup;
 			children = (
+				8DF5705E226E195500DFA9B3 /* SearchGIFsModule.swift */,
 				8D6F924922576BF000D43279 /* GifCollectionViewCell */,
 				8DF5704E226E08A400DFA9B3 /* Presenter */,
 				8DF5705A226E0DAF00DFA9B3 /* View */,
@@ -691,6 +694,7 @@
 				8D0D6233226857B90011FF04 /* RandomGifService.swift in Sources */,
 				8DFCF4582268C0CF007327F6 /* GifFetcher+Error.swift in Sources */,
 				8D410E46225B68DB001F5132 /* ImagesObject.swift in Sources */,
+				8DF5705F226E195500DFA9B3 /* SearchGIFsModule.swift in Sources */,
 				8DF57054226E09A200DFA9B3 /* SearchGIFsRequestPerformable.swift in Sources */,
 				8DF5704C226DC1A400DFA9B3 /* MainFlowCoordinatorModulesAssemblerType.swift in Sources */,
 				8D6424672257A482001579F3 /* XibLoadable.swift in Sources */,

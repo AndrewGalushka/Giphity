@@ -25,15 +25,17 @@ class MainFlowCoordinator: FlowCoordinatorType {
     }
     
     func start() {
-        let randomGifModule = self.modulesAssembler.asseblyRandomGifModule()
+        let randomGifModule = self.modulesAssembler.assemblyRandomGifModule()
+        let searchGIFsModule = self.modulesAssembler.assemblySearchGIFsModule()
+        
         self.addModule(randomGifModule)
+        self.addModule(searchGIFsModule)
         
         randomGifModule.asViewController.tabBarItem = UITabBarItem(title: "Random", image: UIImage(named: "tab_bar_cube_icon"), selectedImage: nil)
         
-        let searchGifsViewController = SearchGifsViewController.loadFromStoryboard()
-        searchGifsViewController.tabBarItem = UITabBarItem(title: "Search", image: UIImage(named: "tab_bar_search_icon"), selectedImage: nil)
+        searchGIFsModule.asViewController.tabBarItem = UITabBarItem(title: "Search", image: UIImage(named: "tab_bar_search_icon"), selectedImage: nil)
         
-        tabbarController.setViewControllers([searchGifsViewController, randomGifModule.asViewController], animated: false)
+        tabbarController.setViewControllers([searchGIFsModule.asViewController, randomGifModule.asViewController], animated: false)
         tabbarController.selectedIndex = 1
         
         window.rootViewController = tabbarController

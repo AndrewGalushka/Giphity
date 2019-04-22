@@ -15,7 +15,8 @@ class SearchGifsViewController: UIViewController {
     
     typealias GifCollectionViewCellConfigurator = CollectionViewCellConfigurator<GifCollectionViewCell.ViewModel, GifCollectionViewCell>
     var collectionViewDataSource: CollectionViewDataSource<GifCollectionViewCellConfigurator>!
-    let giphyRequestManager = GiphyRequestManager()
+    
+    weak var presenter: SearchGifsViewPresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,42 +59,8 @@ extension SearchGifsViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         
-        if let text = searchBar.text, !text.isEmpty {
-            
-            giphyRequestManager.searchGifs(name: text) { [weak self] (response) in
-                
-                switch response {
-                case .success(let searchResult):
-                    self?.updateCollectionView(searchResult: searchResult)
-                case .failure(let error):
-                    self?.updateCollectionView(searchResult: nil)
-                    print(error)
-                }
-            }
-        }
-    }
-    
-    func updateCollectionView(searchResult: GiphySearchResponse?) {
-        
-        DispatchQueue.main.async {
-            guard let gifObjects = searchResult?.gifObjects else {
-                self.collectionViewDataSource.dataSource.sections.removeAll()
-                self.collectionView.reloadData()
-                return
-            }
-            
-            var gifCellViewModels = [GifCollectionViewCell.ViewModel]()
-            
-            for gifObject in gifObjects where gifObject.images?.imageObject(for: .downsized) != nil {
-                let identifier = gifObject.identifier
-                let url: String = (gifObject.images?.imageObject(for: .downsized)?.url)!
-                
-                gifCellViewModels.append(GifCollectionViewCell.ViewModel(identifier: identifier, gifURL: url))
-            }
-            
-            self.collectionViewDataSource.dataSource.sections = [ Section(items: gifCellViewModels) ]
-            self.collectionView.reloadData()
-        }
+        let text = searchBar.text ?? ""
+        self.presenter?.searchGIFs(by: text)
     }
 }
 
