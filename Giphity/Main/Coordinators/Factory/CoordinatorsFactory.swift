@@ -11,7 +11,7 @@ import UIKit
 class CoordinatorsFactory: CoordinatorsFactoryType {
     
     func makeMainFlowCoordinator(window: UIWindow, assemler: ApplicationAssemblerType) -> MainFlowCoordinator {
-        let mainFlowCoordinator = MainFlowCoordinator(window: window)
+        let mainFlowCoordinator = MainFlowCoordinator(window: window, assembler: assemler)
         return mainFlowCoordinator
     }
 }

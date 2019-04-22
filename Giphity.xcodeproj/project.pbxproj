@@ -25,6 +25,7 @@
 		8D325348226A12E500A0F090 /* CoordinatorsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D325347226A12E500A0F090 /* CoordinatorsFactory.swift */; };
 		8D32534B226A192500A0F090 /* CoordinatorsFactoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32534A226A192500A0F090 /* CoordinatorsFactoryType.swift */; };
 		8D32534E226A1E6800A0F090 /* ChildCoordinatorsHoldable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32534D226A1E6800A0F090 /* ChildCoordinatorsHoldable.swift */; };
+		8D325353226A234A00A0F090 /* RandomGifPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D325352226A234A00A0F090 /* RandomGifPresentor.swift */; };
 		8D410E40225B4B45001F5132 /* GifObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D410E3F225B4B45001F5132 /* GifObject.swift */; };
 		8D410E46225B68DB001F5132 /* ImagesObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D410E45225B68DB001F5132 /* ImagesObject.swift */; };
 		8D410E4D225B91F2001F5132 /* GiphyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D410E4C225B91F2001F5132 /* GiphyResponse.swift */; };
@@ -50,6 +51,12 @@
 		8DDBFBAC22561F89009F7286 /* StoryboardLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBFBAB22561F89009F7286 /* StoryboardLoadable.swift */; };
 		8DDBFBAE22561FBB009F7286 /* InterfaceBuilderIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBFBAD22561FBB009F7286 /* InterfaceBuilderIdentifiable.swift */; };
 		8DDBFBB122562594009F7286 /* UIStoryboard+ViewControllerInstantiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBFBB022562594009F7286 /* UIStoryboard+ViewControllerInstantiation.swift */; };
+		8DF57042226DAB8700DFA9B3 /* RandomGifViewPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF57041226DAB8700DFA9B3 /* RandomGifViewPresentor.swift */; };
+		8DF57044226DB0A600DFA9B3 /* RandomGifView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF57043226DB0A600DFA9B3 /* RandomGifView.swift */; };
+		8DF57046226DC00B00DFA9B3 /* ViewControllerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF57045226DC00B00DFA9B3 /* ViewControllerModule.swift */; };
+		8DF57048226DC08100DFA9B3 /* RandomGifModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF57047226DC08100DFA9B3 /* RandomGifModule.swift */; };
+		8DF5704A226DC19100DFA9B3 /* MainFlowCoordinatorModulesAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF57049226DC19100DFA9B3 /* MainFlowCoordinatorModulesAssembler.swift */; };
+		8DF5704C226DC1A400DFA9B3 /* MainFlowCoordinatorModulesAssemblerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF5704B226DC1A400DFA9B3 /* MainFlowCoordinatorModulesAssemblerType.swift */; };
 		8DFCF4582268C0CF007327F6 /* GifFetcher+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFCF4572268C0CF007327F6 /* GifFetcher+Error.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +79,7 @@
 		8D325347226A12E500A0F090 /* CoordinatorsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorsFactory.swift; sourceTree = "<group>"; };
 		8D32534A226A192500A0F090 /* CoordinatorsFactoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorsFactoryType.swift; sourceTree = "<group>"; };
 		8D32534D226A1E6800A0F090 /* ChildCoordinatorsHoldable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildCoordinatorsHoldable.swift; sourceTree = "<group>"; };
+		8D325352226A234A00A0F090 /* RandomGifPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomGifPresentor.swift; sourceTree = "<group>"; };
 		8D410E3F225B4B45001F5132 /* GifObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifObject.swift; sourceTree = "<group>"; };
 		8D410E45225B68DB001F5132 /* ImagesObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesObject.swift; sourceTree = "<group>"; };
 		8D410E4C225B91F2001F5132 /* GiphyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyResponse.swift; sourceTree = "<group>"; };
@@ -99,6 +107,12 @@
 		8DDBFBAB22561F89009F7286 /* StoryboardLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardLoadable.swift; sourceTree = "<group>"; };
 		8DDBFBAD22561FBB009F7286 /* InterfaceBuilderIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceBuilderIdentifiable.swift; sourceTree = "<group>"; };
 		8DDBFBB022562594009F7286 /* UIStoryboard+ViewControllerInstantiation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+ViewControllerInstantiation.swift"; sourceTree = "<group>"; };
+		8DF57041226DAB8700DFA9B3 /* RandomGifViewPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomGifViewPresentor.swift; sourceTree = "<group>"; };
+		8DF57043226DB0A600DFA9B3 /* RandomGifView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomGifView.swift; sourceTree = "<group>"; };
+		8DF57045226DC00B00DFA9B3 /* ViewControllerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerModule.swift; sourceTree = "<group>"; };
+		8DF57047226DC08100DFA9B3 /* RandomGifModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomGifModule.swift; sourceTree = "<group>"; };
+		8DF57049226DC19100DFA9B3 /* MainFlowCoordinatorModulesAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinatorModulesAssembler.swift; sourceTree = "<group>"; };
+		8DF5704B226DC1A400DFA9B3 /* MainFlowCoordinatorModulesAssemblerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinatorModulesAssemblerType.swift; sourceTree = "<group>"; };
 		8DFCF4572268C0CF007327F6 /* GifFetcher+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GifFetcher+Error.swift"; sourceTree = "<group>"; };
 		A5803908CFF37BC9C3D9867C /* Pods_Giphity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Giphity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D524A7D9CD259B0B4BF6F805 /* Pods-Giphity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Giphity.release.xcconfig"; path = "Target Support Files/Pods-Giphity/Pods-Giphity.release.xcconfig"; sourceTree = "<group>"; };
@@ -212,6 +226,25 @@
 			path = Factory;
 			sourceTree = "<group>";
 		};
+		8D325350226A1FCD00A0F090 /* Presentor */ = {
+			isa = PBXGroup;
+			children = (
+				8D325352226A234A00A0F090 /* RandomGifPresentor.swift */,
+				8DF57041226DAB8700DFA9B3 /* RandomGifViewPresentor.swift */,
+			);
+			path = Presentor;
+			sourceTree = "<group>";
+		};
+		8D325351226A1FD900A0F090 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8DF57043226DB0A600DFA9B3 /* RandomGifView.swift */,
+				8DDBFB9022560BC7009F7286 /* RandomGifViewController.swift */,
+				8DDBFBA822561F48009F7286 /* RandomGifViewController.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		8D410E3C225B4B10001F5132 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,6 +340,8 @@
 			isa = PBXGroup;
 			children = (
 				8D9A491C225B2EC500F0AFE8 /* MainFlowCoordinator.swift */,
+				8DF57049226DC19100DFA9B3 /* MainFlowCoordinatorModulesAssembler.swift */,
+				8DF5704B226DC1A400DFA9B3 /* MainFlowCoordinatorModulesAssemblerType.swift */,
 			);
 			path = MainFlowCoordinator;
 			sourceTree = "<group>";
@@ -387,8 +422,9 @@
 		8DDBFBA322561865009F7286 /* RandomGif */ = {
 			isa = PBXGroup;
 			children = (
-				8DDBFB9022560BC7009F7286 /* RandomGifViewController.swift */,
-				8DDBFBA822561F48009F7286 /* RandomGifViewController.storyboard */,
+				8DF57047226DC08100DFA9B3 /* RandomGifModule.swift */,
+				8D325350226A1FCD00A0F090 /* Presentor */,
+				8D325351226A1FD900A0F090 /* View */,
 			);
 			path = RandomGif;
 			sourceTree = "<group>";
@@ -419,6 +455,7 @@
 				8DDBFBAD22561FBB009F7286 /* InterfaceBuilderIdentifiable.swift */,
 				8D6424662257A482001579F3 /* XibLoadable.swift */,
 				8D32534D226A1E6800A0F090 /* ChildCoordinatorsHoldable.swift */,
+				8DF57045226DC00B00DFA9B3 /* ViewControllerModule.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -576,9 +613,12 @@
 			files = (
 				8D0D6237226859AE0011FF04 /* GifDataEngineType.swift in Sources */,
 				8D410E53225BA1E9001F5132 /* Section.swift in Sources */,
+				8DF57044226DB0A600DFA9B3 /* RandomGifView.swift in Sources */,
 				8D6F924C22576C3500D43279 /* GifCollectionViewCell.swift in Sources */,
+				8DF5704A226DC19100DFA9B3 /* MainFlowCoordinatorModulesAssembler.swift in Sources */,
 				8D325348226A12E500A0F090 /* CoordinatorsFactory.swift in Sources */,
 				8DAF8A92226771D4007E15A2 /* Resolver+SwiftResult.swift in Sources */,
+				8DF57048226DC08100DFA9B3 /* RandomGifModule.swift in Sources */,
 				8D08DB8C225DDBD5004959D8 /* GiphySearchResponse.swift in Sources */,
 				8DDBFBAC22561F89009F7286 /* StoryboardLoadable.swift in Sources */,
 				8DDBFBAE22561FBB009F7286 /* InterfaceBuilderIdentifiable.swift in Sources */,
@@ -587,21 +627,25 @@
 				8DDBFB8F22560BC7009F7286 /* AppDelegate.swift in Sources */,
 				8D0D623B226874390011FF04 /* RandomGifRequestPerformable.swift in Sources */,
 				8D9A491D225B2EC500F0AFE8 /* MainFlowCoordinator.swift in Sources */,
+				8DF57046226DC00B00DFA9B3 /* ViewControllerModule.swift in Sources */,
 				8D410E4F225B9FE8001F5132 /* DataSource.swift in Sources */,
 				8D410E40225B4B45001F5132 /* GifObject.swift in Sources */,
 				8D08DB8F225DF10D004959D8 /* UIColor.swift in Sources */,
 				8D32534E226A1E6800A0F090 /* ChildCoordinatorsHoldable.swift in Sources */,
 				8DDBFBA722561A6C009F7286 /* GiphyRequestManager.swift in Sources */,
 				8D0D624122687E5E0011FF04 /* RandomGifServiceType.swift in Sources */,
+				8DF57042226DAB8700DFA9B3 /* RandomGifViewPresentor.swift in Sources */,
 				8D9A491B225B2E9600F0AFE8 /* FlowCoordinatorType.swift in Sources */,
 				8D0D6235226858FF0011FF04 /* GifFetcherType.swift in Sources */,
 				8DDBFBB122562594009F7286 /* UIStoryboard+ViewControllerInstantiation.swift in Sources */,
+				8D325353226A234A00A0F090 /* RandomGifPresentor.swift in Sources */,
 				8D3253462269C90200A0F090 /* AppCoordinator.swift in Sources */,
 				8D09203D225C83C8004D6F90 /* CollectionViewCellConfigurator.swift in Sources */,
 				8D08DB88225DD36C004959D8 /* CollectionViewDataSource.swift in Sources */,
 				8D0D6233226857B90011FF04 /* RandomGifService.swift in Sources */,
 				8DFCF4582268C0CF007327F6 /* GifFetcher+Error.swift in Sources */,
 				8D410E46225B68DB001F5132 /* ImagesObject.swift in Sources */,
+				8DF5704C226DC1A400DFA9B3 /* MainFlowCoordinatorModulesAssemblerType.swift in Sources */,
 				8D6424672257A482001579F3 /* XibLoadable.swift in Sources */,
 				8DC6C418225642E600C2FAF2 /* GifDataEngine.swift in Sources */,
 				8D0D623D22687A310011FF04 /* RandomGifServiceError.swift in Sources */,

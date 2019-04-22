@@ -13,18 +13,13 @@ class RandomGifViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nextRandomGifButton: UIButton!
     
-    let randomGifService: RandomGifServiceType = RandomGifService(gifFetcher: GifFetcher(gifDataEngine: GifDataEngine()), requestManager: GiphyRequestManager())
+    weak var presentor: RandomGifViewPresentor?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
-        
-        self.randomGifService.randomGif().done(on: DispatchQueue.main) {
-            self.imageView.image = $0
-        }.catch(on: DispatchQueue.main) { error in
-            self.imageView.image = nil
-        }
+        presentor?.viewLoaded()
     }
     
     func setupUI() {
@@ -40,46 +35,7 @@ class RandomGifViewController: UIViewController {
     }
     
     @IBAction func nextRandomGifButtonTouchUpInsideActionHandler(_ sender: Any) {
-        fetchAndDisplayNextRandomGif()
-    }
-    
-    func fetchAndDisplayNextRandomGif() {
-        
-        let animator = self.alphaAnimator(for: self.imageView)
-        
-        PromiseKit.firstly { () -> Promise<UIImage> in
-            self.nextRandomGifButton.isEnabled = false
-            return self.randomGifService.randomGif()
-        }.done(on: DispatchQueue.main) {
-            animator.startAnimation()
-            self.imageView.image = $0
-        }.ensure {
-            self.nextRandomGifButton.isEnabled = true
-        }.catch(on: DispatchQueue.main) { error in
-            self.imageView.image = nil
-        }
-    }
-    
-    func setLoadingState(for view: UIView) -> (() -> Void) {
-        let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
-        activityIndicator.center = CGPoint(x: view.bounds.midX, y: view.bounds.midY)
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        
-        let isUserInteractionEnabledByDefault = view.isUserInteractionEnabled
-        
-        if isUserInteractionEnabledByDefault {
-            view.isUserInteractionEnabled = false
-        }
-        
-        return {
-            activityIndicator.stopAnimating()
-            activityIndicator.removeFromSuperview()
-            
-            if isUserInteractionEnabledByDefault {
-                view.isUserInteractionEnabled = true
-            }
-        }
+        presentor?.nextRandomGif()
     }
     
     func alphaAnimator(for view: UIView, duration animationTotalDuration: TimeInterval = 0.25) -> UIViewPropertyAnimator {
@@ -104,6 +60,20 @@ class RandomGifViewController: UIViewController {
         }
         
         return animator
+    }
+}
+
+extension RandomGifViewController: RandomGifView {
+    func showLoadingIndicator() {
+        self.nextRandomGifButton.isEnabled = false
+    }
+    
+    func hideLoadingIndicator() {
+        self.nextRandomGifButton.isEnabled = true
+    }
+    
+    func displayGif(_ image: UIImage) {
+        self.imageView.image = image
     }
 }
 
