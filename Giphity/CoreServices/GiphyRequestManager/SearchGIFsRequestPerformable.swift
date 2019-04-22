@@ -15,7 +15,19 @@ protocol SearchGIFsRequestPerformable {
                     offset: Int) -> Promise<GiphySearchResponse>
 
     func searchGifs(name query: String,
+                    limit: Int) -> Promise<GiphySearchResponse>
+    
+    func searchGifs(name query: String) -> Promise<GiphySearchResponse>
+    
+    func searchGifs(name query: String,
                     limit: Int,
                     offset: Int,
+                    completion: @escaping (_ result: Swift.Result<GiphySearchResponse, GiphyRequestManagerError>) -> Void)
+    
+    func searchGifs(name query: String,
+                    limit: Int,
+                    completion: @escaping (_ result: Swift.Result<GiphySearchResponse, GiphyRequestManagerError>) -> Void)
+    
+    func searchGifs(name query: String,
                     completion: @escaping (_ result: Swift.Result<GiphySearchResponse, GiphyRequestManagerError>) -> Void)
 }
