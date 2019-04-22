@@ -16,10 +16,16 @@ class MainFlowCoordinatorModulesAssembler: MainFlowCoordinatorModulesAssemblerTy
     }
     
     func asseblyRandomGifModule() -> RandomGifModule {
+        let randomGifService = self.asseblyRandomGifService()
+        
         let viewController = RandomGifViewController.loadFromStoryboard()
-        let presentor = RandomGifPresentor(randomGifService: RandomGifService(gifFetcher: assembler.assemblyGifFetcher(),
-                                                                              requestManager: assembler.assemblyGiphyRequestManager()))
+        let presentor = RandomGifPresentor(randomGifService: randomGifService)
         
         return RandomGifModule(view: viewController, presentor: presentor)
+    }
+    
+    private func asseblyRandomGifService() -> RandomGifServiceType {
+        return RandomGifService(gifFetcher: assembler.assemblyGifFetcher(),
+                                requestManager: assembler.assemblyGiphyRequestManager())
     }
 }
