@@ -29,7 +29,7 @@ class GifCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.contentView.backgroundColor = UIColor.rgba(255, 254, 212)
+        self.contentView.backgroundColor = UIColor.rgba(244, 255, 250)
     }
     
     func configure(_ viewModel: ViewModel) {

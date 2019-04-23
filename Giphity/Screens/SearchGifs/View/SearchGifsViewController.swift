@@ -23,7 +23,6 @@ class SearchGifsViewController: UIViewController {
         
         setupSearchBar()
         setupCollectionView()
-        setupCollectionViewLayout()
     }
     
     func setupCollectionView() {
@@ -40,12 +39,24 @@ class SearchGifsViewController: UIViewController {
         collectionViewDataSource.registerCells(in: collectionView)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupCollectionViewLayout()
+    }
+    
     func setupCollectionViewLayout() {
-        let collectionViewLayout = UICollectionViewFlowLayout()
-        collectionViewLayout.minimumInteritemSpacing = 0.0
-        collectionViewLayout.minimumLineSpacing = 0.0
-        collectionViewLayout.itemSize = CGSize(width: self.collectionView.bounds.width, height: self.collectionView.bounds.width)
+        let value: CGFloat = 5.0
+        let minimumInteritemSpacing: CGFloat = value
+        let minimumLineSpacing: CGFloat = value
+        let sideSize = (self.collectionView.bounds.width * 0.5)//.rounded()
+        let itemSize = CGSize(width: sideSize - minimumInteritemSpacing,
+                              height: sideSize - minimumLineSpacing)
         
+        let collectionViewLayout = UICollectionViewFlowLayout()
+        
+        collectionViewLayout.minimumInteritemSpacing = minimumInteritemSpacing
+        collectionViewLayout.minimumLineSpacing = minimumLineSpacing
+        collectionViewLayout.itemSize = itemSize
         self.collectionView.setCollectionViewLayout(collectionViewLayout, animated: false)
     }
     
