@@ -39,12 +39,12 @@ class RandomGifPresenter: RandomGifViewPresenter {
         PromiseKit.firstly { () -> Promise<UIImage> in
             self.view?.showLoadingIndicator()
             return randomGifService.randomGif()
-            }.done { (image) in
-                self.view?.displayGif(image)
-            }.catch { (error) in
-                self.view?.displayRandomGifError(error)
-            }.finally {
-                self.view?.hideLoadingIndicator()
+        }.done { (image) in
+            self.view?.displayGif(image)
+        }.catch { (error) in
+            self.view?.displayRandomGifError(error)
+        }.finally {
+            self.view?.hideLoadingIndicator()
         }
     }
 }
