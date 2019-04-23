@@ -29,6 +29,7 @@ class SearchGifsViewController: UIViewController {
         
         let configurator = GifCollectionViewCellConfigurator { (cell, viewModel, collectionView, indexPath) -> GifCollectionViewCell in
             cell.configure(viewModel)
+            cell.displayGif()
             return cell
         }
         
@@ -76,14 +77,7 @@ extension SearchGifsViewController: UISearchBarDelegate {
 }
 
 extension SearchGifsViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
-        if let gifCell = cell as? GifCollectionViewCell {
-            gifCell.displayGif()
-        }
-    }
-    
+
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.searchBar.resignFirstResponder()
     }
