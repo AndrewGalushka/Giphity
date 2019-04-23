@@ -12,4 +12,5 @@ protocol RandomGifView: AnyObject {
     func showLoadingIndicator()
     func hideLoadingIndicator()
     func displayGif(_ image: UIImage)
+    func displayRandomGifError(_ error: Error)
 }

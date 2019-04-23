@@ -75,5 +75,9 @@ extension RandomGifViewController: RandomGifView {
     func displayGif(_ image: UIImage) {
         self.imageView.image = image
     }
+    
+    func displayRandomGifError(_ error: Error) {
+        self.imageView.image = nil
+    }
 }
 

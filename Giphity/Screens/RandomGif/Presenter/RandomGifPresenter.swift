@@ -14,6 +14,8 @@ class RandomGifPresenter: RandomGifViewPresenter {
     
     weak var view: RandomGifView?
     
+    // MARK: - Initializers
+    
     init(randomGifService: RandomGifServiceType) {
         self.randomGifService = randomGifService
     }
@@ -27,7 +29,7 @@ class RandomGifPresenter: RandomGifViewPresenter {
         }.done { (image) in
             self.view?.displayGif(image)
         }.catch { (error) in
-            print(error)
+            self.view?.displayRandomGifError(error)
         }.finally {
             self.view?.hideLoadingIndicator()
         }
@@ -40,7 +42,7 @@ class RandomGifPresenter: RandomGifViewPresenter {
             }.done { (image) in
                 self.view?.displayGif(image)
             }.catch { (error) in
-                print(error)
+                self.view?.displayRandomGifError(error)
             }.finally {
                 self.view?.hideLoadingIndicator()
         }
