@@ -70,7 +70,7 @@ extension ImageObject {
         /// Static preview image for fixed_width_small
         case fixedWidthSmallStill = "fixed_width_small_still"
         /// File size under 50kb. Duration may be truncated to meet file size requirements. Good for thumbnails and previews.
-        case preview = "preview"
+        case preview_gif = "preview_gif"
         /// File size under 200kb.
         case downsized_small
         /// File size under 2mb.
