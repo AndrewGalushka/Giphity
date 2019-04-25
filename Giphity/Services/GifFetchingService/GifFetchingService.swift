@@ -48,14 +48,15 @@ class GifFetchingService: GifFetchingServiceType {
         return promise
     }
     
-    // MARK: - Pending Fetching Tasks
+    // MARK: - Pending Tasks
+
+    private var pendingTasks = [URL: Promise<UIImage>]()
     
     private let pendingTasksReadWriteQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
         return queue
     }()
-    private var pendingTasks = [URL: Promise<UIImage>]()
     
     @discardableResult private func addPendingTask(url: URL, task: Promise<UIImage>) -> Guarantee<()> {
         return Guarantee<Void>.init(resolver: { (resolver) in
@@ -67,7 +68,6 @@ class GifFetchingService: GifFetchingServiceType {
     }
     
     private func removePendingTask(at url: URL, afterCompetionOf task: Promise<UIImage>) {
-        
         _ = task.ensure { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.removePendingTask(for: url)
