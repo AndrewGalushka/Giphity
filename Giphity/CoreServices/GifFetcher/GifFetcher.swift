@@ -77,24 +77,22 @@ class GifFetcher: GifFetcherType {
     }
     
     func fetch(_ url: URL, competion: @escaping (_: Swift.Result<UIImage, Error>) -> Void) {
-        
 
-        cache.image(url: url).done(on: processingQueue) { (imageFromCache) in
+        self.processingQueue.async { [weak self] in
             
-            if let imageFromCache = imageFromCache {
+            if let imageFromCache = self?.cache.image(url: url) {
                 
-                if let gifImage = self.gifEngine.gifImage(from: imageFromCache) {
+                if let gifImage = self?.gifEngine.gifImage(from: imageFromCache) {
                     competion(.success(gifImage))
                 } else {
                     competion(.failure(GifFetcherError.coundNotConvertDataToGif))
                 }
             }
             
-            Alamofire.request(url, method: .get).responseData { (dataResponse) in
+            Alamofire.request(url, method: .get).responseData { [weak self] (dataResponse) in
                 
-                self.processingQueue.async { [weak self] in
-//                    guard let `self` = self else { return }
-                    
+                self?.processingQueue.async { [weak self] in
+                
                     if let error = dataResponse.error {
                         competion(.failure(error))
                     } else if let data = dataResponse.data {
