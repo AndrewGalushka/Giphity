@@ -11,7 +11,7 @@ import Foundation
 struct TimeSpentLogger {
     private(set) var totalTimeSpent: TimeInterval = 0.0
     private var startDate: Date = Date.init(timeIntervalSince1970: 0)
-    private var endDate: Date = Date.init(timeIntervalSinceNow: 0)
+    private var endDate: Date = Date.init(timeIntervalSince1970: 0)
     
     mutating func start() {
         reset()
