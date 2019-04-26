@@ -13,7 +13,7 @@ class GifFetchingService: GifFetchingServiceType {
     
     let gifFetcher: GifFetcherType
     
-    init(fetcher: GifFetcherType) {
+    init(fetcher: GifFetcherType = GifFetcher(gifDataEngine: GifDataEngine()) ) {
         self.gifFetcher = fetcher
     }
     

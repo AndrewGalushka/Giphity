@@ -15,7 +15,7 @@ class GifCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var imageView: UIImageView!
     
     private var viewModel: ViewModel?
-    private let gifFetcher: GifFetcher = GifFetcher()
+    var gifFetcher: GifFetchingServiceType?
     
     // MARK: - Lifecycle
     
@@ -48,28 +48,14 @@ class GifCollectionViewCell: UICollectionViewCell {
         var fetchingTimeLogger = TimeSpentLogger()
         fetchingTimeLogger.start()
         
-        self.gifFetcher.fetch(viewModel.gifURL) { [weak self] (response) in
-            
-            fetchingTimeLogger.end(textBeforeTimeLog: "Gif fetching time is")
-            
-            guard
-                let currentViewModel = self?.viewModel,
-                currentViewModel.identifier == fetchingGifID
-            else { return }
-            
-            var imageSettingTimeLogger = TimeSpentLogger()
-            imageSettingTimeLogger.start()
-            
-            DispatchQueue.main.async {
-                switch response {
-                case .success(let gif):
-                    self?.imageView.image = gif
-                case .failure(_):
-                    self?.imageView.image = nil
-                }
-                
-                imageSettingTimeLogger.end(textBeforeTimeLog: "Time spent to set image is")
-            }
+        self.gifFetcher?.fetchGif(using: URL(string: viewModel.gifURL)! ).done { [weak self] (image) in
+            guard fetchingGifID == self?.viewModel?.identifier else { return }
+            self?.imageView.image = image
+        }.catch { [weak self] (error) in
+            guard fetchingGifID == self?.viewModel?.identifier else { return }
+            self?.imageView.image = nil
+        }.finally {
+            fetchingTimeLogger.finish(textBeforeTimeLog: "Gif fetching time is")
         }
     }
 }

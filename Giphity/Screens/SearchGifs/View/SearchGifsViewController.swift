@@ -12,6 +12,7 @@ class SearchGifsViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
+    let gifFetchingService: GifFetchingServiceType = GifFetchingService()
     
     typealias GifCollectionViewCellConfigurator = CollectionViewCellConfigurator<GifCollectionViewCell.ViewModel, GifCollectionViewCell>
     var collectionViewDataSource: CollectionViewDataSource<GifCollectionViewCellConfigurator>!
@@ -30,6 +31,7 @@ class SearchGifsViewController: UIViewController {
         
         let configurator = GifCollectionViewCellConfigurator { (cell, viewModel, collectionView, indexPath) -> GifCollectionViewCell in
             cell.configure(viewModel)
+            cell.gifFetcher = self.gifFetchingService
             cell.displayGif()
             
             return cell
