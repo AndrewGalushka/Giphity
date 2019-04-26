@@ -18,7 +18,15 @@ struct TimeSpentLogger {
         startDate = Date()
     }
     
-    mutating func end(textBeforeTimeLog: String = "TimeMeter: Total time spent") {
+    mutating func finish(textBeforeTimeLog: String = "TimeMeter: Total time spent is") {
+        endDate = Date()
+        self.totalTimeSpent = endDate.timeIntervalSince1970 - startDate.timeIntervalSince1970
+        
+        print("\(textBeforeTimeLog) \(totalTimeSpent)")
+    }
+    
+    @available(*, deprecated, message: "consider to replace it with finish(textBeforeTimeLog: String)")
+    mutating func end(textBeforeTimeLog: String = "TimeMeter: Total time spent is") {
         endDate = Date()
         self.totalTimeSpent = endDate.timeIntervalSince1970 - startDate.timeIntervalSince1970
         

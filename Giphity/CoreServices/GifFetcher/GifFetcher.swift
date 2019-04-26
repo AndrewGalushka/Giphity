@@ -10,9 +10,38 @@ import UIKit
 import PromiseKit
 import Alamofire
 
+class GifCache {
+    private let storage = NSCache<AnyObject, AnyObject>()
+    private var operationQueue: OperationQueue = {
+       let queue = OperationQueue()
+        queue.name = "com.gif.cache.operation.queue"
+        queue.maxConcurrentOperationCount = 1
+        
+        return queue
+    }()
+    
+    func save(_ image: Data, url: URL) {
+        operationQueue.addOperation { [weak self] in
+            self?.storage.setObject(image as NSData, forKey: url.path as AnyObject)
+        }
+    }
+    
+    func image(url: URL) -> Guarantee<Data?> {
+        return Guarantee<Data?>.init(resolver: { (resolver) in
+            operationQueue.addOperation { [weak self] in
+                let image = self?.storage.object(forKey: url.path as AnyObject) as? Data
+                resolver(image)
+            }
+        })
+    }
+}
+
 class GifFetcher: GifFetcherType {
    
     let gifEngine: GifDataEngineType
+    let cache = GifCache()
+    
+    private let processingQueue = DispatchQueue(label: "gif.fetcher.processing.queue", qos: DispatchQoS.userInitiated)
     
     init(gifDataEngine: GifDataEngine = GifDataEngine()) {
         self.gifEngine = gifDataEngine
@@ -52,7 +81,7 @@ class GifFetcher: GifFetcherType {
         let stabError = NSError(domain: "", code: 0, userInfo: nil)
         
         guard
-            let urlString = gifObject.images?.imageObject(for: .downsized)?.url,
+            let urlString = gifObject.images?.imageObject(for: .preview_gif)?.url,
             let url = URL(string: urlString)
         else {
             competion(.failure(stabError))
@@ -75,20 +104,37 @@ class GifFetcher: GifFetcherType {
     
     func fetch(_ url: URL, competion: @escaping (_: Swift.Result<UIImage, Error>) -> Void) {
         
-        Alamofire.request(url, method: .get).responseData { [weak self] (dataResponse) in
-            guard let `self` = self else { return }
+
+        cache.image(url: url).done(on: processingQueue) { (imageFromCache) in
             
-            if let error = dataResponse.error {
-                competion(.failure(error))
-            } else if let data = dataResponse.data {
+            if let imageFromCache = imageFromCache {
                 
-                if let gifImage = self.gifEngine.gifImage(from: data) {
+                if let gifImage = self.gifEngine.gifImage(from: imageFromCache) {
                     competion(.success(gifImage))
                 } else {
                     competion(.failure(GifFetcherError.coundNotConvertDataToGif))
                 }
-            } else {
-                competion(.failure(GifFetcherError.unknown))
+            }
+            
+            Alamofire.request(url, method: .get).responseData { (dataResponse) in
+                
+                self.processingQueue.async { [weak self] in
+//                    guard let `self` = self else { return }
+                    
+                    if let error = dataResponse.error {
+                        competion(.failure(error))
+                    } else if let data = dataResponse.data {
+                        
+                        if let gifImage = self?.gifEngine.gifImage(from: data) {
+                            self?.cache.save(data, url: url)
+                            competion(.success(gifImage))
+                        } else {
+                            competion(.failure(GifFetcherError.coundNotConvertDataToGif))
+                        }
+                    } else {
+                        competion(.failure(GifFetcherError.unknown))
+                    }
+                }
             }
         }
     }

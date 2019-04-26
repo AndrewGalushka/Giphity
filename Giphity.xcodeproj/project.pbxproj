@@ -18,6 +18,9 @@
 		8D0D623B226874390011FF04 /* RandomGifRequestPerformable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0D623A226874390011FF04 /* RandomGifRequestPerformable.swift */; };
 		8D0D623D22687A310011FF04 /* RandomGifServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0D623C22687A310011FF04 /* RandomGifServiceError.swift */; };
 		8D0D624122687E5E0011FF04 /* RandomGifServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0D624022687E5E0011FF04 /* RandomGifServiceType.swift */; };
+		8D0DBDA62272EEAF00908D4F /* SearchGIFsCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0DBDA52272EEAF00908D4F /* SearchGIFsCollectionViewLayout.swift */; };
+		8D1AAF332271EBA700B0E078 /* GifFetchingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1AAF322271EBA700B0E078 /* GifFetchingService.swift */; };
+		8D1AAF352271EBB800B0E078 /* GifFetchingServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1AAF342271EBB800B0E078 /* GifFetchingServiceType.swift */; };
 		8D32533C2269C26A00A0F090 /* ApplicationAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32533B2269C26A00A0F090 /* ApplicationAssembler.swift */; };
 		8D3253402269C30300A0F090 /* ApplicationAssemblerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32533F2269C30300A0F090 /* ApplicationAssemblerType.swift */; };
 		8D3253442269C8F900A0F090 /* AppCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3253432269C8F900A0F090 /* AppCoordinatorType.swift */; };
@@ -80,6 +83,9 @@
 		8D0D623A226874390011FF04 /* RandomGifRequestPerformable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomGifRequestPerformable.swift; sourceTree = "<group>"; };
 		8D0D623C22687A310011FF04 /* RandomGifServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomGifServiceError.swift; sourceTree = "<group>"; };
 		8D0D624022687E5E0011FF04 /* RandomGifServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomGifServiceType.swift; sourceTree = "<group>"; };
+		8D0DBDA52272EEAF00908D4F /* SearchGIFsCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGIFsCollectionViewLayout.swift; sourceTree = "<group>"; };
+		8D1AAF322271EBA700B0E078 /* GifFetchingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifFetchingService.swift; sourceTree = "<group>"; };
+		8D1AAF342271EBB800B0E078 /* GifFetchingServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifFetchingServiceType.swift; sourceTree = "<group>"; };
 		8D32533B2269C26A00A0F090 /* ApplicationAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationAssembler.swift; sourceTree = "<group>"; };
 		8D32533F2269C30300A0F090 /* ApplicationAssemblerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationAssemblerType.swift; sourceTree = "<group>"; };
 		8D3253432269C8F900A0F090 /* AppCoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorType.swift; sourceTree = "<group>"; };
@@ -182,6 +188,7 @@
 		8D0D62312268578A0011FF04 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8D1AAF312271EB8E00B0E078 /* GifFetchingService */,
 				8DF57055226E0BD800DFA9B3 /* SearchGIFsService */,
 				8D0D624222687E720011FF04 /* RandomGifService */,
 			);
@@ -196,6 +203,24 @@
 				8D0D623C22687A310011FF04 /* RandomGifServiceError.swift */,
 			);
 			path = RandomGifService;
+			sourceTree = "<group>";
+		};
+		8D0DBDA42272EE5700908D4F /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				8D0DBDA52272EEAF00908D4F /* SearchGIFsCollectionViewLayout.swift */,
+				8D6F924922576BF000D43279 /* GifCollectionViewCell */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		8D1AAF312271EB8E00B0E078 /* GifFetchingService */ = {
+			isa = PBXGroup;
+			children = (
+				8D1AAF322271EBA700B0E078 /* GifFetchingService.swift */,
+				8D1AAF342271EBB800B0E078 /* GifFetchingServiceType.swift */,
+			);
+			path = GifFetchingService;
 			sourceTree = "<group>";
 		};
 		8D32533D2269C2D900A0F090 /* Assemblers */ = {
@@ -328,7 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				8DF5705E226E195500DFA9B3 /* SearchGIFsModule.swift */,
-				8D6F924922576BF000D43279 /* GifCollectionViewCell */,
+				8D0DBDA42272EE5700908D4F /* CollectionView */,
 				8DF5704E226E08A400DFA9B3 /* Presenter */,
 				8DF5705A226E0DAF00DFA9B3 /* View */,
 			);
@@ -685,10 +710,12 @@
 				8DA0880B227095230042DC05 /* TimeSpentLogger.swift in Sources */,
 				8D0D623B226874390011FF04 /* RandomGifRequestPerformable.swift in Sources */,
 				8D9A491D225B2EC500F0AFE8 /* MainFlowCoordinator.swift in Sources */,
+				8D1AAF332271EBA700B0E078 /* GifFetchingService.swift in Sources */,
 				8DF57057226E0BEC00DFA9B3 /* SearchGIFsService.swift in Sources */,
 				8DF57046226DC00B00DFA9B3 /* ViewControllerModule.swift in Sources */,
 				8D410E4F225B9FE8001F5132 /* DataSource.swift in Sources */,
 				8D410E40225B4B45001F5132 /* GifObject.swift in Sources */,
+				8D1AAF352271EBB800B0E078 /* GifFetchingServiceType.swift in Sources */,
 				8DF57050226E08D100DFA9B3 /* SearchGifsPresenter.swift in Sources */,
 				8D08DB8F225DF10D004959D8 /* UIColor.swift in Sources */,
 				8D32534E226A1E6800A0F090 /* ChildCoordinatorsHoldable.swift in Sources */,
@@ -708,6 +735,7 @@
 				8D410E46225B68DB001F5132 /* ImagesObject.swift in Sources */,
 				8DF5705F226E195500DFA9B3 /* SearchGIFsModule.swift in Sources */,
 				8DF57054226E09A200DFA9B3 /* SearchGIFsRequestPerformable.swift in Sources */,
+				8D0DBDA62272EEAF00908D4F /* SearchGIFsCollectionViewLayout.swift in Sources */,
 				8DF5704C226DC1A400DFA9B3 /* MainFlowCoordinatorModulesAssemblerType.swift in Sources */,
 				8D6424672257A482001579F3 /* XibLoadable.swift in Sources */,
 				8DC6C418225642E600C2FAF2 /* GifDataEngine.swift in Sources */,

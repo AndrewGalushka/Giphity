@@ -15,7 +15,7 @@ class GifCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var imageView: UIImageView!
     
     private var viewModel: ViewModel?
-    private let gifFetcher: GifFetcher = GifFetcher()
+    var gifFetcher: GifFetchingServiceType?
     
     // MARK: - Lifecycle
     
@@ -30,6 +30,10 @@ class GifCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
         self.contentView.backgroundColor = UIColor.rgba(244, 255, 250)
+        self.contentView.layer.cornerRadius = 5.0
+        self.contentView.clipsToBounds = true
+        self.contentView.layer.borderColor = UIColor.orange.withAlphaComponent(0.5).cgColor
+        self.contentView.layer.borderWidth = 1.0
     }
     
     func configure(_ viewModel: ViewModel) {
@@ -41,21 +45,17 @@ class GifCollectionViewCell: UICollectionViewCell {
         
         let fetchingGifID = viewModel.identifier
         
-        self.gifFetcher.fetch(viewModel.gifURL) { [weak self] (response) in
-            guard
-                let currentViewModel = self?.viewModel,
-                currentViewModel.identifier == fetchingGifID
-            else { return }
-            
-            DispatchQueue.main.async {
-                
-                switch response {
-                case .success(let gif):
-                    self?.imageView.image = gif
-                case .failure(_):
-                    self?.imageView.image = nil
-                }
-            }
+        var fetchingTimeLogger = TimeSpentLogger()
+        fetchingTimeLogger.start()
+        
+        self.gifFetcher?.fetchGif(using: URL(string: viewModel.gifURL)! ).done { [weak self] (image) in
+            guard fetchingGifID == self?.viewModel?.identifier else { return }
+            self?.imageView.image = image
+        }.catch { [weak self] (error) in
+            guard fetchingGifID == self?.viewModel?.identifier else { return }
+            self?.imageView.image = nil
+        }.finally {
+            fetchingTimeLogger.finish(textBeforeTimeLog: "Gif fetching time is")
         }
     }
 }
