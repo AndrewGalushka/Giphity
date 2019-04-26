@@ -30,6 +30,8 @@ class GifCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
         self.contentView.backgroundColor = UIColor.rgba(244, 255, 250)
+        self.contentView.layer.cornerRadius = 5.0
+        self.contentView.clipsToBounds = true
     }
     
     func configure(_ viewModel: ViewModel) {
