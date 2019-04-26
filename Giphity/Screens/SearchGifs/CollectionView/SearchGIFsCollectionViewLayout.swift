@@ -17,6 +17,18 @@ class SearchGIFsCollectionViewLayout: UICollectionViewFlowLayout {
         self.recalculateItemSize(for: collectionView)
     }
     
-    func recalculateItemSize(for collectionView: UICollectionView) {
+    private func recalculateIndents(for collectionView: UICollectionView) {
+        self.minimumInteritemSpacing = 5.0
+        self.minimumLineSpacing = 5.0
+        
+//        self.sectionInset = UIEdgeInsets(top: <#T##CGFloat#>, left: <#T##CGFloat#>, bottom: <#T##CGFloat#>, right: <#T##CGFloat#>)
+    }
+    
+    private func recalculateItemSize(for collectionView: UICollectionView) {
+        let numberOfItemsInRow = 2
+        let sideSize = collectionView.bounds.width / CGFloat(numberOfItemsInRow)
+        
+        self.itemSize = CGSize(width: sideSize - self.minimumInteritemSpacing,
+                               height: sideSize - self.minimumLineSpacing)
     }
 }
