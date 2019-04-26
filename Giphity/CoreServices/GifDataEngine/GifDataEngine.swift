@@ -27,7 +27,8 @@ class GifDataEngine: GifDataEngineType {
     }
     
     func gifImage(from data: Data) -> UIImage? {
-        guard let imageSource = CGImageSourceCreateWithData(data as CFData, nil) else {
+        let imageSourceOptions = [kCGImageSourceShouldCache: false]
+        guard let imageSource = CGImageSourceCreateWithData(data as CFData, imageSourceOptions as CFDictionary) else {
             return nil
         }
         
@@ -39,13 +40,24 @@ class GifDataEngine: GifDataEngineType {
         var duration: Double = 0.0
         
         for i in 0..<imagesCount {
+            let donwsampleOptions = [kCGImageSourceCreateThumbnailFromImageAlways: true,
+                                     kCGImageSourceShouldCacheImmediately: true,
+                                     kCGImageSourceCreateThumbnailWithTransform: true,
+                                     kCGImageSourceThumbnailMaxPixelSize: 300] as CFDictionary
             
-            guard
-                let cgImage = CGImageSourceCreateImageAtIndex(imageSource, i, nil),
-                let properties = CGImageSourceCopyPropertiesAtIndex(imageSource, i, nil),
-                let gifDict = (properties as NSDictionary)["{GIF}"] as? NSDictionary,
-                let delay = gifDict["DelayTime"] as? Double
-            else {
+            guard let cgImage = CGImageSourceCreateThumbnailAtIndex(imageSource, i, donwsampleOptions) else {
+                continue
+            }
+            
+            guard let properties = CGImageSourceCopyPropertiesAtIndex(imageSource, i, nil) else {
+                continue
+            }
+            
+            guard let gifDict = (properties as NSDictionary)["{GIF}"] as? NSDictionary else {
+                continue
+            }
+            
+            guard let delay = gifDict["DelayTime"] as? Double else {
                 continue
             }
         
