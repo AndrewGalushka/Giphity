@@ -8,10 +8,6 @@
 
 import UIKit
 
-//struct CollectionViewDataSource {
-//
-//}
-
 class CollectionViewDataSource<Configurator: CollectionViewCellConfiguratorType>: NSObject, UICollectionViewDataSource {
     var dataSource: DataSource<Configurator.Item>
     var configurator: Configurator
