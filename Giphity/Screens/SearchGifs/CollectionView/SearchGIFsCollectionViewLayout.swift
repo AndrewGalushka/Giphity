@@ -22,6 +22,8 @@ class SearchGIFsCollectionViewLayout: UICollectionViewFlowLayout {
         self.minimumInteritemSpacing = 5.0
         self.minimumLineSpacing = 5.0
         
+    
+        
         self.sectionInset = UIEdgeInsets(top: self.minimumInteritemSpacing,
                                          left: self.minimumInteritemSpacing,
                                          bottom: self.minimumInteritemSpacing,
@@ -30,7 +32,7 @@ class SearchGIFsCollectionViewLayout: UICollectionViewFlowLayout {
     
     private func recalculateItemSize(for collectionView: UICollectionView) {
         let numberOfItemsInRow = 2
-        let sideSize = (collectionView.bounds.inset(by: collectionView.layoutMargins).width / CGFloat(numberOfItemsInRow)).rounded(.up)
+        let sideSize = (collectionView.bounds.inset(by: collectionView.layoutMargins).width / CGFloat(numberOfItemsInRow)).rounded(.down)
         
         self.itemSize = CGSize(width: sideSize,
                                height: sideSize)
