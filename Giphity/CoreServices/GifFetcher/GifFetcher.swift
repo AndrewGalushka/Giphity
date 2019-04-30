@@ -11,7 +11,7 @@ import PromiseKit
 import Alamofire
 
 class GifFetcher: GifFetcherType {
-   
+    
     let gifEngine: GifDataEngineType
     let cache: GifCacheType = GifCache()
     
@@ -20,7 +20,7 @@ class GifFetcher: GifFetcherType {
     init(gifDataEngine: GifDataEngine = GifDataEngine()) {
         self.gifEngine = gifDataEngine
     }
-
+    
     func fetch(_ url: URL) -> Promise<UIImage> {
         let (promise, promiseResolver) = Promise<UIImage>.pending()
         
@@ -32,7 +32,7 @@ class GifFetcher: GifFetcherType {
     }
     
     func fetch(_ url: URL, competion: @escaping (_: Swift.Result<UIImage, Error>) -> Void) {
-
+        
         self.processingQueue.async { [weak self] in
             
             if let cachedGIFData = self?.cache.gifData(byURL: url){
@@ -64,4 +64,5 @@ class GifFetcher: GifFetcherType {
             }
         }
     }
+    
 }
