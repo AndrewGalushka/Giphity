@@ -13,12 +13,13 @@ import Alamofire
 class GifFetcher: GifFetcherType {
     
     let gifEngine: GifDataEngineType
-    let cache: GifCacheType = GifCache()
+    let cache: GifCacheType
     
     private let processingQueue = DispatchQueue(label: "gif.fetcher.processing.queue", qos: DispatchQoS.userInitiated)
     
-    init(gifDataEngine: GifDataEngine = GifDataEngine()) {
+    init(gifDataEngine: GifDataEngine = GifDataEngine(), cache: GifCacheType = GifCache()) {
         self.gifEngine = gifDataEngine
+        self.cache = cache
     }
     
     func fetch(_ url: URL) -> Promise<UIImage> {
