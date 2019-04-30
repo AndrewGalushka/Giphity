@@ -20,17 +20,7 @@ class GifFetcher: GifFetcherType {
     init(gifDataEngine: GifDataEngine = GifDataEngine()) {
         self.gifEngine = gifDataEngine
     }
-    
-    func fetch(_ url: String) -> Promise<UIImage> {
-        let (promise, promiseResolver) = Promise<UIImage>.pending()
-        
-        self.fetch(url) { (result) in
-            promiseResolver.resolve(result)
-        }
-        
-        return promise
-    }
-    
+
     func fetch(_ url: URL) -> Promise<UIImage> {
         let (promise, promiseResolver) = Promise<UIImage>.pending()
         
@@ -39,17 +29,6 @@ class GifFetcher: GifFetcherType {
         }
         
         return promise
-    }
-    
-    func fetch(_ url: String, competion: @escaping (_: Swift.Result<UIImage, Error>) -> Void) {
-        guard
-            let url = URL(string: url)
-        else {
-            competion(.failure(NSError(domain: "", code: 0, userInfo: nil)))
-            return
-        }
-        
-        self.fetch(url, competion: competion)
     }
     
     func fetch(_ url: URL, competion: @escaping (_: Swift.Result<UIImage, Error>) -> Void) {
