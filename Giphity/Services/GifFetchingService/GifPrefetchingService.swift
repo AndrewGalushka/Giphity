@@ -32,7 +32,7 @@ class GifPrefetchingService: GifPrefetchingServiceType {
                 
                 return
             } else {
-                let fetchingTask = strongSelf.gifFetcher.fetch(url)
+                let fetchingTask = strongSelf.gifFetcher.fetchGIF(by: url)
                 
                 strongSelf.addPendingTask(url: url, task: fetchingTask)
                 strongSelf.removePendingTask(at: url, afterCompetionOf: fetchingTask)

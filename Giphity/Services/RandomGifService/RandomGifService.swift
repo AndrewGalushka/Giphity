@@ -24,12 +24,12 @@ class RandomGifService: RandomGifServiceType {
             self.requestManager.randomGif()
         }.then { (response) -> Promise<UIImage> in
             let url = try self.gifURL(from: response, size: size)
-            return self.gifFetcher.fetch(url)
+            return self.gifFetcher.fetchGIF(by: url)
         }
     }
     
-    func gifURL(from response: GiphyResponse<GifObject>, size: ImageObject.ImageType) throws -> String {
-        guard let gifObject = response.data, let url = gifObject.images?.imageObject(for: size)?.url else {
+    func gifURL(from response: GiphyResponse<GifObject>, size: ImageObject.ImageType) throws -> URL {
+        guard let gifObject = response.data, let urlString = gifObject.images?.imageObject(for: size)?.url, let url = URL(string: urlString) else {
             throw RandomGifServiceError.emptyData
         }
         
