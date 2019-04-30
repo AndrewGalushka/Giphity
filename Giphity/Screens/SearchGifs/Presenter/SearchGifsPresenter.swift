@@ -28,7 +28,7 @@ class SearchGifsPresenter: SearchGifsViewPresenter {
         }
         
         searchService.searchGifs(by: name).done(on: .main) { (response) in
-            let viewModels = self.convertResponseToViewModels(response: response)
+            let viewModels = self.convertResponseToViewModels(response: response, ofImageType: .fixedHeight_downsampled)
             self.view?.displaySearchResults(viewModels)
         }.catch(on: .global()) { (error) in
             self.view?.displaySearchFailed(error: error)
