@@ -12,7 +12,7 @@ class SearchGifsViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
-    let gifFetchingService: GifFetchingServiceType = GifFetchingService()
+    let gifFetchingService: GifPrefetchingServiceType = GifPrefetchingService()
     
     typealias GifCollectionViewCellConfigurator = CollectionViewCellConfigurator<GifCollectionViewCell.ViewModel, GifCollectionViewCell>
     var collectionViewDataSource: CollectionViewDataSource<GifCollectionViewCellConfigurator>!

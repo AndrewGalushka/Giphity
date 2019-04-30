@@ -15,7 +15,7 @@ class GifCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var imageView: UIImageView!
     
     private var viewModel: ViewModel?
-    var gifFetcher: GifFetchingServiceType?
+    var gifFetcher: GifPrefetchingServiceType?
     
     // MARK: - Lifecycle
     

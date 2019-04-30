@@ -21,8 +21,8 @@
 		8D0DBDA62272EEAF00908D4F /* SearchGIFsCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0DBDA52272EEAF00908D4F /* SearchGIFsCollectionViewLayout.swift */; };
 		8D0DBDA92273561C00908D4F /* GifCacheType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0DBDA82273561C00908D4F /* GifCacheType.swift */; };
 		8D0DBDAB2273585A00908D4F /* GifCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0DBDAA2273585A00908D4F /* GifCache.swift */; };
-		8D1AAF332271EBA700B0E078 /* GifFetchingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1AAF322271EBA700B0E078 /* GifFetchingService.swift */; };
-		8D1AAF352271EBB800B0E078 /* GifFetchingServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1AAF342271EBB800B0E078 /* GifFetchingServiceType.swift */; };
+		8D1AAF332271EBA700B0E078 /* GifPrefetchingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1AAF322271EBA700B0E078 /* GifPrefetchingService.swift */; };
+		8D1AAF352271EBB800B0E078 /* GifPrefetchingServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1AAF342271EBB800B0E078 /* GifPrefetchingServiceType.swift */; };
 		8D32533C2269C26A00A0F090 /* ApplicationAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32533B2269C26A00A0F090 /* ApplicationAssembler.swift */; };
 		8D3253402269C30300A0F090 /* ApplicationAssemblerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32533F2269C30300A0F090 /* ApplicationAssemblerType.swift */; };
 		8D3253442269C8F900A0F090 /* AppCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3253432269C8F900A0F090 /* AppCoordinatorType.swift */; };
@@ -88,8 +88,8 @@
 		8D0DBDA52272EEAF00908D4F /* SearchGIFsCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGIFsCollectionViewLayout.swift; sourceTree = "<group>"; };
 		8D0DBDA82273561C00908D4F /* GifCacheType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifCacheType.swift; sourceTree = "<group>"; };
 		8D0DBDAA2273585A00908D4F /* GifCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifCache.swift; sourceTree = "<group>"; };
-		8D1AAF322271EBA700B0E078 /* GifFetchingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifFetchingService.swift; sourceTree = "<group>"; };
-		8D1AAF342271EBB800B0E078 /* GifFetchingServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifFetchingServiceType.swift; sourceTree = "<group>"; };
+		8D1AAF322271EBA700B0E078 /* GifPrefetchingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifPrefetchingService.swift; sourceTree = "<group>"; };
+		8D1AAF342271EBB800B0E078 /* GifPrefetchingServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifPrefetchingServiceType.swift; sourceTree = "<group>"; };
 		8D32533B2269C26A00A0F090 /* ApplicationAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationAssembler.swift; sourceTree = "<group>"; };
 		8D32533F2269C30300A0F090 /* ApplicationAssemblerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationAssemblerType.swift; sourceTree = "<group>"; };
 		8D3253432269C8F900A0F090 /* AppCoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorType.swift; sourceTree = "<group>"; };
@@ -230,8 +230,8 @@
 		8D1AAF312271EB8E00B0E078 /* GifFetchingService */ = {
 			isa = PBXGroup;
 			children = (
-				8D1AAF322271EBA700B0E078 /* GifFetchingService.swift */,
-				8D1AAF342271EBB800B0E078 /* GifFetchingServiceType.swift */,
+				8D1AAF322271EBA700B0E078 /* GifPrefetchingService.swift */,
+				8D1AAF342271EBB800B0E078 /* GifPrefetchingServiceType.swift */,
 			);
 			path = GifFetchingService;
 			sourceTree = "<group>";
@@ -725,12 +725,12 @@
 				8DA0880B227095230042DC05 /* TimeSpentLogger.swift in Sources */,
 				8D0D623B226874390011FF04 /* RandomGifRequestPerformable.swift in Sources */,
 				8D9A491D225B2EC500F0AFE8 /* MainFlowCoordinator.swift in Sources */,
-				8D1AAF332271EBA700B0E078 /* GifFetchingService.swift in Sources */,
+				8D1AAF332271EBA700B0E078 /* GifPrefetchingService.swift in Sources */,
 				8DF57057226E0BEC00DFA9B3 /* SearchGIFsService.swift in Sources */,
 				8DF57046226DC00B00DFA9B3 /* ViewControllerModule.swift in Sources */,
 				8D410E4F225B9FE8001F5132 /* DataSource.swift in Sources */,
 				8D410E40225B4B45001F5132 /* GifObject.swift in Sources */,
-				8D1AAF352271EBB800B0E078 /* GifFetchingServiceType.swift in Sources */,
+				8D1AAF352271EBB800B0E078 /* GifPrefetchingServiceType.swift in Sources */,
 				8DF57050226E08D100DFA9B3 /* SearchGifsPresenter.swift in Sources */,
 				8D08DB8F225DF10D004959D8 /* UIColor.swift in Sources */,
 				8D32534E226A1E6800A0F090 /* ChildCoordinatorsHoldable.swift in Sources */,

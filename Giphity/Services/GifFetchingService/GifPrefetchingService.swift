@@ -9,7 +9,7 @@
 import Foundation
 import PromiseKit
 
-class GifFetchingService: GifFetchingServiceType {
+class GifPrefetchingService: GifPrefetchingServiceType {
     
     let gifFetcher: GifFetcherType
     
