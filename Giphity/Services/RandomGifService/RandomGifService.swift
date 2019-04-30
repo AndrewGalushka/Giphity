@@ -18,18 +18,21 @@ class RandomGifService: RandomGifServiceType {
         self.requestManager = requestManager
     }
     
-    func randomGif() -> Promise<UIImage> {
+    func randomGif(ofSize size: ImageObject.ImageType) -> Promise<UIImage> {
         
         return PromiseKit.firstly {
             self.requestManager.randomGif()
         }.then { (response) -> Promise<UIImage> in
-            let gifObject = try self.gifObject(from: response)
-            return self.gifFetcher.fetch(gifObject)
+            let url = try self.gifURL(from: response, size: size)
+            return self.gifFetcher.fetch(url)
         }
     }
     
-    func gifObject(from response: GiphyResponse<GifObject>) throws -> GifObject {
-        guard let gifObject = response.data else { throw RandomGifServiceError.emptyData }
-        return gifObject
+    func gifURL(from response: GiphyResponse<GifObject>, size: ImageObject.ImageType) throws -> String {
+        guard let gifObject = response.data, let url = gifObject.images?.imageObject(for: size)?.url else {
+            throw RandomGifServiceError.emptyData
+        }
+        
+        return url
     }
 }

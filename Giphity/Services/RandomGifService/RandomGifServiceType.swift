@@ -10,5 +10,5 @@ import Foundation
 import PromiseKit
 
 protocol RandomGifServiceType {
-    func randomGif() -> Promise<UIImage>
+    func randomGif(ofSize: ImageObject.ImageType) -> Promise<UIImage>
 }

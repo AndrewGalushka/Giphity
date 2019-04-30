@@ -31,16 +31,6 @@ class GifFetcher: GifFetcherType {
         return promise
     }
     
-    func fetch(_ gifObject: GifObject) -> Promise<UIImage> {
-        let (promise, promiseResolver) = Promise<UIImage>.pending()
-        
-        self.fetch(gifObject) { (result) in
-            promiseResolver.resolve(result)
-        }
-        
-        return promise
-    }
-    
     func fetch(_ url: URL) -> Promise<UIImage> {
         let (promise, promiseResolver) = Promise<UIImage>.pending()
         
@@ -49,20 +39,6 @@ class GifFetcher: GifFetcherType {
         }
         
         return promise
-    }
-    
-    func fetch(_ gifObject: GifObject, competion: @escaping (_: Swift.Result<UIImage, Error>) -> Void) {
-        let stabError = NSError(domain: "", code: 0, userInfo: nil)
-        
-        guard
-            let urlString = gifObject.images?.imageObject(for: .preview_gif)?.url,
-            let url = URL(string: urlString)
-        else {
-            competion(.failure(stabError))
-            return
-        }
-        
-        self.fetch(url, competion: competion)
     }
     
     func fetch(_ url: String, competion: @escaping (_: Swift.Result<UIImage, Error>) -> Void) {
