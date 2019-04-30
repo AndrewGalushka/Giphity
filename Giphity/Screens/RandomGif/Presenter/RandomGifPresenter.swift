@@ -20,7 +20,7 @@ class RandomGifPresenter: RandomGifViewPresenter {
         self.randomGifService = randomGifService
     }
 
-    // MARK: - RandomGifPresentorInput
+    // MARK: - RandomGifViewPresenter
     
     func viewLoaded() {
         PromiseKit.firstly { () -> Promise<UIImage> in
