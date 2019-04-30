@@ -10,21 +10,6 @@ import UIKit
 import PromiseKit
 
 class GifDataEngine: GifDataEngineType {
-    func asynchronouslyConvertDataToGifImage(data: Data) -> Guarantee<UIImage?> {
-        return self.asynchronouslyConvertDataToGifImage(data: data, queue: DispatchQueue.global())
-    }
-    
-    func asynchronouslyConvertDataToGifImage(data: Data, queue: DispatchQueue) -> Guarantee<UIImage?> {
-        
-        return Guarantee<UIImage?>.init(resolver: { (completion) in
-            queue.async { [weak self] in
-                guard let `self` = self else { return }
-                
-                let image = self.gifImage(from: data)
-                completion(image)
-            }
-        })
-    }
     
     func gifImage(from data: Data) -> UIImage? {
         let imageSourceOptions = [kCGImageSourceShouldCache: false]
@@ -42,8 +27,7 @@ class GifDataEngine: GifDataEngineType {
         for i in 0..<imagesCount {
             let donwsampleOptions = [kCGImageSourceCreateThumbnailFromImageAlways: true,
                                      kCGImageSourceShouldCacheImmediately: true,
-                                     kCGImageSourceCreateThumbnailWithTransform: true,
-                                     kCGImageSourceThumbnailMaxPixelSize: 300] as CFDictionary
+                                     kCGImageSourceCreateThumbnailWithTransform: true] as CFDictionary
             
             guard let cgImage = CGImageSourceCreateThumbnailAtIndex(imageSource, i, donwsampleOptions) else {
                 continue
