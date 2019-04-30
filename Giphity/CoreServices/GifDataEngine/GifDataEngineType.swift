@@ -10,5 +10,6 @@ import Foundation
 import PromiseKit
 
 protocol GifDataEngineType {
-    func gifImage(from data: Data) -> UIImage?
+    func createGIFImage(using data: Data) -> UIImage?
+    func createGIFImage(using data: Data, preferredSize: CGSize) -> UIImage?
 }

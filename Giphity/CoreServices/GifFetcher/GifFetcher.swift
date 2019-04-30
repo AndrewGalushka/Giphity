@@ -56,9 +56,9 @@ class GifFetcher: GifFetcherType {
 
         self.processingQueue.async { [weak self] in
             
-            if let imageFromCache = self?.cache.image(url: url) {
+            if let cachedGIFData = self?.cache.image(url: url) {
                 
-                if let gifImage = self?.gifEngine.gifImage(from: imageFromCache) {
+                if let gifImage = self?.gifEngine.createGIFImage(using: cachedGIFData) {
                     competion(.success(gifImage))
                 } else {
                     competion(.failure(GifFetcherError.coundNotConvertDataToGif))
@@ -68,12 +68,12 @@ class GifFetcher: GifFetcherType {
             Alamofire.request(url, method: .get).responseData { [weak self] (dataResponse) in
                 
                 self?.processingQueue.async { [weak self] in
-                
+                    
                     if let error = dataResponse.error {
                         competion(.failure(error))
                     } else if let data = dataResponse.data {
                         
-                        if let gifImage = self?.gifEngine.gifImage(from: data) {
+                        if let gifImage = self?.gifEngine.createGIFImage(using: data) {
                             self?.cache.save(data, url: url)
                             competion(.success(gifImage))
                         } else {
