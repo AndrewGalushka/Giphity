@@ -21,13 +21,17 @@ class SearchGifsPresenter: SearchGifsViewPresenter {
     
     // MARK: - SearchGifsViewPresenter
     
+    func viewLoaded() {
+        self.searchGIFs(by: "Cats")
+    }
+    
     func searchGIFs(by name: String) {
         guard !name.isEmpty else {
             view?.displaySearchResults([])
             return
         }
         
-        searchService.searchGifs(by: name).done(on: .main) { (response) in
+        searchService.searchGifs(by: name).done { (response) in
             let viewModels = self.convertResponseToViewModels(response: response, ofImageType: .fixedHeight_downsampled)
             self.view?.displaySearchResults(viewModels)
         }.catch(on: .global()) { (error) in
