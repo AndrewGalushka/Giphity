@@ -9,9 +9,17 @@
 import Foundation
 
 protocol GifCacheType {
-    func save(gifData data: Data, downloadedUsing url: URL)
-    func gifData(downloadedUsing url: URL) -> Data?
-    
-    func save(gifData data: Data, downloadedUsing url: String)
-    func gifData(downloadedUsing url: String) -> Data?
+    func save(gifData data: Data, byURL: String)
+    func gifData(byURL: String) -> Data?
 }
+
+extension GifCacheType {
+    func save(gifData data: Data, byURL url: URL) {
+        self.save(gifData: data, byURL: url.path)
+    }
+    
+    func gifData(byURL url: URL) -> Data? {
+        return self.gifData(byURL: url.path)
+    }
+}
+

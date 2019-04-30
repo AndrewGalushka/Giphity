@@ -13,7 +13,7 @@ import Alamofire
 class GifFetcher: GifFetcherType {
    
     let gifEngine: GifDataEngineType
-    let cache = GifCache()
+    let cache: GifCacheType = GifCache()
     
     private let processingQueue = DispatchQueue(label: "gif.fetcher.processing.queue", qos: DispatchQoS.userInitiated)
     
@@ -35,8 +35,7 @@ class GifFetcher: GifFetcherType {
 
         self.processingQueue.async { [weak self] in
             
-            if let cachedGIFData = self?.cache.image(url: url) {
-                
+            if let cachedGIFData = self?.cache.gifData(byURL: url){
                 if let gifImage = self?.gifEngine.createGIFImage(using: cachedGIFData) {
                     competion(.success(gifImage))
                 } else {
@@ -53,7 +52,7 @@ class GifFetcher: GifFetcherType {
                     } else if let data = dataResponse.data {
                         
                         if let gifImage = self?.gifEngine.createGIFImage(using: data) {
-                            self?.cache.save(data, url: url)
+                            self?.cache.save(gifData: data, byURL: url)
                             competion(.success(gifImage))
                         } else {
                             competion(.failure(GifFetcherError.coundNotConvertDataToGif))
