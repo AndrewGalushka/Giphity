@@ -25,6 +25,8 @@ class SearchGifsViewController: UIViewController {
         setupSearchBar()
         setupCollectionView()
         setupCollectionViewLayout()
+        
+        self.presenter?.viewLoaded()
     }
     
     func setupCollectionView() {

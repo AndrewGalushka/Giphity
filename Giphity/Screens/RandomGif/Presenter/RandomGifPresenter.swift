@@ -20,12 +20,12 @@ class RandomGifPresenter: RandomGifViewPresenter {
         self.randomGifService = randomGifService
     }
 
-    // MARK: - RandomGifPresentorInput
+    // MARK: - RandomGifViewPresenter
     
     func viewLoaded() {
         PromiseKit.firstly { () -> Promise<UIImage> in
             self.view?.showLoadingIndicator()
-            return randomGifService.randomGif()
+            return randomGifService.randomGif(ofSize: ImageObject.ImageType.downsized)
         }.done { (image) in
             self.view?.displayGif(image)
         }.catch { (error) in
@@ -38,7 +38,7 @@ class RandomGifPresenter: RandomGifViewPresenter {
     func nextRandomGif() {
         PromiseKit.firstly { () -> Promise<UIImage> in
             self.view?.showLoadingIndicator()
-            return randomGifService.randomGif()
+            return randomGifService.randomGif(ofSize: ImageObject.ImageType.downsized)
         }.done { (image) in
             self.view?.displayGif(image)
         }.catch { (error) in

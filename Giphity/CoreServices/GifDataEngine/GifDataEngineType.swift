@@ -10,7 +10,6 @@ import Foundation
 import PromiseKit
 
 protocol GifDataEngineType {
-    func asynchronouslyConvertDataToGifImage(data: Data, queue: DispatchQueue) -> Guarantee<UIImage?>
-    func asynchronouslyConvertDataToGifImage(data: Data) -> Guarantee<UIImage?>
-    func gifImage(from data: Data) -> UIImage?
+    func createGIFImage(using data: Data) -> UIImage?
+    func createGIFImage(using data: Data, preferredSize: CGSize) -> UIImage?
 }
