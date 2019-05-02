@@ -11,15 +11,22 @@ import PromiseKit
 import Alamofire
 
 class GifFetcher: GifFetcherType {
+    
+    // MARK: - Properties
+    
     let gifEngine: GifDataEngineType
     let cache: GifCacheType
     
     private let processingQueue = DispatchQueue(label: "gif.fetcher.processing.queue", qos: DispatchQoS.userInitiated)
     
+    // MARK: - Initializers
+    
     init(gifDataEngine: GifDataEngine = GifDataEngine(), cache: GifCacheType = GifCache()) {
         self.gifEngine = gifDataEngine
         self.cache = cache
     }
+    
+    // MARK: - Methods(Public)
     
     func fetchGIF(by url: URL) -> Promise<UIImage> {
         return self.fetchGIF(by: url, shouldUseCache: true)
@@ -35,13 +42,26 @@ class GifFetcher: GifFetcherType {
         return promise
     }
     
-    func fetchGIF(by url: URL, shouldUseCache useCache: Bool, competion: @escaping (_: Swift.Result<UIImage, Error>) -> Void) {
+    func fetchGIF(by url: URL, downsampledToSize size: CGSize, shouldUseCache: Bool) -> Promise<UIImage> {
+        let (promise, promiseResolver) = Promise<UIImage>.pending()
+        
+        self.fetchGIF(by: url, downsampledToSize: size, shouldUseCache: shouldUseCache) { (result) in
+            promiseResolver.resolve(result)
+        }
+        
+        return promise
+    }
+    
+    func fetchGIF(by url: URL,
+                  downsampledToSize size: CGSize? = nil,
+                  shouldUseCache useCache: Bool,
+                  competion: @escaping (_: Swift.Result<UIImage, Error>) -> Void) {
         
         self.processingQueue.async { [weak self] in
             guard let strongSelf = self else { return }
             
             if useCache, let cachedGIFData = self?.cache.gifData(byURL: url){
-                if let gifImage = self?.gifEngine.createGIFImage(using: cachedGIFData) {
+                if let gifImage = strongSelf.createGIFImage(from: cachedGIFData, downsampledTo: size) {
                     competion(.success(gifImage))
                 } else {
                     competion(.failure(GifFetcherError.coundNotConvertDataToGif))
@@ -50,7 +70,7 @@ class GifFetcher: GifFetcherType {
             
             strongSelf.fetchData(using: url).done(on: strongSelf.processingQueue) { [weak self] in
                 
-                if let gifImage = self?.gifEngine.createGIFImage(using: $0) {
+                if let gifImage = self?.createGIFImage(from: $0, downsampledTo: size) {
                     self?.cache(data: $0, byURL: url, ifFlagIsTrue: useCache)
                     competion(.success(gifImage))
                 } else {
@@ -61,6 +81,8 @@ class GifFetcher: GifFetcherType {
             }
         }
     }
+    
+    // MARK: - Methods(Private)
     
     private func fetchData(using url: URL) -> Promise<Data> {
         let (promise, resolver) = Promise<Data>.pending()
@@ -79,10 +101,20 @@ class GifFetcher: GifFetcherType {
         return promise
     }
     
-    func cache(data: Data, byURL url: URL, ifFlagIsTrue isNeedToCacheData: Bool) {
+    private func cache(data: Data, byURL url: URL, ifFlagIsTrue isNeedToCacheData: Bool) {
         
         if isNeedToCacheData {
             self.cache.save(gifData: data, byURL: url)
+        }
+    }
+    
+    private func createGIFImage(from data: Data,
+                                downsampledTo downsampleSize: CGSize? = nil) -> UIImage? {
+        
+        if let downsampleSize = downsampleSize {
+            return gifEngine.createGIFImage(using: data, preferredSize: downsampleSize)
+        } else {
+            return gifEngine.createGIFImage(using: data)
         }
     }
 }
