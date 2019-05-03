@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-protocol HTTPRequest {
+protocol HTTPRequestCommand {
     var method: Alamofire.HTTPMethod { get }
     var path: String { get }
     var queryItems: [URLQueryItem]? { get }
