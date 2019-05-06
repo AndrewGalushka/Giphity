@@ -87,6 +87,25 @@ extension SearchGifsViewController: SearchGIFsView {
         self.collectionView.reloadData()
     }
     
+    func displayNextBatchOfResults(_ searchResults: [GifCollectionViewCell.ViewModel]) {
+        guard let section = collectionViewDataSource.dataSource.sections.first else { return }
+        let updatedSection = Section(items: section.items + searchResults)
+        collectionViewDataSource.dataSource.sections[0] = updatedSection
+    
+        let itemsInOldSection = section.items.count == 0 ? 0 : (section.items.count - 1)
+        let itemsInUpdatedSection = updatedSection.items.count == 0 ? 0 : (updatedSection.items.count - 1)
+        
+        var insertedIndexes = [IndexPath]()
+        
+        for row in itemsInOldSection...itemsInUpdatedSection {
+            insertedIndexes.append(IndexPath(row: row, section: 0))
+        }
+        
+        collectionView.performBatchUpdates({
+            collectionView.insertItems(at: insertedIndexes)
+        }, completion: { (finished) in })
+    }
+    
     func displaySearchFailed(error: Error) {
         print(error)
         self.collectionViewDataSource.dataSource.sections.removeAll()

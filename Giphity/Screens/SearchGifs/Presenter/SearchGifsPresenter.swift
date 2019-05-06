@@ -39,6 +39,9 @@ class SearchGifsPresenter: SearchGifsViewPresenter {
         }
     }
     
+    func nextBatchOfGIFs() {
+    }
+    
     private func convertResponseToViewModels(response: GiphySearchResponse,
                                              ofImageType imageObjectType: ImageObject.ImageType = .downsized) -> [GifCollectionViewCell.ViewModel] {
         guard let gifObjects = response.gifObjects, !gifObjects.isEmpty else { return [] }
