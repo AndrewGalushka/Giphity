@@ -10,11 +10,11 @@ import Foundation
 import PromiseKit
 
 class SearchGIFsService: SearchGIFsServiceType {
-    private let requestManager: GiphyRequestManager
+    private let requestManager: SearchGIFsRequestPerformable
     
     // MARK: - Initializers
     
-    init(requestManager: GiphyRequestManager) {
+    init(requestManager: SearchGIFsRequestPerformable) {
         self.requestManager = requestManager
     }
     

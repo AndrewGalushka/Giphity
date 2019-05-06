@@ -46,45 +46,44 @@ enum GiphyRequestManagerError: RawRepresentable, Error {
     }
 }
 
-class GiphyRequestManager: RandomGifRequestPerformable {
+class GiphyRequestManager {
     private let apiKey = "cS2x8egoJJkpGz9takXkr2O2Cf1OSPJr"
     private let sessionManager = Alamofire.SessionManager()
     
-    func randomGif() -> Promise<GiphyResponse<GifObject>> {
-        return Promise<GiphyResponse<GifObject>>.init(resolver: { (resolver) in
-            self.randomGif { (response) in
-                resolver.resolve(response)
-            }
-        })
-    }
-    
-    func searchGifs(name query: String, limit: Int = 25, offset: Int = 0) -> Promise<GiphySearchResponse> {
-        return Promise<GiphySearchResponse>.init(resolver: { (resolver) in
-            self.searchGifs(name: query, limit: limit, offset: offset, completion: { (response) in
-                resolver.resolve(response)
-            })
-        })
-    }
-    
-    func randomGif(completion: @escaping (_ result: Swift.Result<GiphyResponse<GifObject>, GiphyRequestManagerError>) -> Void) {
-        var urlComponents = URLComponents(string: "https://api.giphy.com/v1/gifs/random")!
+    private(set) lazy var baseURLComponents: URLComponents = {
+        var urlComponents = URLComponents(string: "https://api.giphy.com/v1")!
         urlComponents.queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
         
-        let urlRequest = try! URLRequest(url: urlComponents, method: .get)
-        
-        self.execute(urlRequest, mapDataTo: GiphyResponse<GifObject>.self, completion: completion)
-    }
+        return urlComponents
+    }()
     
-    func searchGifs(name query: String, limit: Int = 25, offset: Int = 0, completion: @escaping (_ result: Swift.Result<GiphySearchResponse, GiphyRequestManagerError>) -> Void) {
-        var urlComponents = URLComponents(string: "https://api.giphy.com/v1/gifs/search")!
-        urlComponents.queryItems = [URLQueryItem(name: "api_key", value: apiKey),
-                                    URLQueryItem(name: "q", value: query),
-                                    URLQueryItem(name: "limit", value: "\(limit)"),
-                                    URLQueryItem(name: "offset", value: "\(offset)")];
+    func execute<DecodableModel: Decodable>(_ requestCommand: HTTPRequestCommandType) -> Promise<DecodableModel> {
+        var urlComponents = self.baseURLComponents
+        urlComponents.path.append(requestCommand.path)
         
-        let urlRequest = try! URLRequest(url: urlComponents, method: .get)
+        if let queryItems = requestCommand.queryItems {
+            
+            if urlComponents.queryItems == nil {
+                urlComponents.queryItems = queryItems
+            } else {
+                urlComponents.queryItems?.append(contentsOf: queryItems)
+            }
+        }
         
-        self.execute(urlRequest, mapDataTo: GiphySearchResponse.self, completion: completion)
+        guard let url = urlComponents.url else {
+            return Promise.init(error: NSError(domain: NSURLErrorDomain, code: NSURLErrorBadURL, userInfo: nil))
+        }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = requestCommand.method.rawValue
+        
+        return Promise<DecodableModel>.init(resolver: { [weak self] (resolver) in
+            guard let strongSelf = self else { return }
+            
+            strongSelf.execute(urlRequest, mapDataTo: DecodableModel.self, completion: { (result) in
+                resolver.resolve(result)
+            })
+        })
     }
     
     private func validateForError(response: URLResponse?, error: Error?) -> GiphyRequestManagerError? {
@@ -99,8 +98,8 @@ class GiphyRequestManager: RandomGifRequestPerformable {
     }
     
     private func execute<Model: Decodable>(_ urlRequest: URLRequest,
-                                                              mapDataTo: Model.Type,
-                                                              completion: @escaping (_ result: Swift.Result<Model, GiphyRequestManagerError>) -> Void) {
+                                           mapDataTo: Model.Type,
+                                           completion: @escaping (_ result: Swift.Result<Model, GiphyRequestManagerError>) -> Void) {
         self.execute(urlRequest) { (requestResult) in
             
             switch requestResult {
@@ -117,9 +116,9 @@ class GiphyRequestManager: RandomGifRequestPerformable {
                          completion: @escaping (_ result: Swift.Result<Data, GiphyRequestManagerError>) -> Void) {
         
         self.sessionManager.request(urlRequest).responseData(queue: .global()) { [weak self] (dataResponse) in
-            guard let `self` = self else { return }
+            guard let strongSelf = self else { return }
             
-            if let error = self.validateForError(response: dataResponse.response, error: dataResponse.error) {
+            if let error = strongSelf.validateForError(response: dataResponse.response, error: dataResponse.error) {
                 completion(.failure(error))
                 return
             }
