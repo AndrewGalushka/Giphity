@@ -11,5 +11,4 @@ import PromiseKit
 
 protocol RandomGIFRequestPerformable {
     func randomGif() -> Promise<GiphyResponse<GifObject>>
-    func randomGif(completion: @escaping (_ result: Swift.Result<GiphyResponse<GifObject>, GiphyRequestManagerError>) -> Void)
 }

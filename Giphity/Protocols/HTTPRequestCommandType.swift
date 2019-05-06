@@ -14,3 +14,9 @@ protocol HTTPRequestCommandType {
     var path: String { get }
     var queryItems: [URLQueryItem]? { get }
 }
+
+struct HTTPRequestCommand: HTTPRequestCommandType {
+    var method: Alamofire.HTTPMethod
+    var path: String
+    var queryItems: [URLQueryItem]?
+}
