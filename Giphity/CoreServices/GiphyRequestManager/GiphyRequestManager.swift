@@ -46,7 +46,7 @@ enum GiphyRequestManagerError: RawRepresentable, Error {
     }
 }
 
-class GiphyRequestManager: RandomGifRequestPerformable {
+class GiphyRequestManager: RandomGIFRequestPerformable {
     private let apiKey = "cS2x8egoJJkpGz9takXkr2O2Cf1OSPJr"
     private let sessionManager = Alamofire.SessionManager()
     

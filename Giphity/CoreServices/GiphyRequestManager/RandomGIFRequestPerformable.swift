@@ -9,7 +9,7 @@
 import Foundation
 import PromiseKit
 
-protocol RandomGifRequestPerformable {
+protocol RandomGIFRequestPerformable {
     func randomGif() -> Promise<GiphyResponse<GifObject>>
     func randomGif(completion: @escaping (_ result: Swift.Result<GiphyResponse<GifObject>, GiphyRequestManagerError>) -> Void)
 }

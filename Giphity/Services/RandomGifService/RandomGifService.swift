@@ -11,9 +11,9 @@ import PromiseKit
 
 class RandomGifService: RandomGifServiceType {
     private let gifFetcher: GifFetcherType
-    private let requestManager: RandomGifRequestPerformable
+    private let requestManager: RandomGIFRequestPerformable
     
-    init(gifFetcher: GifFetcherType, requestManager: RandomGifRequestPerformable) {
+    init(gifFetcher: GifFetcherType, requestManager: RandomGIFRequestPerformable) {
         self.gifFetcher = gifFetcher
         self.requestManager = requestManager
     }
