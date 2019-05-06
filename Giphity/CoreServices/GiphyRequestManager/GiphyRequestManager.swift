@@ -57,7 +57,7 @@ class GiphyRequestManager: RandomGifRequestPerformable {
         return urlComponents
     }()
     
-    func execute<DecodableModel: Decodable>(_ requestCommand: HTTPRequestCommand) -> Promise<DecodableModel> {
+    func execute<DecodableModel: Decodable>(_ requestCommand: HTTPRequestCommandType) -> Promise<DecodableModel> {
         var urlComponents = self.baseURLComponents
         urlComponents.path.append(requestCommand.path)
         
