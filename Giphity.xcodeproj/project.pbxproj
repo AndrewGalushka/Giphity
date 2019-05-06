@@ -389,6 +389,33 @@
 			path = GifCollectionViewCell;
 			sourceTree = "<group>";
 		};
+		8D70772F2280788500627564 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8D707731228078AC00627564 /* GIFsSearch */,
+				8D7077302280789500627564 /* GIFsRandom */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		8D7077302280789500627564 /* GIFsRandom */ = {
+			isa = PBXGroup;
+			children = (
+				8D70772A2280723B00627564 /* GiphyRequestManager+RandomGIF.swift */,
+				8D0D623A226874390011FF04 /* RandomGIFRequestPerformable.swift */,
+			);
+			path = GIFsRandom;
+			sourceTree = "<group>";
+		};
+		8D707731228078AC00627564 /* GIFsSearch */ = {
+			isa = PBXGroup;
+			children = (
+				8D70772C2280761B00627564 /* GiphyRequestManager+SearchGIFs.swift */,
+				8DF57053226E09A200DFA9B3 /* SearchGIFsRequestPerformable.swift */,
+			);
+			path = GIFsSearch;
+			sourceTree = "<group>";
+		};
 		8D954DDA225CF6FE003A0195 /* GifFetcher */ = {
 			isa = PBXGroup;
 			children = (
@@ -515,10 +542,7 @@
 			isa = PBXGroup;
 			children = (
 				8DDBFBA622561A6C009F7286 /* GiphyRequestManager.swift */,
-				8D70772A2280723B00627564 /* GiphyRequestManager+RandomGIF.swift */,
-				8D70772C2280761B00627564 /* GiphyRequestManager+SearchGIFs.swift */,
-				8D0D623A226874390011FF04 /* RandomGIFRequestPerformable.swift */,
-				8DF57053226E09A200DFA9B3 /* SearchGIFsRequestPerformable.swift */,
+				8D70772F2280788500627564 /* API */,
 			);
 			path = GiphyRequestManager;
 			sourceTree = "<group>";
