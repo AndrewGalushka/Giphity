@@ -86,29 +86,6 @@ class GiphyRequestManager {
         })
     }
     
-    func searchGifs(name query: String, limit: Int = 25, offset: Int = 0) -> Promise<GiphySearchResponse> {
-        return Promise<GiphySearchResponse>.init(resolver: { (resolver) in
-            self.searchGifs(name: query, limit: limit, offset: offset, completion: { (response) in
-                resolver.resolve(response)
-            })
-        })
-    }
-    
-    func searchGifs(name query: String, limit: Int = 25, offset: Int = 0, completion: @escaping (_ result: Swift.Result<GiphySearchResponse, GiphyRequestManagerError>) -> Void) {
-        var urlComponents = self.baseURLComponents
-        urlComponents.path.append("/gifs/search")
-        
-        let queryItems = [URLQueryItem(name: "q", value: query),
-                          URLQueryItem(name: "limit", value: "\(limit)"),
-                          URLQueryItem(name: "offset", value: "\(offset)")]
-        
-        urlComponents.queryItems?.append(contentsOf: queryItems)
-        
-        let urlRequest = try! URLRequest(url: urlComponents, method: .get)
-        
-        self.execute(urlRequest, mapDataTo: GiphySearchResponse.self, completion: completion)
-    }
-    
     private func validateForError(response: URLResponse?, error: Error?) -> GiphyRequestManagerError? {
         
         if let error = (error as NSError?) {

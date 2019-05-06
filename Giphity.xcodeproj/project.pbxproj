@@ -43,6 +43,7 @@
 		8D6F924C22576C3500D43279 /* GifCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6F924A22576C3500D43279 /* GifCollectionViewCell.swift */; };
 		8D6F924D22576C3500D43279 /* GifCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D6F924B22576C3500D43279 /* GifCollectionViewCell.xib */; };
 		8D70772B2280723B00627564 /* GiphyRequestManager+RandomGIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D70772A2280723B00627564 /* GiphyRequestManager+RandomGIF.swift */; };
+		8D70772D2280761B00627564 /* GiphyRequestManager+SearchGIFs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D70772C2280761B00627564 /* GiphyRequestManager+SearchGIFs.swift */; };
 		8D954DD8225CF1AD003A0195 /* GifCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D954DD7225CF1AD003A0195 /* GifCollectionViewCellViewModel.swift */; };
 		8D954DDC225CF70C003A0195 /* GifFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D954DDB225CF70C003A0195 /* GifFetcher.swift */; };
 		8D9A491B225B2E9600F0AFE8 /* FlowCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9A491A225B2E9600F0AFE8 /* FlowCoordinatorType.swift */; };
@@ -112,6 +113,7 @@
 		8D6F924A22576C3500D43279 /* GifCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifCollectionViewCell.swift; sourceTree = "<group>"; };
 		8D6F924B22576C3500D43279 /* GifCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GifCollectionViewCell.xib; sourceTree = "<group>"; };
 		8D70772A2280723B00627564 /* GiphyRequestManager+RandomGIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GiphyRequestManager+RandomGIF.swift"; sourceTree = "<group>"; };
+		8D70772C2280761B00627564 /* GiphyRequestManager+SearchGIFs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GiphyRequestManager+SearchGIFs.swift"; sourceTree = "<group>"; };
 		8D954DD7225CF1AD003A0195 /* GifCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		8D954DDB225CF70C003A0195 /* GifFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifFetcher.swift; sourceTree = "<group>"; };
 		8D9A491A225B2E9600F0AFE8 /* FlowCoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinatorType.swift; sourceTree = "<group>"; };
@@ -514,6 +516,7 @@
 			children = (
 				8DDBFBA622561A6C009F7286 /* GiphyRequestManager.swift */,
 				8D70772A2280723B00627564 /* GiphyRequestManager+RandomGIF.swift */,
+				8D70772C2280761B00627564 /* GiphyRequestManager+SearchGIFs.swift */,
 				8D0D623A226874390011FF04 /* RandomGIFRequestPerformable.swift */,
 				8DF57053226E09A200DFA9B3 /* SearchGIFsRequestPerformable.swift */,
 			);
@@ -764,6 +767,7 @@
 				8D70772B2280723B00627564 /* GiphyRequestManager+RandomGIF.swift in Sources */,
 				8DC6C418225642E600C2FAF2 /* GifDataEngine.swift in Sources */,
 				8D0D623D22687A310011FF04 /* RandomGifServiceError.swift in Sources */,
+				8D70772D2280761B00627564 /* GiphyRequestManager+SearchGIFs.swift in Sources */,
 				8DF57059226E0BFD00DFA9B3 /* SearchGIFsServiceType.swift in Sources */,
 				8D3253442269C8F900A0F090 /* AppCoordinatorType.swift in Sources */,
 				8D410E4D225B91F2001F5132 /* GiphyResponse.swift in Sources */,
