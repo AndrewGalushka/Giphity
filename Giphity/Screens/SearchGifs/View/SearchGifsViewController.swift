@@ -88,16 +88,17 @@ extension SearchGifsViewController: SearchGIFsView {
     }
     
     func displayNextBatchOfResults(_ searchResults: [GifCollectionViewCell.ViewModel]) {
-        guard let section = collectionViewDataSource.dataSource.sections.first else { return }
-        let updatedSection = Section(items: section.items + searchResults)
+        guard let oldSection = collectionViewDataSource.dataSource.sections.first else { return }
+        
+        let updatedSection = Section(items: oldSection.items + searchResults)
         collectionViewDataSource.dataSource.sections[0] = updatedSection
     
-        let itemsInOldSection = section.items.count == 0 ? 0 : (section.items.count - 1)
-        let itemsInUpdatedSection = updatedSection.items.count == 0 ? 0 : (updatedSection.items.count - 1)
+        let itemsCountInOldSection = oldSection.items.count == 0 ? 0 : (oldSection.items.count - 1)
+        let itemsCountInUpdatedSection = updatedSection.items.count == 0 ? 0 : (updatedSection.items.count - 1)
         
         var insertedIndexes = [IndexPath]()
         
-        for row in itemsInOldSection...itemsInUpdatedSection {
+        for row in itemsCountInOldSection...itemsCountInUpdatedSection {
             insertedIndexes.append(IndexPath(row: row, section: 0))
         }
         
