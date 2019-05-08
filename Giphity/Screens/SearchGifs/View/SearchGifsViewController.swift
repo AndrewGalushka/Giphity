@@ -76,6 +76,17 @@ extension SearchGifsViewController: UICollectionViewDelegateFlowLayout {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.searchBar.resignFirstResponder()
     }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let percentThreshold: CGFloat = 0.75
+        
+        let scrollViewContentHeight = scrollView.contentSize.height
+        let threshold = scrollViewContentHeight * percentThreshold
+        
+        if targetContentOffset.pointee.y >= threshold {
+            self.presenter?.nextBatchOfGIFs()
+        }
+    }
 }
 
 extension SearchGifsViewController: SearchGIFsView {
