@@ -76,7 +76,9 @@ class SearchGIFsPaginationService: SearchGIFsPaginationServiceType {
         }
         
         let offset = pagination.offset + pagination.count
-        guard offset < pagination.totalCount else { return }
+        guard offset < pagination.totalCount else {
+            return
+        }
         
         self.isFetchingInProcess = true
         
