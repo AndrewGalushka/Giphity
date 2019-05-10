@@ -104,12 +104,12 @@ extension SearchGifsViewController: SearchGIFsView {
         let updatedSection = Section(items: oldSection.items + searchResults)
         collectionViewDataSource.dataSource.sections[0] = updatedSection
     
-        let itemsCountInOldSection = oldSection.items.count == 0 ? 0 : (oldSection.items.count - 1)
-        let itemsCountInUpdatedSection = updatedSection.items.count == 0 ? 0 : (updatedSection.items.count - 1)
+        let itemsCountInOldSection = oldSection.items.count
+        let itemsCountInUpdatedSection = updatedSection.items.count
         
         var insertedIndexes = [IndexPath]()
         
-        for row in itemsCountInOldSection...itemsCountInUpdatedSection {
+        for row in itemsCountInOldSection..<itemsCountInUpdatedSection {
             insertedIndexes.append(IndexPath(row: row, section: 0))
         }
         
