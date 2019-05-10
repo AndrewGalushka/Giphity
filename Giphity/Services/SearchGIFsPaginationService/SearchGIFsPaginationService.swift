@@ -20,7 +20,7 @@ class SearchGIFsPaginationService: SearchGIFsPaginationServiceType {
     private let searchGIFsService: SearchGIFsServiceType
     private var searchQuery: String?
     private var pagination: GiphyPagination?
-    private var isFetchingInProcess: Bool = false
+    private(set) var isFetchingInProcess: Bool = false
     
     private var errorDomain: String { return "com.search.gifs.pagination.service" }
     
@@ -62,6 +62,10 @@ class SearchGIFsPaginationService: SearchGIFsPaginationServiceType {
             strongSelf.reset()
             strongSelf.delegate?.searchGIFsPaginationService(strongSelf, didFailToFetchFirstBatch: error)
         }.finally { [weak self] in
+            guard let strongSelf = self, name == strongSelf.searchQuery else {
+                return
+            }
+            
             self?.isFetchingInProcess = false
         }
     }
@@ -71,10 +75,30 @@ class SearchGIFsPaginationService: SearchGIFsPaginationServiceType {
             return
         }
         
-        let offset = pagination.count
+        let offset = pagination.offset + pagination.count
         guard offset < pagination.totalCount else { return }
         
         self.isFetchingInProcess = true
+        
+        self.searchGIFsService.searchGifs(by: searchQuery, limit: Int(self.limit), offset: offset).done { [weak self] (response) in
+            guard let strongSelf = self, searchQuery == strongSelf.searchQuery else { return }
+            
+            if let pagination = response.pagination {
+                strongSelf.save(pagination: pagination)
+            }
+        }.catch { [weak self] (error) in
+            guard let strongSelf = self, searchQuery == self?.searchQuery else {
+                return
+            }
+            
+            strongSelf.delegate?.searchGIFsPaginationService(strongSelf, didFailToFetchNextBatch: error)
+        }.finally { [weak self] in
+            guard let strongSelf = self, searchQuery == strongSelf.searchQuery else {
+                return
+            }
+            
+            self?.isFetchingInProcess = false
+        }
     }
     
     func reset() {
