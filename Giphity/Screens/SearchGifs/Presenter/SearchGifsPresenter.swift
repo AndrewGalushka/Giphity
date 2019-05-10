@@ -75,6 +75,6 @@ extension SearchGifsPresenter: SearchGIFsPaginationServiceDelegate {
     }
     
     func searchGIFsPaginationService(_ service: SearchGIFsPaginationServiceType, didFailToFetchNextBatch error: Error) {
-        print("error")
+        print(error.localizedDescription)
     }
 }
