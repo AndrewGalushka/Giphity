@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol SearchGIFsPaginationServiceType {
+protocol SearchGIFsPaginationServiceType: AnyObject {
     var delegate: SearchGIFsPaginationServiceDelegate? { get set }
     func searchGIFs(by name: String)
     func nextBatch()
