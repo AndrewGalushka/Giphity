@@ -21,9 +21,17 @@ struct GiphySearchResponse: Decodable {
 }
 
 struct GiphyPagination: Decodable {
-    let totalCount: Int
-    let count: Int
+    
+    /// Position in pagination.
     let offset: Int
+    
+    /// Total number of items available.
+    let totalCount: Int
+    
+    /// Total number of items returned.
+    let count: Int
+    
+    
     
     enum CodingKeys: String, CodingKey {
         case totalCount = "total_count"

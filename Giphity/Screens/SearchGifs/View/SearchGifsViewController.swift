@@ -76,6 +76,17 @@ extension SearchGifsViewController: UICollectionViewDelegateFlowLayout {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.searchBar.resignFirstResponder()
     }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let percentThreshold: CGFloat = 0.75
+        
+        let scrollViewContentHeight = scrollView.contentSize.height
+        let threshold = scrollViewContentHeight * percentThreshold
+        
+        if (targetContentOffset.pointee.y + scrollView.bounds.height) >= threshold {
+            self.presenter?.nextBatchOfGIFs()
+        }
+    }
 }
 
 extension SearchGifsViewController: SearchGIFsView {
@@ -85,6 +96,26 @@ extension SearchGifsViewController: SearchGIFsView {
         
         self.collectionViewDataSource.dataSource.sections = [section]
         self.collectionView.reloadData()
+    }
+    
+    func displayNextBatchOfResults(_ searchResults: [GifCollectionViewCell.ViewModel]) {
+        guard let oldSection = collectionViewDataSource.dataSource.sections.first else { return }
+        
+        let updatedSection = Section(items: oldSection.items + searchResults)
+        collectionViewDataSource.dataSource.sections[0] = updatedSection
+    
+        let itemsCountInOldSection = oldSection.items.count
+        let itemsCountInUpdatedSection = updatedSection.items.count
+        
+        var insertedIndexes = [IndexPath]()
+        
+        for row in itemsCountInOldSection..<itemsCountInUpdatedSection {
+            insertedIndexes.append(IndexPath(row: row, section: 0))
+        }
+        
+        collectionView.performBatchUpdates({
+            collectionView.insertItems(at: insertedIndexes)
+        }, completion: { (finished) in })
     }
     
     func displaySearchFailed(error: Error) {

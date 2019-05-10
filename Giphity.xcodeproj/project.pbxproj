@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		52547EA5395B0107D447F622 /* Pods_Giphity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5803908CFF37BC9C3D9867C /* Pods_Giphity.framework */; };
+		8D003C4D2282D33500AAFAB0 /* SearchGIFsPaginationServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D003C4C2282D33500AAFAB0 /* SearchGIFsPaginationServiceType.swift */; };
+		8D003C4F2282D33F00AAFAB0 /* SearchGIFsPaginationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D003C4E2282D33F00AAFAB0 /* SearchGIFsPaginationService.swift */; };
 		8D08DB88225DD36C004959D8 /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D08DB87225DD36C004959D8 /* CollectionViewDataSource.swift */; };
 		8D08DB8C225DDBD5004959D8 /* GiphySearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D08DB8B225DDBD5004959D8 /* GiphySearchResponse.swift */; };
 		8D08DB8F225DF10D004959D8 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D08DB8E225DF10D004959D8 /* UIColor.swift */; };
@@ -78,6 +80,8 @@
 
 /* Begin PBXFileReference section */
 		8A1F3841D49BE85F8A481E6C /* Pods-Giphity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Giphity.debug.xcconfig"; path = "Target Support Files/Pods-Giphity/Pods-Giphity.debug.xcconfig"; sourceTree = "<group>"; };
+		8D003C4C2282D33500AAFAB0 /* SearchGIFsPaginationServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGIFsPaginationServiceType.swift; sourceTree = "<group>"; };
+		8D003C4E2282D33F00AAFAB0 /* SearchGIFsPaginationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGIFsPaginationService.swift; sourceTree = "<group>"; };
 		8D08DB87225DD36C004959D8 /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
 		8D08DB8B225DDBD5004959D8 /* GiphySearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphySearchResponse.swift; sourceTree = "<group>"; };
 		8D08DB8E225DF10D004959D8 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -162,6 +166,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8D003C4B2282D31200AAFAB0 /* SearchGIFsPaginationService */ = {
+			isa = PBXGroup;
+			children = (
+				8D003C4C2282D33500AAFAB0 /* SearchGIFsPaginationServiceType.swift */,
+				8D003C4E2282D33F00AAFAB0 /* SearchGIFsPaginationService.swift */,
+			);
+			path = SearchGIFsPaginationService;
+			sourceTree = "<group>";
+		};
 		8D08DB85225DD349004959D8 /* CollectionViewDataSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +213,7 @@
 			children = (
 				8D1AAF312271EB8E00B0E078 /* GifFetchingService */,
 				8DF57055226E0BD800DFA9B3 /* SearchGIFsService */,
+				8D003C4B2282D31200AAFAB0 /* SearchGIFsPaginationService */,
 				8D0D624222687E720011FF04 /* RandomGifService */,
 			);
 			path = Services;
@@ -743,6 +757,7 @@
 				8D410E53225BA1E9001F5132 /* Section.swift in Sources */,
 				8DF57044226DB0A600DFA9B3 /* RandomGifView.swift in Sources */,
 				8D6F924C22576C3500D43279 /* GifCollectionViewCell.swift in Sources */,
+				8D003C4D2282D33500AAFAB0 /* SearchGIFsPaginationServiceType.swift in Sources */,
 				8D0DBDA92273561C00908D4F /* GifCacheType.swift in Sources */,
 				8DF5704A226DC19100DFA9B3 /* MainFlowCoordinatorModulesAssembler.swift in Sources */,
 				8D325348226A12E500A0F090 /* CoordinatorsFactory.swift in Sources */,
@@ -765,6 +780,7 @@
 				8D410E40225B4B45001F5132 /* GifObject.swift in Sources */,
 				8D1AAF352271EBB800B0E078 /* GifPrefetchingServiceType.swift in Sources */,
 				8DF57050226E08D100DFA9B3 /* SearchGifsPresenter.swift in Sources */,
+				8D003C4F2282D33F00AAFAB0 /* SearchGIFsPaginationService.swift in Sources */,
 				8D08DB8F225DF10D004959D8 /* UIColor.swift in Sources */,
 				8D32534E226A1E6800A0F090 /* ChildCoordinatorsHoldable.swift in Sources */,
 				8DF57052226E08E500DFA9B3 /* SearchGifsViewPresenter.swift in Sources */,

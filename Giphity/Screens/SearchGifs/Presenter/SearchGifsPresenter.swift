@@ -9,14 +9,15 @@
 import Foundation
 
 class SearchGifsPresenter: SearchGifsViewPresenter {
-    private let searchService: SearchGIFsServiceType
+    private let searchService: SearchGIFsPaginationServiceType
     
     weak var view: SearchGIFsView?
     
     // MARK: - Initializers
     
-    init(searchService: SearchGIFsServiceType) {
+    init(searchService: SearchGIFsPaginationServiceType) {
         self.searchService = searchService
+        self.searchService.delegate = self
     }
     
     // MARK: - SearchGifsViewPresenter
@@ -31,17 +32,19 @@ class SearchGifsPresenter: SearchGifsViewPresenter {
             return
         }
         
-        searchService.searchGifs(by: name).done { (response) in
-            let viewModels = self.convertResponseToViewModels(response: response, ofImageType: .fixedHeight_downsampled)
-            self.view?.displaySearchResults(viewModels)
-        }.catch { (error) in
-            self.view?.displaySearchFailed(error: error)
+        searchService.searchGIFs(by: name)
+    }
+    
+    func nextBatchOfGIFs() {
+        
+        if !self.searchService.isFetchingInProcess {
+            searchService.nextBatch()
         }
     }
     
-    private func convertResponseToViewModels(response: GiphySearchResponse,
+    private func convertGifObjectsToViewModels(gifObjects: [GifObject],
                                              ofImageType imageObjectType: ImageObject.ImageType = .downsized) -> [GifCollectionViewCell.ViewModel] {
-        guard let gifObjects = response.gifObjects, !gifObjects.isEmpty else { return [] }
+        guard !gifObjects.isEmpty else { return [] }
         
         var viewModels = [GifCollectionViewCell.ViewModel]()
         
@@ -53,5 +56,25 @@ class SearchGifsPresenter: SearchGifsViewPresenter {
         }
         
         return viewModels
+    }
+}
+
+extension SearchGifsPresenter: SearchGIFsPaginationServiceDelegate {
+    func searchGIFsPaginationService(_ service: SearchGIFsPaginationServiceType, didFetchFirstBatch gifObjects: [GifObject]) {
+        let viewModels = self.convertGifObjectsToViewModels(gifObjects: gifObjects, ofImageType: .fixedHeight_downsampled)
+        self.view?.displaySearchResults(viewModels)
+    }
+    
+    func searchGIFsPaginationService(_ service: SearchGIFsPaginationServiceType, didFetchNextBatch gifObjects: [GifObject]) {
+        let viewModels = self.convertGifObjectsToViewModels(gifObjects: gifObjects, ofImageType: .fixedHeight_downsampled)
+        self.view?.displayNextBatchOfResults(viewModels)
+    }
+    
+    func searchGIFsPaginationService(_ service: SearchGIFsPaginationServiceType, didFailToFetchFirstBatch error: Error) {
+        self.view?.displaySearchFailed(error: error)
+    }
+    
+    func searchGIFsPaginationService(_ service: SearchGIFsPaginationServiceType, didFailToFetchNextBatch error: Error) {
+        print(error.localizedDescription)
     }
 }

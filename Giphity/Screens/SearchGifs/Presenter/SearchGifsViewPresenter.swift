@@ -11,4 +11,5 @@ import Foundation
 protocol SearchGifsViewPresenter: AnyObject {
     func viewLoaded()
     func searchGIFs(by name: String)
+    func nextBatchOfGIFs()
 }

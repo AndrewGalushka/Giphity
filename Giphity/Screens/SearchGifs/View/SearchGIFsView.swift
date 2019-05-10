@@ -10,5 +10,6 @@ import Foundation
 
 protocol SearchGIFsView: AnyObject {
     func displaySearchResults(_ searchResults: [GifCollectionViewCell.ViewModel])
+    func displayNextBatchOfResults(_ searchResults: [GifCollectionViewCell.ViewModel])
     func displaySearchFailed(error: Error)
 }

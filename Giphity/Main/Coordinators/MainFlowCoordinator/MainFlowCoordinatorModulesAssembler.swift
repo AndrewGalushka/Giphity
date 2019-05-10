@@ -25,10 +25,10 @@ class MainFlowCoordinatorModulesAssembler: MainFlowCoordinatorModulesAssemblerTy
     }
     
     func assemblySearchGIFsModule() -> ViewControllerModule {
-        let searchGIFsService = self.assemblySearchGIFsService()
+        let paginationSearchGIFsService = self.assemblySearchGIFsPaginationService()
         
         let viewController = SearchGifsViewController.loadFromStoryboard()
-        let presenter = SearchGifsPresenter(searchService: searchGIFsService)
+        let presenter = SearchGifsPresenter(searchService: paginationSearchGIFsService)
         
         return SearchGIFsModule(view: viewController, presenter: presenter)
     }
@@ -40,5 +40,10 @@ class MainFlowCoordinatorModulesAssembler: MainFlowCoordinatorModulesAssemblerTy
     
     private func assemblySearchGIFsService() -> SearchGIFsServiceType {
         return SearchGIFsService(requestManager: assembler.assemblyGiphyRequestManager())
+    }
+    
+    private func assemblySearchGIFsPaginationService() -> SearchGIFsPaginationServiceType {
+        let searchService: SearchGIFsServiceType = self.assemblySearchGIFsService()
+        return SearchGIFsPaginationService(searchGIFsService: searchService)
     }
 }
