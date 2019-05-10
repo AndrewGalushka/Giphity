@@ -83,9 +83,20 @@ class SearchGIFsPaginationService: SearchGIFsPaginationServiceType {
         self.searchGIFsService.searchGifs(by: searchQuery, limit: Int(self.limit), offset: offset).done { [weak self] (response) in
             guard let strongSelf = self, searchQuery == strongSelf.searchQuery else { return }
             
+            guard let gifObjects = response.gifObjects else {
+                let error = NSError(domain: strongSelf.errorDomain, code: -1, userInfo: nil)
+                strongSelf.delegate?.searchGIFsPaginationService(strongSelf,
+                                                                 didFailToFetchNextBatch: error)
+                return
+            }
+            
             if let pagination = response.pagination {
                 strongSelf.save(pagination: pagination)
             }
+            
+            strongSelf.delegate?.searchGIFsPaginationService(strongSelf,
+                                                             didFetchNextBatch: gifObjects)
+            
         }.catch { [weak self] (error) in
             guard let strongSelf = self, searchQuery == self?.searchQuery else {
                 return

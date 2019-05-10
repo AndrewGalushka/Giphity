@@ -83,7 +83,7 @@ extension SearchGifsViewController: UICollectionViewDelegateFlowLayout {
         let scrollViewContentHeight = scrollView.contentSize.height
         let threshold = scrollViewContentHeight * percentThreshold
         
-        if targetContentOffset.pointee.y >= threshold {
+        if (targetContentOffset.pointee.y + scrollView.bounds.height) >= threshold {
             self.presenter?.nextBatchOfGIFs()
         }
     }

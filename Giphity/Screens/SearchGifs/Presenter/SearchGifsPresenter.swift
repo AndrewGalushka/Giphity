@@ -36,7 +36,10 @@ class SearchGifsPresenter: SearchGifsViewPresenter {
     }
     
     func nextBatchOfGIFs() {
-        searchService.nextBatch()
+        
+        if !self.searchService.isFetchingInProcess {
+            searchService.nextBatch()
+        }
     }
     
     private func convertGifObjectsToViewModels(gifObjects: [GifObject],

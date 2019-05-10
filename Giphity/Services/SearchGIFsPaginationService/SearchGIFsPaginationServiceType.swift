@@ -9,6 +9,7 @@
 import Foundation
 
 protocol SearchGIFsPaginationServiceType: AnyObject {
+    var isFetchingInProcess: Bool { get }
     var delegate: SearchGIFsPaginationServiceDelegate? { get set }
     func searchGIFs(by name: String)
     func nextBatch()
