@@ -9,7 +9,7 @@
 import Foundation
 
 struct GiphySearchResponseConvertor: GiphySearchResponseConvertorType {
-    
+
     func convertToGIFsObjects(_ response: GiphySearchResponse) -> [GifObject] {
         guard let gifObjects = response.gifObjects else { return [] }
         return gifObjects
@@ -33,5 +33,32 @@ struct GiphySearchResponseConvertor: GiphySearchResponseConvertorType {
         let images = self.convertToImageObjects(gifObjects, ofType: imageType)
         
         return images
+    }
+    
+    func convertToAssociatedImages(_ response: GiphySearchResponse, ofType imageType: ImageObject.ImageType) -> [AssociatedImageResult] {
+        let gifObjects = self.convertToGIFsObjects(response)
+        var associatedImages = [(GifObject, ImageObject)]()
+        
+        for gifObject in gifObjects {
+            
+            if let image = gifObject.images?.imageObject(for: imageType) {
+                associatedImages.append((gifObject, image))
+            }
+        }
+        
+        return associatedImages
+    }
+    
+    func convertToAssociatedImages(_ gifObjects: [GifObject], ofType imageType: ImageObject.ImageType) -> [AssociatedImageResult] {
+        var associatedImages = [(GifObject, ImageObject)]()
+        
+        for gifObject in gifObjects {
+            
+            if let image = gifObject.images?.imageObject(for: imageType) {
+                associatedImages.append((gifObject, image))
+            }
+        }
+        
+        return associatedImages
     }
 }
