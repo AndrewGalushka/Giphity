@@ -31,8 +31,6 @@ struct GiphyPagination: Decodable {
     /// Total number of items returned.
     let count: Int
     
-    
-    
     enum CodingKeys: String, CodingKey {
         case totalCount = "total_count"
         case count
