@@ -31,6 +31,7 @@
 		8D1AAF352271EBB800B0E078 /* GifPrefetchingServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1AAF342271EBB800B0E078 /* GifPrefetchingServiceType.swift */; };
 		8D2ADE4F228EA541003C9B84 /* MVPModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2ADE4E228EA541003C9B84 /* MVPModule.swift */; };
 		8D2ADE55228EA9C4003C9B84 /* TrendingGIFsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2ADE54228EA9C4003C9B84 /* TrendingGIFsModule.swift */; };
+		8D2ADE58228EBC02003C9B84 /* TrendingGIFsCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2ADE57228EBC02003C9B84 /* TrendingGIFsCollectionViewLayout.swift */; };
 		8D32533C2269C26A00A0F090 /* ApplicationAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32533B2269C26A00A0F090 /* ApplicationAssembler.swift */; };
 		8D3253402269C30300A0F090 /* ApplicationAssemblerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32533F2269C30300A0F090 /* ApplicationAssemblerType.swift */; };
 		8D3253442269C8F900A0F090 /* AppCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3253432269C8F900A0F090 /* AppCoordinatorType.swift */; };
@@ -115,6 +116,7 @@
 		8D1AAF342271EBB800B0E078 /* GifPrefetchingServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifPrefetchingServiceType.swift; sourceTree = "<group>"; };
 		8D2ADE4E228EA541003C9B84 /* MVPModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPModule.swift; sourceTree = "<group>"; };
 		8D2ADE54228EA9C4003C9B84 /* TrendingGIFsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingGIFsModule.swift; sourceTree = "<group>"; };
+		8D2ADE57228EBC02003C9B84 /* TrendingGIFsCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingGIFsCollectionViewLayout.swift; sourceTree = "<group>"; };
 		8D32533B2269C26A00A0F090 /* ApplicationAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationAssembler.swift; sourceTree = "<group>"; };
 		8D32533F2269C30300A0F090 /* ApplicationAssemblerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationAssemblerType.swift; sourceTree = "<group>"; };
 		8D3253432269C8F900A0F090 /* AppCoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorType.swift; sourceTree = "<group>"; };
@@ -290,6 +292,14 @@
 			path = GifFetchingService;
 			sourceTree = "<group>";
 		};
+		8D2ADE56228EBBE7003C9B84 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				8D2ADE57228EBC02003C9B84 /* TrendingGIFsCollectionViewLayout.swift */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
 		8D32533D2269C2D900A0F090 /* Assemblers */ = {
 			isa = PBXGroup;
 			children = (
@@ -439,6 +449,7 @@
 			isa = PBXGroup;
 			children = (
 				8D2ADE54228EA9C4003C9B84 /* TrendingGIFsModule.swift */,
+				8D2ADE56228EBBE7003C9B84 /* CollectionView */,
 				8D625F9C228BF7F700D96079 /* Presenter */,
 				8D0986B8228C61BC00C42F2A /* View */,
 			);
@@ -891,6 +902,7 @@
 				8DFCF4582268C0CF007327F6 /* GifFetcher+Error.swift in Sources */,
 				8D410E46225B68DB001F5132 /* ImagesObject.swift in Sources */,
 				8DF5705F226E195500DFA9B3 /* SearchGIFsModule.swift in Sources */,
+				8D2ADE58228EBC02003C9B84 /* TrendingGIFsCollectionViewLayout.swift in Sources */,
 				8D0DBDAB2273585A00908D4F /* GifCache.swift in Sources */,
 				8DF57054226E09A200DFA9B3 /* SearchGIFsRequestPerformable.swift in Sources */,
 				8D625FA5228BFD3200D96079 /* GiphySearchResponseConvertorType.swift in Sources */,
