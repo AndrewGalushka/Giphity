@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ApplicationAssemblerType {
-    func assemblyGiphyRequestManager() -> GiphyRequestManager
-    func assemblyGifDataEngineType() -> GifDataEngineType
-    func assemblyGifFetcher() -> GifFetcherType
+    func assembleGiphyRequestManager() -> GiphyRequestManager
+    func assembleGifDataEngineType() -> GifDataEngineType
+    func assembleGifFetcher() -> GifFetcherType
 }

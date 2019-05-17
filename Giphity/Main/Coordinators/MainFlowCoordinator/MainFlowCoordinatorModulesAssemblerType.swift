@@ -9,7 +9,7 @@
 import Foundation
 
 protocol MainFlowCoordinatorModulesAssemblerType {
-    func assemblyRandomGifModule() -> RandomGifModule
-    func assemblySearchGIFsModule() -> ViewControllerModule
-    func assemblytrendingGIFsModule() -> trendingGIFsModule
+    func assembleRandomGifModule() -> RandomGifModule
+    func assembleSearchGIFsModule() -> ViewControllerModule
+    func assembletrendingGIFsModule() -> trendingGIFsModule
 }

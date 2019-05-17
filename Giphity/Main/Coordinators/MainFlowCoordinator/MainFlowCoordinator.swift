@@ -25,9 +25,9 @@ class MainFlowCoordinator: FlowCoordinatorType {
     }
     
     func start() {
-        let trendingGIFsModule = self.modulesAssembler.assemblytrendingGIFsModule()
-        let randomGIFsModule = self.modulesAssembler.assemblyRandomGifModule()
-        let searchGIFsModule = self.modulesAssembler.assemblySearchGIFsModule()
+        let trendingGIFsModule = self.modulesAssembler.assembletrendingGIFsModule()
+        let randomGIFsModule = self.modulesAssembler.assembleRandomGifModule()
+        let searchGIFsModule = self.modulesAssembler.assembleSearchGIFsModule()
         
         let initialTabbarModules = [trendingGIFsModule, randomGIFsModule, searchGIFsModule]
         
