@@ -19,7 +19,12 @@ class TrandingGIFsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.setupUI()
+    }
+    
+    func setupUI() {
         self.view.backgroundColor = .rgba(200, 200, 200)
+        self.view.layer.cornerRadius = 10.0
     }
 }
 
