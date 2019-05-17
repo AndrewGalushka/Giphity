@@ -10,6 +10,10 @@ import UIKit
 
 class TrendingGIFsViewController: UIViewController {
 
+    // MARK: - Properties(IBOutlet)
+    
+    @IBOutlet private weak var collectionView: UICollectionView!
+    
     // MARK: - Properties(Public)
     
     weak var presenter: TrendingGIFsViewPresenter?
@@ -25,6 +29,13 @@ class TrendingGIFsViewController: UIViewController {
     func setupUI() {
         self.view.backgroundColor = .rgba(200, 200, 200)
         self.view.layer.cornerRadius = 10.0
+        
+        self.setupCollectionView()
+    }
+    
+    func setupCollectionView() {
+        let layout = TrendingGIFsCollectionViewLayout()
+        collectionView.setCollectionViewLayout(layout, animated: false)
     }
 }
 

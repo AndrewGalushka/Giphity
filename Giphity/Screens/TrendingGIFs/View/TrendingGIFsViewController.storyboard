@@ -17,9 +17,31 @@
                     <view key="view" contentMode="scaleToFill" id="ztD-o9-keS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wGV-AG-5h5">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CLT-jq-Cro">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wGV-AG-5h5" firstAttribute="leading" secondItem="cLz-Gp-ct8" secondAttribute="leading" id="KdO-bs-ztq"/>
+                            <constraint firstItem="cLz-Gp-ct8" firstAttribute="trailing" secondItem="wGV-AG-5h5" secondAttribute="trailing" id="ObS-Dt-ta9"/>
+                            <constraint firstItem="cLz-Gp-ct8" firstAttribute="bottom" secondItem="wGV-AG-5h5" secondAttribute="bottom" id="Wo8-Hz-O5J"/>
+                            <constraint firstItem="wGV-AG-5h5" firstAttribute="top" secondItem="cLz-Gp-ct8" secondAttribute="top" id="wdx-p0-e6t"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="cLz-Gp-ct8"/>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="wGV-AG-5h5" id="aTu-Mw-Ybm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xVk-Dz-cHp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
