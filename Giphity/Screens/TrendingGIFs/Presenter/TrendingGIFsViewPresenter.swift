@@ -1,5 +1,5 @@
 //
-//  trendingGIFsViewPresenter.swift
+//  TrendingGIFsViewPresenter.swift
 //  Giphity
 //
 //  Created by Galushka on 5/15/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol trendingGIFsViewPresenter: AnyObject {
+protocol TrendingGIFsViewPresenter: AnyObject {
     func viewLoaded()
     func trendingGIFs()
 }

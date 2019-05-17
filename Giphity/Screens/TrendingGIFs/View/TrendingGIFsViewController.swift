@@ -1,5 +1,5 @@
 //
-//  trendingGIFsViewController.swift
+//  TrendingGIFsViewController.swift
 //  Giphity
 //
 //  Created by Galushka on 5/15/19.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class trendingGIFsViewController: UIViewController {
+class TrendingGIFsViewController: UIViewController {
 
     // MARK: - Properties(Public)
     
-    weak var presenter: trendingGIFsViewPresenter?
+    weak var presenter: TrendingGIFsViewPresenter?
     
     // MARK: - Lifecycle
     
@@ -28,7 +28,7 @@ class trendingGIFsViewController: UIViewController {
     }
 }
 
-extension trendingGIFsViewController: trendingGIFsView {
+extension TrendingGIFsViewController: TrendingGIFsView {
     func displaySearchResults(_ searchResults: [GifCollectionViewCell.ViewModel]) {
     }
     

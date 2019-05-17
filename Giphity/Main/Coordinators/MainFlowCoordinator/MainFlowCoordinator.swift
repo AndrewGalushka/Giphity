@@ -25,7 +25,7 @@ class MainFlowCoordinator: FlowCoordinatorType {
     }
     
     func start() {
-        let trendingGIFsModule = self.modulesAssembler.assembletrendingGIFsModule()
+        let trendingGIFsModule = self.modulesAssembler.assembleTrendingGIFsModule()
         let randomGIFsModule = self.modulesAssembler.assembleRandomGifModule()
         let searchGIFsModule = self.modulesAssembler.assembleSearchGIFsModule()
         

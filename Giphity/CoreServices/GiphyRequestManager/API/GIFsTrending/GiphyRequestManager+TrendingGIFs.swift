@@ -1,5 +1,5 @@
 //
-//  GiphyRequestManager+trendingGIFs.swift
+//  GiphyRequestManager+TrendingGIFs.swift
 //  Giphity
 //
 //  Created by Galushka on 5/15/19.
@@ -9,7 +9,7 @@
 import Foundation
 import PromiseKit
 
-extension GiphyRequestManager: trendingGIFsRequestPerformable {
+extension GiphyRequestManager: TrendingGIFsRequestPerformable {
     
     func trendingGIFs(limit: Int, offset: Int) -> Promise<GiphySearchResponse> {
         return self._trendingGIFs(limit: limit, offset: offset)

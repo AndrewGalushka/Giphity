@@ -1,5 +1,5 @@
 //
-//  trendingGIFsModule.swift
+//  TrendingGIFsModule.swift
 //  Giphity
 //
 //  Created by Galushka on 5/17/19.
@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-class trendingGIFsModule: ViewControllerModule {
-    let presenter: trendingGIFsPresenter
-    let trendingGIFsView: trendingGIFsViewController
+class TrendingGIFsModule: ViewControllerModule {
+    let presenter: TrendingGIFsPresenter
+    let trendingGIFsView: TrendingGIFsViewController
     
-    init(view: trendingGIFsViewController, presenter: trendingGIFsPresenter) {
+    init(view: TrendingGIFsViewController, presenter: TrendingGIFsPresenter) {
         self.trendingGIFsView = view
         self.presenter = presenter
         
