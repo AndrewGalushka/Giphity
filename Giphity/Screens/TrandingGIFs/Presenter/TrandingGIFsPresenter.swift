@@ -10,6 +10,10 @@ import Foundation
 
 class TrandingGIFsPresenter: TrandingGIFsViewPresenter {
     
+    // MARK: - Properties(Public)
+    
+    weak var view: TrandingGIFsView?
+    
     // MARK: - TrandingGIFsViewPresenter Imp
     
     func viewLoaded() {

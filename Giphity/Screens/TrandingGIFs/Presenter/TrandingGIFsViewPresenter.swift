@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol TrandingGIFsViewPresenter {
+protocol TrandingGIFsViewPresenter: AnyObject {
     func viewLoaded()
     func trandingGIFs()
 }
