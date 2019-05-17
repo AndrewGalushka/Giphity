@@ -1,5 +1,5 @@
 //
-//  TrandingGIFsPresenter.swift
+//  trendingGIFsPresenter.swift
 //  Giphity
 //
 //  Created by Galushka on 5/15/19.
@@ -8,17 +8,17 @@
 
 import Foundation
 
-class TrandingGIFsPresenter: TrandingGIFsViewPresenter {
+class trendingGIFsPresenter: trendingGIFsViewPresenter {
     
     // MARK: - Properties(Public)
     
-    weak var view: TrandingGIFsView?
+    weak var view: trendingGIFsView?
     
-    // MARK: - TrandingGIFsViewPresenter Imp
+    // MARK: - trendingGIFsViewPresenter Imp
     
     func viewLoaded() {
     }
     
-    func trandingGIFs() {
+    func trendingGIFs() {
     }
 }

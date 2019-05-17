@@ -11,4 +11,5 @@ import Foundation
 protocol MainFlowCoordinatorModulesAssemblerType {
     func assemblyRandomGifModule() -> RandomGifModule
     func assemblySearchGIFsModule() -> ViewControllerModule
+    func assemblytrendingGIFsModule() -> trendingGIFsModule
 }

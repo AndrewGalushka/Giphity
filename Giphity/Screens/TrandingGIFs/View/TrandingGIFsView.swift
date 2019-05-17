@@ -1,5 +1,5 @@
 //
-//  TrandingGIFsView.swift
+//  trendingGIFsView.swift
 //  Giphity
 //
 //  Created by Galushka on 5/15/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol TrandingGIFsView: AnyObject {
+protocol trendingGIFsView: AnyObject {
     func displaySearchResults(_ searchResults: [GifCollectionViewCell.ViewModel])
     func displayNextBatchOfResults(_ searchResults: [GifCollectionViewCell.ViewModel])
 }

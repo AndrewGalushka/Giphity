@@ -1,5 +1,5 @@
 //
-//  GiphyRequestManager+TrandingGIFs.swift
+//  GiphyRequestManager+trendingGIFs.swift
 //  Giphity
 //
 //  Created by Galushka on 5/15/19.
@@ -9,21 +9,21 @@
 import Foundation
 import PromiseKit
 
-extension GiphyRequestManager: TrandingGIFsRequestPerformable {
+extension GiphyRequestManager: trendingGIFsRequestPerformable {
     
-    func trandingGIFs(limit: Int, offset: Int) -> Promise<GiphySearchResponse> {
-        return self._trandingGIFs(limit: limit, offset: offset)
+    func trendingGIFs(limit: Int, offset: Int) -> Promise<GiphySearchResponse> {
+        return self._trendingGIFs(limit: limit, offset: offset)
     }
     
-    func trandingGIFs(offset: Int) -> Promise<GiphySearchResponse> {
-        return self._trandingGIFs(offset: offset)
+    func trendingGIFs(offset: Int) -> Promise<GiphySearchResponse> {
+        return self._trendingGIFs(offset: offset)
     }
     
-    func trandingGIFs() -> Promise<GiphySearchResponse> {
-        return self._trandingGIFs()
+    func trendingGIFs() -> Promise<GiphySearchResponse> {
+        return self._trendingGIFs()
     }
     
-    private func _trandingGIFs(limit: Int = 15, offset: Int = 0) -> Promise<GiphySearchResponse> {
+    private func _trendingGIFs(limit: Int = 15, offset: Int = 0) -> Promise<GiphySearchResponse> {
         let queryItems = [URLQueryItem(name: "limit", value: "\(limit)"),
                           URLQueryItem(name: "offset", value: "\(offset)")]
         

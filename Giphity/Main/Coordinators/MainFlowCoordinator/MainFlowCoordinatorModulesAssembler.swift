@@ -33,6 +33,13 @@ class MainFlowCoordinatorModulesAssembler: MainFlowCoordinatorModulesAssemblerTy
         return SearchGIFsModule(view: viewController, presenter: presenter)
     }
     
+    func assemblytrendingGIFsModule() -> trendingGIFsModule {
+        let view = trendingGIFsViewController.loadFromStoryboard()
+        let presenter = trendingGIFsPresenter()
+        
+        return trendingGIFsModule(view: view, presenter: presenter)
+    }
+    
     private func assemblyRandomGifService() -> RandomGifServiceType {
         return RandomGifService(gifFetcher: assembler.assemblyGifFetcher(),
                                 requestManager: assembler.assemblyGiphyRequestManager())
