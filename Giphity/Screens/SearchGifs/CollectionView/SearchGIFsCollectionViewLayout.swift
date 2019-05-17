@@ -22,8 +22,6 @@ class SearchGIFsCollectionViewLayout: UICollectionViewFlowLayout {
         self.minimumInteritemSpacing = 5.0
         self.minimumLineSpacing = 5.0
         
-    
-        
         self.sectionInset = UIEdgeInsets(top: self.minimumInteritemSpacing,
                                          left: self.minimumInteritemSpacing,
                                          bottom: self.minimumInteritemSpacing,
