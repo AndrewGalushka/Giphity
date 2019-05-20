@@ -19,18 +19,21 @@ class TrendingGIFsCollectionViewLayout: UICollectionViewFlowLayout {
     }
     
     private func recalculateIndents(for collectionView: UICollectionView) {
-        self.minimumInteritemSpacing = 5.0
-        self.minimumLineSpacing = 5.0
+        self.minimumInteritemSpacing = 3.0
+        self.minimumLineSpacing = 3.0
         
-        self.sectionInset = UIEdgeInsets(top: self.minimumInteritemSpacing,
-                                         left: self.minimumInteritemSpacing,
-                                         bottom: self.minimumInteritemSpacing,
-                                         right: self.minimumInteritemSpacing)
+        self.sectionInset = collectionView.layoutMargins
     }
     
     private func recalculateItemSize(for collectionView: UICollectionView) {
         let numberOfItemsInRow = 2
-        let sideSize = (collectionView.bounds.inset(by: collectionView.layoutMargins).width / CGFloat(numberOfItemsInRow)).rounded(.down)
+        
+        let numberOfInteritems: Int = (numberOfItemsInRow * 2 - 2) / 2
+        let interitemsSpacing = (self.minimumInteritemSpacing * CGFloat(numberOfInteritems)).rounded(.down)
+        
+        let availableWidth = collectionView.bounds.width - sectionInset.left - sectionInset.right - interitemsSpacing
+        
+        let sideSize = (availableWidth / CGFloat(numberOfItemsInRow)).rounded(.down)
         
         self.itemSize = CGSize(width: sideSize,
                                height: sideSize)

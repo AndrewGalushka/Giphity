@@ -27,15 +27,33 @@ class TrendingGIFsViewController: UIViewController {
     }
     
     func setupUI() {
-        self.view.backgroundColor = .rgba(200, 200, 200)
+        self.view.backgroundColor = .rgba(240, 248, 255)
         self.view.layer.cornerRadius = 10.0
         
         self.setupCollectionView()
     }
     
     func setupCollectionView() {
+        collectionView.backgroundColor = UIColor(red:0.0, green:1.0, blue:0.0, alpha:1.0)
         let layout = TrendingGIFsCollectionViewLayout()
         collectionView.setCollectionViewLayout(layout, animated: false)
+        collectionView.dataSource = self
+        
+        collectionView.register( UINib(nibName: "\(TrendingGIFCollectionViewCell.self)", bundle: nil) , forCellWithReuseIdentifier: "\(TrendingGIFCollectionViewCell.self)")
+    }
+}
+
+extension TrendingGIFsViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 20
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(TrendingGIFCollectionViewCell.self)", for: indexPath) as! TrendingGIFCollectionViewCell
+        cell.configure(number: indexPath.row)
+        
+        return cell
     }
 }
 

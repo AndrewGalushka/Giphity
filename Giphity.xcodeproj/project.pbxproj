@@ -32,6 +32,8 @@
 		8D2ADE4F228EA541003C9B84 /* MVPModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2ADE4E228EA541003C9B84 /* MVPModule.swift */; };
 		8D2ADE55228EA9C4003C9B84 /* TrendingGIFsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2ADE54228EA9C4003C9B84 /* TrendingGIFsModule.swift */; };
 		8D2ADE58228EBC02003C9B84 /* TrendingGIFsCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2ADE57228EBC02003C9B84 /* TrendingGIFsCollectionViewLayout.swift */; };
+		8D2ADE60228EE6F3003C9B84 /* TrendingGIFCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2ADE5E228EE6F3003C9B84 /* TrendingGIFCollectionViewCell.swift */; };
+		8D2ADE61228EE6F3003C9B84 /* TrendingGIFCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D2ADE5F228EE6F3003C9B84 /* TrendingGIFCollectionViewCell.xib */; };
 		8D32533C2269C26A00A0F090 /* ApplicationAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32533B2269C26A00A0F090 /* ApplicationAssembler.swift */; };
 		8D3253402269C30300A0F090 /* ApplicationAssemblerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32533F2269C30300A0F090 /* ApplicationAssemblerType.swift */; };
 		8D3253442269C8F900A0F090 /* AppCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3253432269C8F900A0F090 /* AppCoordinatorType.swift */; };
@@ -117,6 +119,8 @@
 		8D2ADE4E228EA541003C9B84 /* MVPModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPModule.swift; sourceTree = "<group>"; };
 		8D2ADE54228EA9C4003C9B84 /* TrendingGIFsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingGIFsModule.swift; sourceTree = "<group>"; };
 		8D2ADE57228EBC02003C9B84 /* TrendingGIFsCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingGIFsCollectionViewLayout.swift; sourceTree = "<group>"; };
+		8D2ADE5E228EE6F3003C9B84 /* TrendingGIFCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingGIFCollectionViewCell.swift; sourceTree = "<group>"; };
+		8D2ADE5F228EE6F3003C9B84 /* TrendingGIFCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendingGIFCollectionViewCell.xib; sourceTree = "<group>"; };
 		8D32533B2269C26A00A0F090 /* ApplicationAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationAssembler.swift; sourceTree = "<group>"; };
 		8D32533F2269C30300A0F090 /* ApplicationAssemblerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationAssemblerType.swift; sourceTree = "<group>"; };
 		8D3253432269C8F900A0F090 /* AppCoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorType.swift; sourceTree = "<group>"; };
@@ -296,8 +300,18 @@
 			isa = PBXGroup;
 			children = (
 				8D2ADE57228EBC02003C9B84 /* TrendingGIFsCollectionViewLayout.swift */,
+				8D2ADE59228EE626003C9B84 /* Cells */,
 			);
 			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		8D2ADE59228EE626003C9B84 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8D2ADE5E228EE6F3003C9B84 /* TrendingGIFCollectionViewCell.swift */,
+				8D2ADE5F228EE6F3003C9B84 /* TrendingGIFCollectionViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		8D32533D2269C2D900A0F090 /* Assemblers */ = {
@@ -789,6 +803,7 @@
 				8DDBFB9922560BC9009F7286 /* LaunchScreen.storyboard in Resources */,
 				8DDBFBA922561F48009F7286 /* RandomGifViewController.storyboard in Resources */,
 				8DDBFB9622560BC9009F7286 /* Assets.xcassets in Resources */,
+				8D2ADE61228EE6F3003C9B84 /* TrendingGIFCollectionViewCell.xib in Resources */,
 				8D6F924D22576C3500D43279 /* GifCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -879,6 +894,7 @@
 				8D410E4F225B9FE8001F5132 /* DataSource.swift in Sources */,
 				8D410E40225B4B45001F5132 /* GifObject.swift in Sources */,
 				8D1AAF352271EBB800B0E078 /* GifPrefetchingServiceType.swift in Sources */,
+				8D2ADE60228EE6F3003C9B84 /* TrendingGIFCollectionViewCell.swift in Sources */,
 				8DF57050226E08D100DFA9B3 /* SearchGifsPresenter.swift in Sources */,
 				8D003C4F2282D33F00AAFAB0 /* SearchGIFsPaginationService.swift in Sources */,
 				8D08DB8F225DF10D004959D8 /* UIColor.swift in Sources */,
