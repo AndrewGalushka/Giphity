@@ -12,6 +12,7 @@ class TrendingGIFsPresenter: TrendingGIFsViewPresenter {
     // MARK: - Properties(Private)
     
     private let trendingGIFsService: TrendingGIFsServiceType
+    private let searchResponseConvertor: GiphySearchResponseConvertorType
     
     // MARK: - Properties(Public)
     
@@ -19,8 +20,9 @@ class TrendingGIFsPresenter: TrendingGIFsViewPresenter {
 
     // MARK: - Initializers
 
-    init(trendingGIFsService: TrendingGIFsServiceType) {
+    init(trendingGIFsService: TrendingGIFsServiceType, responseConvertor: GiphySearchResponseConvertorType = GiphySearchResponseConvertor()) {
         self.trendingGIFsService = trendingGIFsService
+        self.searchResponseConvertor = responseConvertor
     }
     
     // MARK: - TrendingGIFsViewPresenter Imp
