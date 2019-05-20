@@ -28,6 +28,7 @@ class TrendingGIFCollectionViewCell: UICollectionViewCell {
     
     private func setupUI() {
         contentView.layer.borderWidth = 4.0
+        contentView.layer.cornerRadius = 10.0
         contentView.layer.borderColor = UIColor.yellow.cgColor
         contentView.backgroundColor = UIColor.lightGray
         numberLabel.textColor = .rgba(255, 255, 0)
