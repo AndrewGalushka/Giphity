@@ -60,6 +60,11 @@ class SearchGIFsCollectionViewController: NSObject {
             collectionView.insertItems(at: insertedIndexes)
         }, completion: { (finished) in })
     }
+    
+    func removeAllResults() {
+        self.collectionViewDataSource.dataSource.sections.removeAll()
+        self.collectionView.reloadData()
+    }
 }
 
 extension SearchGIFsCollectionViewController: UICollectionViewDelegateFlowLayout {
