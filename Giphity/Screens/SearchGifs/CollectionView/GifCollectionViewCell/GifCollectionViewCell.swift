@@ -30,7 +30,7 @@ class GifCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
         self.contentView.backgroundColor = UIColor.rgba(244, 255, 250)
-        self.contentView.layer.cornerRadius = 5.0
+        self.contentView.layer.cornerRadius = 10.0
         self.contentView.clipsToBounds = true
         self.contentView.layer.borderColor = UIColor.orange.withAlphaComponent(0.5).cgColor
         self.contentView.layer.borderWidth = 1.0

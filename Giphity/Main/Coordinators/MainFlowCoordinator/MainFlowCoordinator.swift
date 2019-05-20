@@ -25,17 +25,20 @@ class MainFlowCoordinator: FlowCoordinatorType {
     }
     
     func start() {
-        let randomGifModule = self.modulesAssembler.assemblyRandomGifModule()
-        let searchGIFsModule = self.modulesAssembler.assemblySearchGIFsModule()
+        let trendingGIFsModule = self.modulesAssembler.assembleTrendingGIFsModule()
+        let randomGIFsModule = self.modulesAssembler.assembleRandomGifModule()
+        let searchGIFsModule = self.modulesAssembler.assembleSearchGIFsModule()
         
-        self.addModule(randomGifModule)
-        self.addModule(searchGIFsModule)
+        let initialTabbarModules = [trendingGIFsModule, randomGIFsModule, searchGIFsModule]
         
-        randomGifModule.asViewController.tabBarItem = UITabBarItem(title: "Random", image: UIImage(named: "tab_bar_cube_icon"), selectedImage: nil)
+        self.addModules(initialTabbarModules)
         
+        trendingGIFsModule.asViewController.tabBarItem = UITabBarItem(title: "trending", image: nil, selectedImage: nil)
+        randomGIFsModule.asViewController.tabBarItem = UITabBarItem(title: "Random", image: UIImage(named: "tab_bar_cube_icon"), selectedImage: nil)
         searchGIFsModule.asViewController.tabBarItem = UITabBarItem(title: "Search", image: UIImage(named: "tab_bar_search_icon"), selectedImage: nil)
         
-        tabbarController.setViewControllers([searchGIFsModule.asViewController, randomGifModule.asViewController], animated: false)
+        tabbarController.setViewControllers(initialTabbarModules.map { $0.asViewController },
+                                            animated: false)
         tabbarController.selectedIndex = 1
         
         window.rootViewController = tabbarController
@@ -43,6 +46,10 @@ class MainFlowCoordinator: FlowCoordinatorType {
 
     func addModule(_ module: ViewControllerModule) {
         modules.append(module)
+    }
+    
+    func addModules(_ modules: [ViewControllerModule]) {
+        self.modules.append(contentsOf: modules)
     }
     
     func removeModule(_ module: ViewControllerModule) {

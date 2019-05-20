@@ -34,15 +34,15 @@ class ApplicationAssembler: ApplicationAssemblerType {
     
     // MARK: - ApplicationAssemblerType
     
-    func assemblyGiphyRequestManager() -> GiphyRequestManager {
+    func assembleGiphyRequestManager() -> GiphyRequestManager {
         return self.giphyRequestManager
     }
     
-    func assemblyGifDataEngineType() -> GifDataEngineType {
+    func assembleGifDataEngineType() -> GifDataEngineType {
         return self.gifDataEngine
     }
     
-    func assemblyGifFetcher() -> GifFetcherType {
+    func assembleGifFetcher() -> GifFetcherType {
         return self.gifFetcher
     }
 }

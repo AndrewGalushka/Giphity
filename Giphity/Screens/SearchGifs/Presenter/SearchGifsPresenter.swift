@@ -10,6 +10,7 @@ import Foundation
 
 class SearchGifsPresenter: SearchGifsViewPresenter {
     private let searchService: SearchGIFsPaginationServiceType
+    private let searchResponseConvertor: GiphySearchResponseConvertorType = GiphySearchResponseConvertor()
     
     weak var view: SearchGIFsView?
     
@@ -44,15 +45,9 @@ class SearchGifsPresenter: SearchGifsViewPresenter {
     
     private func convertGifObjectsToViewModels(gifObjects: [GifObject],
                                              ofImageType imageObjectType: ImageObject.ImageType = .downsized) -> [GifCollectionViewCell.ViewModel] {
-        guard !gifObjects.isEmpty else { return [] }
-        
-        var viewModels = [GifCollectionViewCell.ViewModel]()
-        
-        for gifObject in gifObjects {
-            guard let url = gifObject.images?.imageObject(for: imageObjectType)?.url else { continue }
-            let viewModel = GifCollectionViewCell.ViewModel(identifier: gifObject.identifier, gifURL: url)
-            
-            viewModels.append(viewModel)
+
+        let viewModels: [GifCollectionViewCell.ViewModel] = searchResponseConvertor.convertToAssociatedImages(gifObjects, ofType: imageObjectType).map {
+            return GifCollectionViewCell.ViewModel(identifier: $0.gifObject.identifier, gifURL: $0.image.url)
         }
         
         return viewModels

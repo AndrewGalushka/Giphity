@@ -15,8 +15,8 @@ class MainFlowCoordinatorModulesAssembler: MainFlowCoordinatorModulesAssemblerTy
         self.assembler = assembler
     }
     
-    func assemblyRandomGifModule() -> RandomGifModule {
-        let randomGifService = self.assemblyRandomGifService()
+    func assembleRandomGifModule() -> RandomGifModule {
+        let randomGifService = self.assembleRandomGifService()
         
         let viewController = RandomGifViewController.loadFromStoryboard()
         let presentor = RandomGifPresenter(randomGifService: randomGifService)
@@ -24,8 +24,8 @@ class MainFlowCoordinatorModulesAssembler: MainFlowCoordinatorModulesAssemblerTy
         return RandomGifModule(view: viewController, presentor: presentor)
     }
     
-    func assemblySearchGIFsModule() -> ViewControllerModule {
-        let paginationSearchGIFsService = self.assemblySearchGIFsPaginationService()
+    func assembleSearchGIFsModule() -> ViewControllerModule {
+        let paginationSearchGIFsService = self.assembleSearchGIFsPaginationService()
         
         let viewController = SearchGifsViewController.loadFromStoryboard()
         let presenter = SearchGifsPresenter(searchService: paginationSearchGIFsService)
@@ -33,17 +33,30 @@ class MainFlowCoordinatorModulesAssembler: MainFlowCoordinatorModulesAssemblerTy
         return SearchGIFsModule(view: viewController, presenter: presenter)
     }
     
-    private func assemblyRandomGifService() -> RandomGifServiceType {
-        return RandomGifService(gifFetcher: assembler.assemblyGifFetcher(),
-                                requestManager: assembler.assemblyGiphyRequestManager())
+    func assembleTrendingGIFsModule() -> TrendingGIFsModule {
+        let trendingGIFsService = self.assembleTrendingGIFsService()
+        
+        let view = TrendingGIFsViewController.loadFromStoryboard()
+        let presenter = TrendingGIFsPresenter(trendingGIFsService: trendingGIFsService)
+        
+        return TrendingGIFsModule(view: view, presenter: presenter)
     }
     
-    private func assemblySearchGIFsService() -> SearchGIFsServiceType {
-        return SearchGIFsService(requestManager: assembler.assemblyGiphyRequestManager())
+    private func assembleRandomGifService() -> RandomGifServiceType {
+        return RandomGifService(gifFetcher: assembler.assembleGifFetcher(),
+                                requestManager: assembler.assembleGiphyRequestManager())
     }
     
-    private func assemblySearchGIFsPaginationService() -> SearchGIFsPaginationServiceType {
-        let searchService: SearchGIFsServiceType = self.assemblySearchGIFsService()
+    private func assembleSearchGIFsService() -> SearchGIFsServiceType {
+        return SearchGIFsService(requestManager: assembler.assembleGiphyRequestManager())
+    }
+    
+    private func assembleSearchGIFsPaginationService() -> SearchGIFsPaginationServiceType {
+        let searchService: SearchGIFsServiceType = self.assembleSearchGIFsService()
         return SearchGIFsPaginationService(searchGIFsService: searchService)
+    }
+    
+    private func assembleTrendingGIFsService() -> TrendingGIFsServiceType {
+        return TrendingGIFsService(requestManager: self.assembler.assembleGiphyRequestManager())
     }
 }

@@ -1,14 +1,14 @@
 //
-//  SearchGIFsCollectionViewLayout.swift
+//  TrendingGIFsCollectionViewLayout.swift
 //  Giphity
 //
-//  Created by Galushka on 4/26/19.
+//  Created by Galushka on 5/17/19.
 //  Copyright © 2019 Galushka. All rights reserved.
 //
 
 import UIKit
 
-class SearchGIFsCollectionViewLayout: UICollectionViewFlowLayout {
+class TrendingGIFsCollectionViewLayout: UICollectionViewFlowLayout {
     override func prepare() {
         super.prepare()
         
@@ -19,13 +19,10 @@ class SearchGIFsCollectionViewLayout: UICollectionViewFlowLayout {
     }
     
     private func recalculateIndents(for collectionView: UICollectionView) {
-        self.minimumInteritemSpacing = 5.0
-        self.minimumLineSpacing = 5.0
+        self.minimumInteritemSpacing = 3.0
+        self.minimumLineSpacing = 3.0
         
-        self.sectionInset = UIEdgeInsets(top: self.minimumInteritemSpacing,
-                                         left: self.minimumInteritemSpacing,
-                                         bottom: self.minimumInteritemSpacing,
-                                         right: self.minimumInteritemSpacing)
+        self.sectionInset = collectionView.layoutMargins
     }
     
     private func recalculateItemSize(for collectionView: UICollectionView) {
