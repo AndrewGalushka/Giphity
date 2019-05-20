@@ -30,7 +30,13 @@ class SearchGIFsCollectionViewLayout: UICollectionViewFlowLayout {
     
     private func recalculateItemSize(for collectionView: UICollectionView) {
         let numberOfItemsInRow = 2
-        let sideSize = (collectionView.bounds.inset(by: collectionView.layoutMargins).width / CGFloat(numberOfItemsInRow)).rounded(.down)
+        
+        let numberOfInteritems: Int = (numberOfItemsInRow * 2 - 2) / 2
+        let interitemsSpacing = (self.minimumInteritemSpacing * CGFloat(numberOfInteritems)).rounded(.down)
+        
+        let availableWidth = collectionView.bounds.width - sectionInset.left - sectionInset.right - interitemsSpacing
+        
+        let sideSize = (availableWidth / CGFloat(numberOfItemsInRow)).rounded(.down)
         
         self.itemSize = CGSize(width: sideSize,
                                height: sideSize)
