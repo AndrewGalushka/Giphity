@@ -9,10 +9,19 @@
 import Foundation
 
 class TrendingGIFsPresenter: TrendingGIFsViewPresenter {
+    // MARK: - Properties(Private)
+    
+    private let trendingGIFsService: TrendingGIFsServiceType
     
     // MARK: - Properties(Public)
     
     weak var view: TrendingGIFsView?
+
+    // MARK: - Initializers
+
+    init(trendingGIFsService: TrendingGIFsServiceType) {
+        self.trendingGIFsService = trendingGIFsService
+    }
     
     // MARK: - TrendingGIFsViewPresenter Imp
     
