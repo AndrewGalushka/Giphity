@@ -12,7 +12,7 @@ class SearchGIFsCollectionViewController: NSObject {
     
     // MARK: - Properties(Private)
     private let gifFetchingService: GifPrefetchingServiceType = GifPrefetchingService()
-    private lazy var dataSource = self.makeCollectionViewDataSource()
+    private lazy var collectionViewDataSource = self.makeCollectionViewDataSource()
     private let layout = SearchGIFsCollectionViewLayout()
     
     // MARK: - Properties(Public)
@@ -29,10 +29,36 @@ class SearchGIFsCollectionViewController: NSObject {
     // MARK: - Methods(Public)
     
     func configure(animated isAnimated: Bool = false) {
-        self.collectionView.dataSource = self.dataSource
+        self.collectionView.dataSource = self.collectionViewDataSource
         self.collectionView.delegate = self
-        dataSource.registerCells(in: self.collectionView)
+        collectionViewDataSource.registerCells(in: self.collectionView)
         self.collectionView.setCollectionViewLayout(layout, animated: isAnimated)
+    }
+    
+    func displaySearchResults(_ searchResults: [GifCollectionViewCell.ViewModel]) {
+        let section = Section<GifCollectionViewCell.ViewModel>.init(items: searchResults)
+        collectionViewDataSource.dataSource.sections = [section]
+        self.collectionView.reloadData()
+    }
+    
+    func displayNextBatchOfResults(_ searchResults: [GifCollectionViewCell.ViewModel]) {
+        guard let oldSection = collectionViewDataSource.dataSource.sections.first else { return }
+        
+        let updatedSection = Section(items: oldSection.items + searchResults)
+        collectionViewDataSource.dataSource.sections[0] = updatedSection
+        
+        let itemsCountInOldSection = oldSection.items.count
+        let itemsCountInUpdatedSection = updatedSection.items.count
+        
+        var insertedIndexes = [IndexPath]()
+        
+        for row in itemsCountInOldSection..<itemsCountInUpdatedSection {
+            insertedIndexes.append(IndexPath(row: row, section: 0))
+        }
+        
+        collectionView.performBatchUpdates({
+            collectionView.insertItems(at: insertedIndexes)
+        }, completion: { (finished) in })
     }
 }
 
