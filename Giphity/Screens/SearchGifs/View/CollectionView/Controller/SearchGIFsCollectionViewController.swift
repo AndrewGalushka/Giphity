@@ -11,6 +11,7 @@ import UIKit
 class SearchGIFsCollectionViewController: NSObject {
     
     // MARK: - Properties(Private)
+    
     private let gifFetchingService: GifPrefetchingServiceType = GifPrefetchingService()
     private lazy var collectionViewDataSource = self.makeCollectionViewDataSource()
     private let layout = SearchGIFsCollectionViewLayout()
