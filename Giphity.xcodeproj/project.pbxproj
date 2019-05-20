@@ -249,6 +249,7 @@
 		8D0986B8228C61BC00C42F2A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8D2ADE56228EBBE7003C9B84 /* CollectionView */,
 				8D0986BD228C62CE00C42F2A /* TrendingGIFsView.swift */,
 				8D0986B9228C61EC00C42F2A /* TrendingGIFsViewController.swift */,
 				8D0986BB228C621C00C42F2A /* TrendingGIFsViewController.storyboard */,
@@ -309,7 +310,7 @@
 		8D2ADE56228EBBE7003C9B84 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				8D2ADE57228EBC02003C9B84 /* TrendingGIFsCollectionViewLayout.swift */,
+				8D42CFDA2292DF5C00835029 /* Layout */,
 				8D2ADE59228EE626003C9B84 /* Cells */,
 			);
 			path = CollectionView;
@@ -486,6 +487,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		8D42CFDA2292DF5C00835029 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				8D2ADE57228EBC02003C9B84 /* TrendingGIFsCollectionViewLayout.swift */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
 		8D625F93228BF12100D96079 /* GIFsTrending */ = {
 			isa = PBXGroup;
 			children = (
@@ -507,7 +516,6 @@
 			isa = PBXGroup;
 			children = (
 				8D2ADE54228EA9C4003C9B84 /* TrendingGIFsModule.swift */,
-				8D2ADE56228EBBE7003C9B84 /* CollectionView */,
 				8D625F9C228BF7F700D96079 /* Presenter */,
 				8D0986B8228C61BC00C42F2A /* View */,
 			);
