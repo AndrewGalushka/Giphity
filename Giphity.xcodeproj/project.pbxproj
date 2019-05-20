@@ -281,8 +281,9 @@
 		8D0DBDA42272EE5700908D4F /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				8D0DBDA52272EEAF00908D4F /* SearchGIFsCollectionViewLayout.swift */,
-				8D6F924922576BF000D43279 /* GifCollectionViewCell */,
+				8D42CFD52292CE9200835029 /* Controller */,
+				8D42CFD82292D69500835029 /* Layout */,
+				8D42CFD92292D6A600835029 /* Cells */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -460,13 +461,29 @@
 			path = TrandingGIFService;
 			sourceTree = "<group>";
 		};
-		8D42CFD52292CE9200835029 /* CollectionViewController */ = {
+		8D42CFD52292CE9200835029 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				8D42CFD32292CA3200835029 /* SearchGIFsCollectionViewController.swift */,
 				8D42CFD62292D40900835029 /* SearchGIFsCollectionViewControllerDelegate.swift */,
 			);
-			path = CollectionViewController;
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8D42CFD82292D69500835029 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				8D0DBDA52272EEAF00908D4F /* SearchGIFsCollectionViewLayout.swift */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
+		8D42CFD92292D6A600835029 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8D6F924922576BF000D43279 /* GifCollectionViewCell */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		8D625F93228BF12100D96079 /* GIFsTrending */ = {
@@ -519,7 +536,6 @@
 			isa = PBXGroup;
 			children = (
 				8DF5705E226E195500DFA9B3 /* SearchGIFsModule.swift */,
-				8D0DBDA42272EE5700908D4F /* CollectionView */,
 				8DF5704E226E08A400DFA9B3 /* Presenter */,
 				8DF5705A226E0DAF00DFA9B3 /* View */,
 			);
@@ -741,7 +757,7 @@
 		8DF5705A226E0DAF00DFA9B3 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8D42CFD52292CE9200835029 /* CollectionViewController */,
+				8D0DBDA42272EE5700908D4F /* CollectionView */,
 				8DF5705B226E0DDE00DFA9B3 /* SearchGIFsView.swift */,
 				8D6F924322576AD100D43279 /* SearchGifsViewController.swift */,
 				8D6F924722576B0900D43279 /* SearchGifsViewController.storyboard */,

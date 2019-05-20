@@ -13,6 +13,7 @@ class SearchGIFsCollectionViewController: NSObject {
     // MARK: - Properties(Private)
     private let gifFetchingService: GifPrefetchingServiceType = GifPrefetchingService()
     private lazy var dataSource = self.makeCollectionViewDataSource()
+    private let layout = SearchGIFsCollectionViewLayout()
     
     // MARK: - Properties(Public)
     
@@ -27,10 +28,11 @@ class SearchGIFsCollectionViewController: NSObject {
     
     // MARK: - Methods(Public)
     
-    func configure() {
+    func configure(animated isAnimated: Bool = false) {
         self.collectionView.dataSource = self.dataSource
         self.collectionView.delegate = self
         dataSource.registerCells(in: self.collectionView)
+        self.collectionView.setCollectionViewLayout(layout, animated: isAnimated)
     }
 }
 
