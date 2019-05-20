@@ -47,6 +47,8 @@
 		8D410E4D225B91F2001F5132 /* GiphyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D410E4C225B91F2001F5132 /* GiphyResponse.swift */; };
 		8D410E4F225B9FE8001F5132 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D410E4E225B9FE8001F5132 /* DataSource.swift */; };
 		8D410E53225BA1E9001F5132 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D410E52225BA1E9001F5132 /* Section.swift */; };
+		8D42CFD02292A2C900835029 /* TrendingGIFsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D42CFCF2292A2C900835029 /* TrendingGIFsService.swift */; };
+		8D42CFD22292A2E200835029 /* TrendingGIFsServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D42CFD12292A2E200835029 /* TrendingGIFsServiceType.swift */; };
 		8D625F95228BF15300D96079 /* TrendingGIFsRequestPerformable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D625F94228BF15300D96079 /* TrendingGIFsRequestPerformable.swift */; };
 		8D625F97228BF17100D96079 /* GiphyRequestManager+TrendingGIFs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D625F96228BF17100D96079 /* GiphyRequestManager+TrendingGIFs.swift */; };
 		8D625F9A228BF49D00D96079 /* GiphyPagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D625F99228BF49D00D96079 /* GiphyPagination.swift */; };
@@ -134,6 +136,8 @@
 		8D410E4C225B91F2001F5132 /* GiphyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyResponse.swift; sourceTree = "<group>"; };
 		8D410E4E225B9FE8001F5132 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		8D410E52225BA1E9001F5132 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		8D42CFCF2292A2C900835029 /* TrendingGIFsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingGIFsService.swift; sourceTree = "<group>"; };
+		8D42CFD12292A2E200835029 /* TrendingGIFsServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingGIFsServiceType.swift; sourceTree = "<group>"; };
 		8D625F94228BF15300D96079 /* TrendingGIFsRequestPerformable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingGIFsRequestPerformable.swift; sourceTree = "<group>"; };
 		8D625F96228BF17100D96079 /* GiphyRequestManager+TrendingGIFs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GiphyRequestManager+TrendingGIFs.swift"; sourceTree = "<group>"; };
 		8D625F99228BF49D00D96079 /* GiphyPagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyPagination.swift; sourceTree = "<group>"; };
@@ -251,6 +255,7 @@
 		8D0D62312268578A0011FF04 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8D42CFCE2292A2AF00835029 /* TrandingGIFService */,
 				8D1AAF312271EB8E00B0E078 /* GifFetchingService */,
 				8DF57055226E0BD800DFA9B3 /* SearchGIFsService */,
 				8D003C4B2282D31200AAFAB0 /* SearchGIFsPaginationService */,
@@ -440,6 +445,15 @@
 				8D410E51225BA1D0001F5132 /* DataSource */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		8D42CFCE2292A2AF00835029 /* TrandingGIFService */ = {
+			isa = PBXGroup;
+			children = (
+				8D42CFCF2292A2C900835029 /* TrendingGIFsService.swift */,
+				8D42CFD12292A2E200835029 /* TrendingGIFsServiceType.swift */,
+			);
+			path = TrandingGIFService;
 			sourceTree = "<group>";
 		};
 		8D625F93228BF12100D96079 /* GIFsTrending */ = {
@@ -865,6 +879,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D0D6237226859AE0011FF04 /* GifDataEngineType.swift in Sources */,
+				8D42CFD02292A2C900835029 /* TrendingGIFsService.swift in Sources */,
 				8D410E53225BA1E9001F5132 /* Section.swift in Sources */,
 				8DF57044226DB0A600DFA9B3 /* RandomGifView.swift in Sources */,
 				8D6F924C22576C3500D43279 /* GifCollectionViewCell.swift in Sources */,
@@ -882,6 +897,7 @@
 				8DDBFBAC22561F89009F7286 /* StoryboardLoadable.swift in Sources */,
 				8DDBFBAE22561FBB009F7286 /* InterfaceBuilderIdentifiable.swift in Sources */,
 				8DF5705C226E0DDE00DFA9B3 /* SearchGIFsView.swift in Sources */,
+				8D42CFD22292A2E200835029 /* TrendingGIFsServiceType.swift in Sources */,
 				8D32533C2269C26A00A0F090 /* ApplicationAssembler.swift in Sources */,
 				8DDBFB9122560BC7009F7286 /* RandomGifViewController.swift in Sources */,
 				8DDBFB8F22560BC7009F7286 /* AppDelegate.swift in Sources */,
