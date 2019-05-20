@@ -9,6 +9,6 @@
 import Foundation
 
 protocol SearchGIFsCollectionViewControllerDelegate: AnyObject {
-    func nextBatch()
-    func hideKeyboard()
+    func searchGIFsCollectionViewControllerNextBatch(_ controller: SearchGIFsCollectionViewController)
+    func searchGIFsCollectionViewControllerHideKeyboard(_ controller: SearchGIFsCollectionViewController)
 }

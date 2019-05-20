@@ -38,7 +38,7 @@ class SearchGIFsCollectionViewController: NSObject {
 
 extension SearchGIFsCollectionViewController: UICollectionViewDelegateFlowLayout {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        self.delegate?.hideKeyboard()
+        self.delegate?.searchGIFsCollectionViewControllerHideKeyboard(self)
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -48,7 +48,7 @@ extension SearchGIFsCollectionViewController: UICollectionViewDelegateFlowLayout
         let threshold = scrollViewContentHeight * percentThreshold
         
         if (targetContentOffset.pointee.y + scrollView.bounds.height) >= threshold {
-            self.delegate?.nextBatch()
+            self.delegate?.searchGIFsCollectionViewControllerNextBatch(self)
         }
     }
 }
