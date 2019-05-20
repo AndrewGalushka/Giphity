@@ -14,6 +14,10 @@ class TrendingGIFsViewController: UIViewController {
     
     @IBOutlet private weak var collectionView: UICollectionView!
     
+    // MARK: - Properties(Private)
+    
+    private lazy var collectionViewController = TrendingGIFsCollectionViewController(collectionView: collectionView)
+    
     // MARK: - Properties(Public)
     
     weak var presenter: TrendingGIFsViewPresenter?
@@ -34,27 +38,14 @@ class TrendingGIFsViewController: UIViewController {
     }
     
     func setupCollectionView() {
+        collectionViewController.configure()
         collectionView.backgroundColor = UIColor(red:0.0, green:1.0, blue:0.0, alpha:1.0)
-        let layout = TrendingGIFsCollectionViewLayout()
-        collectionView.setCollectionViewLayout(layout, animated: false)
-        collectionView.dataSource = self
-        
-        collectionView.register( UINib(nibName: "\(TrendingGIFCollectionViewCell.self)", bundle: nil) , forCellWithReuseIdentifier: "\(TrendingGIFCollectionViewCell.self)")
+        collectionViewController.delegate = self
     }
 }
 
-extension TrendingGIFsViewController: UICollectionViewDataSource {
+extension TrendingGIFsViewController: TrendingCollectionViewControllerDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(TrendingGIFCollectionViewCell.self)", for: indexPath) as! TrendingGIFCollectionViewCell
-        cell.configure(number: indexPath.row)
-        
-        return cell
-    }
 }
 
 extension TrendingGIFsViewController: TrendingGIFsView {
