@@ -84,10 +84,9 @@ extension TrendingGIFsCollectionViewController {
     private typealias TrendingGIFsCellConfigurator = CollectionViewCellConfigurator<TrendingGIFCollectionViewCell.ViewModel, TrendingGIFCollectionViewCell>
     
     private func makeCollectionViewDataSource() -> CollectionViewDataSource<TrendingGIFsCellConfigurator> {
-        let dataSource = DataSource(sections: [Section(items: Array(0...40).map { TrendingGIFCollectionViewCell.ViewModel(identifier: "\($0)", gifURL: "\($0)") } )])
         let configurator = self.makeTrendingGIFsCellConfigurator()
         
-        let collectionViewDataSource = CollectionViewDataSource<TrendingGIFsCellConfigurator>(dataSource: dataSource,
+        let collectionViewDataSource = CollectionViewDataSource<TrendingGIFsCellConfigurator>(dataSource: DataSource<TrendingGIFCollectionViewCell.ViewModel>(),
                                                                                               configurator: configurator)
         
         return collectionViewDataSource

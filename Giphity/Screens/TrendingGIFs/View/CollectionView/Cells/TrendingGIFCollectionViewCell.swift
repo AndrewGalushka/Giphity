@@ -41,7 +41,7 @@ class TrendingGIFCollectionViewCell: UICollectionViewCell {
     func displayGIF() {
         guard let viewModel = self.viewModel else { return }
         
-        let fetchingGifID = viewModel.identifier 
+        let fetchingGifID = viewModel.identifier
         
         var fetchingTimeLogger = TimeSpentLogger()
         fetchingTimeLogger.start()
