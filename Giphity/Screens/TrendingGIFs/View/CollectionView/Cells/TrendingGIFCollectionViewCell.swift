@@ -49,11 +49,11 @@ class TrendingGIFCollectionViewCell: UICollectionViewCell {
         self.gifFetcher?.fetchGif(using: URL(string: viewModel.gifURL)! ).done { [weak self] (image) in
             guard fetchingGifID == self?.viewModel?.identifier else { return }
             self?.imageView.image = image
-            }.catch { [weak self] (error) in
-                guard fetchingGifID == self?.viewModel?.identifier else { return }
-                self?.imageView.image = nil
-            }.finally {
-                fetchingTimeLogger.finish(textBeforeTimeLog: "Gif fetching time is")
+        }.catch { [weak self] (error) in
+            guard fetchingGifID == self?.viewModel?.identifier else { return }
+            self?.imageView.image = nil
+        }.finally {
+            fetchingTimeLogger.finish(textBeforeTimeLog: "Gif fetching time is")
         }
     }
     
