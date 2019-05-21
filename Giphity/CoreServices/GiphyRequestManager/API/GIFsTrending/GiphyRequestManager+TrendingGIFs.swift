@@ -11,16 +11,16 @@ import PromiseKit
 
 extension GiphyRequestManager: TrendingGIFsRequestPerformable {
     
-    func trendingGIFs(limit: Int, offset: Int) -> Promise<GiphySearchResponse> {
-        return self._trendingGIFs(limit: limit, offset: offset)
-    }
-    
-    func trendingGIFs(offset: Int) -> Promise<GiphySearchResponse> {
-        return self._trendingGIFs(offset: offset)
-    }
-    
     func trendingGIFs() -> Promise<GiphySearchResponse> {
         return self._trendingGIFs()
+    }
+    
+    func trendingGIFs(limit: Int) -> Promise<GiphySearchResponse> {
+        return self._trendingGIFs(limit: limit)
+    }
+    
+    func trendingGIFs(limit: Int, offset: Int) -> Promise<GiphySearchResponse> {
+        return self._trendingGIFs(limit: limit, offset: offset)
     }
     
     private func _trendingGIFs(limit: Int = 15, offset: Int = 0) -> Promise<GiphySearchResponse> {
