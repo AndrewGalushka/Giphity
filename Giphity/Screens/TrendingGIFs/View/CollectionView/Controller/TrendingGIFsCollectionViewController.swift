@@ -95,6 +95,9 @@ extension TrendingGIFsCollectionViewController {
     private func makeTrendingGIFsCellConfigurator() -> TrendingGIFsCellConfigurator {
         let configurator = TrendingGIFsCellConfigurator { (cell, trendingGIFVM, collectionView, indexPath) -> TrendingGIFCollectionViewCell in
             cell.configure(trendingGIFVM)
+            cell.gifFetcher = self.gifFetchingService
+            cell.displayGIF()
+            
             return cell
         }
         
