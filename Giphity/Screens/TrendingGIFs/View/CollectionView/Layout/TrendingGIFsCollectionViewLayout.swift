@@ -33,9 +33,10 @@ class TrendingGIFsCollectionViewLayout: UICollectionViewFlowLayout {
         
         let availableWidth = collectionView.bounds.width - sectionInset.left - sectionInset.right - interitemsSpacing
         
-        let sideSize = (availableWidth / CGFloat(numberOfItemsInRow)).rounded(.down)
+        let itemWidth = (availableWidth / CGFloat(numberOfItemsInRow)).rounded(.down)
+        let itemHeight = itemWidth
         
-        self.itemSize = CGSize(width: sideSize,
-                               height: sideSize)
+        self.itemSize = CGSize(width: itemWidth,
+                               height: itemHeight)
     }
 }
