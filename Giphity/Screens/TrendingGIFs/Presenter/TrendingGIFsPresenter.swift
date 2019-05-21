@@ -32,8 +32,8 @@ class TrendingGIFsPresenter: TrendingGIFsViewPresenter {
         self.trendingGIFsService.trendingGIFs().done { (response) in
             let viewModels = self.convertToCollectionViewModels(response: response)
             self.view?.displaySearchResults(viewModels)
-            }.catch { (error) in
-                self.view?.displaySearchResults([])
+        }.catch { (error) in
+            self.view?.displaySearchResults([])
         }
     }
     

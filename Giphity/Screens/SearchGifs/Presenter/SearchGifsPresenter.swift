@@ -46,7 +46,7 @@ class SearchGifsPresenter: SearchGifsViewPresenter {
     private func convertGifObjectsToViewModels(gifObjects: [GifObject],
                                              ofImageType imageObjectType: ImageObject.ImageType = .downsized) -> [GifCollectionViewCell.ViewModel] {
 
-        let viewModels: [GifCollectionViewCell.ViewModel] = searchResponseConvertor.convertToAssociatedImages(gifObjects, ofType: imageObjectType).map {
+        let viewModels = searchResponseConvertor.convertToAssociatedImages(gifObjects, ofType: imageObjectType).map {
             return GifCollectionViewCell.ViewModel(identifier: $0.gifObject.identifier, gifURL: $0.image.url)
         }
         
