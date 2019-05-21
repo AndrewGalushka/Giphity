@@ -63,7 +63,8 @@ extension TrendingGIFsCollectionViewController {
     
     private func makeTrendingGIFsCellConfigurator() -> TrendingGIFsCellConfigurator {
         let configurator = TrendingGIFsCellConfigurator { (cell, number, collectionView, indexPath) -> TrendingGIFCollectionViewCell in
-            cell.configure(number: number)
+            let viewModel = TrendingGIFCollectionViewCell.ViewModel(identifier: "\(number)", gifURL: "\(number)")
+            cell.configure(viewModel)
             return cell
         }
         

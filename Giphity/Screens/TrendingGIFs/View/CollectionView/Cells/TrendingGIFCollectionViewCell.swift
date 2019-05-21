@@ -14,6 +14,10 @@ class TrendingGIFCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet private weak var numberLabel: UILabel!
     
+    // MARK: - Properties(Private)
+    
+    var viewModel: ViewModel?
+    
     // MARK: - Lifecycle
     
     override func awakeFromNib() {
@@ -23,8 +27,18 @@ class TrendingGIFCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        self.viewModel = nil
         self.numberLabel.text = nil
     }
+    
+    // MARK: - Methods(Public)
+    
+    func configure(_ viewModel: ViewModel) {
+        self.viewModel = viewModel
+        self.numberLabel.text = viewModel.identifier
+    }
+    
+    // MARK: - Methods(Private)
     
     private func setupUI() {
         contentView.layer.borderWidth = 4.0
@@ -32,9 +46,5 @@ class TrendingGIFCollectionViewCell: UICollectionViewCell {
         contentView.layer.borderColor = UIColor.yellow.cgColor
         contentView.backgroundColor = UIColor.lightGray
         numberLabel.textColor = .rgba(255, 255, 0)
-    }
-    
-    func configure(number: Int) {
-        self.numberLabel.text = "\(number)"
     }
 }
