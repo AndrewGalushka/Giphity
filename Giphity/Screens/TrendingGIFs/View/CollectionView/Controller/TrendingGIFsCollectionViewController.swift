@@ -36,6 +36,38 @@ class TrendingGIFsCollectionViewController: NSObject {
         collectionViewDataSource.registerCells(in: self.collectionView)
         self.collectionView.setCollectionViewLayout(layout, animated: isAnimated)
     }
+    
+    func displaySearchResults(_ trendingGIFViewModels: [TrendingGIFCollectionViewCell.ViewModel]) {
+        let section = Section<TrendingGIFCollectionViewCell.ViewModel>(items: trendingGIFViewModels)
+        collectionViewDataSource.dataSource.sections = [section]
+        self.collectionView.reloadData()
+    }
+    
+    func displayNextBatchOfResults(_ searchResults: [TrendingGIFCollectionViewCell.ViewModel]) {
+        guard let oldSection = collectionViewDataSource.dataSource.sections.first else { return }
+        let updatedSection = Section(items: oldSection.items + searchResults)
+        
+        
+        collectionViewDataSource.dataSource.sections[0] = updatedSection
+
+        let itemsCountInOldSection = oldSection.items.count
+        let itemsCountInUpdatedSection = updatedSection.items.count
+
+        var insertedIndexes = [IndexPath]()
+
+        for row in itemsCountInOldSection..<itemsCountInUpdatedSection {
+            insertedIndexes.append(IndexPath(row: row, section: 0))
+        }
+
+        collectionView.performBatchUpdates({
+            collectionView.insertItems(at: insertedIndexes)
+        }, completion: { (finished) in })
+    }
+    
+    func removeAllItems() {
+        self.collectionViewDataSource.dataSource.sections.removeAll()
+        self.collectionView.reloadData()
+    }
 }
 
 extension TrendingGIFsCollectionViewController: UICollectionViewDelegate {
@@ -49,21 +81,23 @@ extension TrendingGIFsCollectionViewController: UICollectionViewDelegate {
 // MARK: - Factory
 
 extension TrendingGIFsCollectionViewController {
-    private typealias TrendingGIFsCellConfigurator = CollectionViewCellConfigurator<Int, TrendingGIFCollectionViewCell>
+    private typealias TrendingGIFsCellConfigurator = CollectionViewCellConfigurator<TrendingGIFCollectionViewCell.ViewModel, TrendingGIFCollectionViewCell>
     
     private func makeCollectionViewDataSource() -> CollectionViewDataSource<TrendingGIFsCellConfigurator> {
-        let dataSource = DataSource(sections: [Section(items: Array(0...40))])
         let configurator = self.makeTrendingGIFsCellConfigurator()
         
-        let collectionViewDataSource = CollectionViewDataSource<TrendingGIFsCellConfigurator>(dataSource: dataSource,
+        let collectionViewDataSource = CollectionViewDataSource<TrendingGIFsCellConfigurator>(dataSource: DataSource<TrendingGIFCollectionViewCell.ViewModel>(),
                                                                                               configurator: configurator)
         
         return collectionViewDataSource
     }
     
     private func makeTrendingGIFsCellConfigurator() -> TrendingGIFsCellConfigurator {
-        let configurator = TrendingGIFsCellConfigurator { (cell, number, collectionView, indexPath) -> TrendingGIFCollectionViewCell in
-            cell.configure(number: number)
+        let configurator = TrendingGIFsCellConfigurator { (cell, trendingGIFVM, collectionView, indexPath) -> TrendingGIFCollectionViewCell in
+            cell.configure(trendingGIFVM)
+            cell.gifFetcher = self.gifFetchingService
+            cell.displayGIF()
+            
             return cell
         }
         

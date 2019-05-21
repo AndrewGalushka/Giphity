@@ -69,6 +69,6 @@ extension SearchGifsViewController: SearchGIFsView {
     
     func displaySearchFailed(error: Error) {
         print(error)
-        self.collectionViewController.removeAllResults()
+        self.collectionViewController.removeAllItems()
     }
 }

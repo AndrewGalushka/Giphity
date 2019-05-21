@@ -62,7 +62,7 @@ class SearchGIFsCollectionViewController: NSObject {
         }, completion: { (finished) in })
     }
     
-    func removeAllResults() {
+    func removeAllItems() {
         self.collectionViewDataSource.dataSource.sections.removeAll()
         self.collectionView.reloadData()
     }

@@ -28,6 +28,7 @@ class TrendingGIFsViewController: UIViewController {
         super.viewDidLoad()
         
         self.setupUI()
+        self.presenter?.viewLoaded()
     }
     
     func setupUI() {
@@ -49,9 +50,11 @@ extension TrendingGIFsViewController: TrendingCollectionViewControllerDelegate {
 }
 
 extension TrendingGIFsViewController: TrendingGIFsView {
-    func displaySearchResults(_ searchResults: [GifCollectionViewCell.ViewModel]) {
+    func displaySearchResults(_ gifVMs: [TrendingGIFCollectionViewCell.ViewModel]) {
+        self.collectionViewController.displaySearchResults(gifVMs)
     }
     
-    func displayNextBatchOfResults(_ searchResults: [GifCollectionViewCell.ViewModel]) {
+    func displayNextBatchOfResults(_ gifVMs: [TrendingGIFCollectionViewCell.ViewModel]) {
+        self.collectionViewController.displayNextBatchOfResults(gifVMs)
     }
 }

@@ -12,7 +12,12 @@ class TrendingGIFCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties(IBOutlet)
     
-    @IBOutlet private weak var numberLabel: UILabel!
+    @IBOutlet private weak var imageView: UIImageView!
+    
+    // MARK: - Properties(Private)
+    
+    private var viewModel: ViewModel?
+    var gifFetcher: GifPrefetchingServiceType?
     
     // MARK: - Lifecycle
     
@@ -23,18 +28,41 @@ class TrendingGIFCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.numberLabel.text = nil
+        self.viewModel = nil
+        self.imageView.image = nil
     }
+    
+    // MARK: - Methods(Public)
+    
+    func configure(_ viewModel: ViewModel) {
+        self.viewModel = viewModel
+    }
+    
+    func displayGIF() {
+        guard let viewModel = self.viewModel else { return }
+        
+        let fetchingGifID = viewModel.identifier
+        
+        var fetchingTimeLogger = TimeSpentLogger()
+        fetchingTimeLogger.start()
+        
+        self.gifFetcher?.fetchGif(using: URL(string: viewModel.gifURL)! ).done { [weak self] (image) in
+            guard fetchingGifID == self?.viewModel?.identifier else { return }
+            self?.imageView.image = image
+            }.catch { [weak self] (error) in
+                guard fetchingGifID == self?.viewModel?.identifier else { return }
+                self?.imageView.image = nil
+            }.finally {
+                fetchingTimeLogger.finish(textBeforeTimeLog: "Gif fetching time is")
+        }
+    }
+    
+    // MARK: - Methods(Private)
     
     private func setupUI() {
-        contentView.layer.borderWidth = 4.0
         contentView.layer.cornerRadius = 10.0
-        contentView.layer.borderColor = UIColor.yellow.cgColor
-        contentView.backgroundColor = UIColor.lightGray
-        numberLabel.textColor = .rgba(255, 255, 0)
-    }
-    
-    func configure(number: Int) {
-        self.numberLabel.text = "\(number)"
+        contentView.clipsToBounds = true
+        
+        self.imageView.backgroundColor = .clear
     }
 }
