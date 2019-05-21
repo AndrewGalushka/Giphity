@@ -16,7 +16,8 @@ class TrendingGIFCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties(Private)
     
-    var viewModel: ViewModel?
+    private var viewModel: ViewModel?
+    var gifFetcher: GifPrefetchingServiceType?
     
     // MARK: - Lifecycle
     
@@ -35,6 +36,25 @@ class TrendingGIFCollectionViewCell: UICollectionViewCell {
     
     func configure(_ viewModel: ViewModel) {
         self.viewModel = viewModel
+    }
+    
+    func displayGIF() {
+        guard let viewModel = self.viewModel else { return }
+        
+        let fetchingGifID = viewModel.identifier 
+        
+        var fetchingTimeLogger = TimeSpentLogger()
+        fetchingTimeLogger.start()
+        
+        self.gifFetcher?.fetchGif(using: URL(string: viewModel.gifURL)! ).done { [weak self] (image) in
+            guard fetchingGifID == self?.viewModel?.identifier else { return }
+            self?.imageView.image = image
+            }.catch { [weak self] (error) in
+                guard fetchingGifID == self?.viewModel?.identifier else { return }
+                self?.imageView.image = nil
+            }.finally {
+                fetchingTimeLogger.finish(textBeforeTimeLog: "Gif fetching time is")
+        }
     }
     
     // MARK: - Methods(Private)
