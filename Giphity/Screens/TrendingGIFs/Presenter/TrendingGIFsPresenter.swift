@@ -28,8 +28,24 @@ class TrendingGIFsPresenter: TrendingGIFsViewPresenter {
     // MARK: - TrendingGIFsViewPresenter Imp
     
     func viewLoaded() {
+        self.trendingGIFsService.trendingGIFs().done { (response) in
+            let viewModels = self.convertToCollectionViewModels(response: response)
+            self.view?.displaySearchResults(viewModels)
+        }.catch { (error) in
+            self.view?.displaySearchResults([])
+        }
     }
     
     func trendingGIFs() {
+    }
+    
+    // MARK: - Methods(Private)
+    
+    private func convertToCollectionViewModels(response: GiphySearchResponse) -> [TrendingGIFCollectionViewCell.ViewModel] {
+        let viewModels = self.searchResponseConvertor.convertToAssociatedImages(response, ofType: .fixedHeight_downsampled).map {
+            return TrendingGIFCollectionViewCell.ViewModel(identifier: $0.gifObject.identifier, gifURL: $0.image.url)
+        }
+        
+        return viewModels
     }
 }
