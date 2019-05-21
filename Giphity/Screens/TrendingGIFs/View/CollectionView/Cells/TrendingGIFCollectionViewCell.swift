@@ -12,7 +12,7 @@ class TrendingGIFCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties(IBOutlet)
     
-    @IBOutlet private weak var numberLabel: UILabel!
+    @IBOutlet private weak var imageView: UIImageView!
     
     // MARK: - Properties(Private)
     
@@ -28,14 +28,13 @@ class TrendingGIFCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         self.viewModel = nil
-        self.numberLabel.text = nil
+        self.imageView.image = nil
     }
     
     // MARK: - Methods(Public)
     
     func configure(_ viewModel: ViewModel) {
         self.viewModel = viewModel
-        self.numberLabel.text = viewModel.identifier
     }
     
     // MARK: - Methods(Private)
@@ -45,6 +44,7 @@ class TrendingGIFCollectionViewCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 10.0
         contentView.layer.borderColor = UIColor.yellow.cgColor
         contentView.backgroundColor = UIColor.lightGray
-        numberLabel.textColor = .rgba(255, 255, 0)
+        
+        self.imageView.backgroundColor = .clear
     }
 }
