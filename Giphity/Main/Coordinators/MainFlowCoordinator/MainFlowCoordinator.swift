@@ -33,12 +33,12 @@ class MainFlowCoordinator: FlowCoordinatorType {
         
         self.addModules(initialTabbarModules)
         
-        let offset = UIOffset(horizontal: 0.0, vertical: -5.0)
         trendingGIFsModule.asViewController.tabBarItem.title = "TRENDING"
         randomGIFsModule.asViewController.tabBarItem.title = "RANDOM"
         searchGIFsModule.asViewController.tabBarItem.title = "SEARCH"
         
-        initialTabbarModules.forEach { $0.asViewController.tabBarItem.titlePositionAdjustment = offset }
+        let titleOffset = UIOffset(horizontal: 0.0, vertical: -5.0)
+        initialTabbarModules.forEach { $0.asViewController.tabBarItem.titlePositionAdjustment = titleOffset }
         
         tabbarController.setViewControllers(initialTabbarModules.map { $0.asViewController },
                                             animated: false)
