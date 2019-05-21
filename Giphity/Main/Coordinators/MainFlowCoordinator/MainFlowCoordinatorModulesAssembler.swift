@@ -19,9 +19,9 @@ class MainFlowCoordinatorModulesAssembler: MainFlowCoordinatorModulesAssemblerTy
         let randomGifService = self.assembleRandomGifService()
         
         let viewController = RandomGifViewController.loadFromStoryboard()
-        let presentor = RandomGifPresenter(randomGifService: randomGifService)
+        let presenter = RandomGifPresenter(randomGifService: randomGifService)
         
-        return RandomGifModule(view: viewController, presentor: presentor)
+        return RandomGifModule(view: viewController, presenter: presenter)
     }
     
     func assembleSearchGIFsModule() -> ViewControllerModule {
