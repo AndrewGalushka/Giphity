@@ -74,7 +74,7 @@ extension SearchGIFsCollectionViewController: UICollectionViewDelegateFlowLayout
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        let percentThreshold: CGFloat = 0.75
+        let percentThreshold: CGFloat = 0.9
         
         let scrollViewContentHeight = scrollView.contentSize.height
         let threshold = scrollViewContentHeight * percentThreshold
