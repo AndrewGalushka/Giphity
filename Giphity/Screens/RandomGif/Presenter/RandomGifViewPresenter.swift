@@ -10,5 +10,6 @@ import Foundation
 
 protocol RandomGifViewPresenter: AnyObject {
     func viewLoaded()
+    func viewWillAppear()
     func nextRandomGif()
 }

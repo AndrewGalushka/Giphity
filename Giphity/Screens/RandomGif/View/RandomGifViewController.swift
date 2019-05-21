@@ -10,17 +10,31 @@ import UIKit
 import PromiseKit
 
 class RandomGifViewController: UIViewController {
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var nextRandomGifButton: UIButton!
     
-    weak var presentor: RandomGifViewPresenter?
+    // MARK: - Properties(IBOutlet)
+    
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var nextRandomGifButton: UIButton!
+    
+    // MARK: - Properties(Public)
+    
+    weak var presenter: RandomGifViewPresenter?
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
-        presentor?.viewLoaded()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.presenter?.viewWillAppear()
+    }
+    
+    // MARK: -
     
     func setupUI() {
         nextRandomGifButton.setTitle("Next Random GIF", for: .normal)
@@ -35,7 +49,7 @@ class RandomGifViewController: UIViewController {
     }
     
     @IBAction func nextRandomGifButtonTouchUpInsideActionHandler(_ sender: Any) {
-        presentor?.nextRandomGif()
+        presenter?.nextRandomGif()
     }
     
     func alphaAnimator(for view: UIView, duration animationTotalDuration: TimeInterval = 0.25) -> UIViewPropertyAnimator {

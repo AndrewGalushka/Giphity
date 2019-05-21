@@ -10,7 +10,13 @@ import UIKit
 import PromiseKit
 
 class RandomGifPresenter: RandomGifViewPresenter {
+    
+    // MARK: - Properties(Private)
+    
     private let randomGifService: RandomGifServiceType
+    private var isViewShown: Bool = false
+    
+    // MARK: - Properties(Public)
     
     weak var view: RandomGifView?
     
@@ -20,31 +26,35 @@ class RandomGifPresenter: RandomGifViewPresenter {
         self.randomGifService = randomGifService
     }
 
-    // MARK: - RandomGifViewPresenter
+    // MARK: - RandomGifViewPresenter Imp
     
-    func viewLoaded() {
-        PromiseKit.firstly { () -> Promise<UIImage> in
-            self.view?.showLoadingIndicator()
-            return randomGifService.randomGif(ofSize: ImageObject.ImageType.downsized)
-        }.done { (image) in
-            self.view?.displayGif(image)
-        }.catch { (error) in
-            self.view?.displayRandomGifError(error)
-        }.finally {
-            self.view?.hideLoadingIndicator()
+    func viewWillAppear() {
+        
+        if !isViewShown {
+            isViewShown = true
+            fetchAndDisplayRandomGif()
         }
     }
     
+    func viewLoaded() {
+    }
+    
     func nextRandomGif() {
+        fetchAndDisplayRandomGif()
+    }
+    
+    // MARK: - Methods(Private)
+    
+    private func fetchAndDisplayRandomGif() {
         PromiseKit.firstly { () -> Promise<UIImage> in
             self.view?.showLoadingIndicator()
             return randomGifService.randomGif(ofSize: ImageObject.ImageType.downsized)
-        }.done { (image) in
-            self.view?.displayGif(image)
-        }.catch { (error) in
-            self.view?.displayRandomGifError(error)
-        }.finally {
-            self.view?.hideLoadingIndicator()
+            }.done { (image) in
+                self.view?.displayGif(image)
+            }.catch { (error) in
+                self.view?.displayRandomGifError(error)
+            }.finally {
+                self.view?.hideLoadingIndicator()
         }
     }
 }

@@ -28,8 +28,15 @@ class TrendingGIFsViewController: UIViewController {
         super.viewDidLoad()
         
         self.setupUI()
-        self.presenter?.trendingGIFs()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.presenter?.viewWillAppear()
+    }
+    
+    // MARK: -
     
     func setupUI() {
         self.view.backgroundColor = .rgba(240, 248, 255)

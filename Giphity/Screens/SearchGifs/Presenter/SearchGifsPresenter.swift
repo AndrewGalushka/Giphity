@@ -24,7 +24,6 @@ class SearchGifsPresenter: SearchGifsViewPresenter {
     // MARK: - SearchGifsViewPresenter
     
     func viewLoaded() {
-        self.searchGIFs(by: "Cats")
     }
     
     func searchGIFs(by name: String) {

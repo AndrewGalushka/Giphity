@@ -15,6 +15,8 @@ class TrendingGIFsPresenter: TrendingGIFsViewPresenter {
     private let trendingGIFsService: TrendingGIFsServiceType
     private let searchResponseConvertor: GiphySearchResponseConvertorType
     
+    private var isViewShown: Bool = false
+    
     // MARK: - Properties(Public)
     
     weak var view: TrendingGIFsView?
@@ -34,6 +36,14 @@ class TrendingGIFsPresenter: TrendingGIFsViewPresenter {
             self.view?.displaySearchResults(viewModels)
         }.catch { (error) in
             self.view?.displaySearchResults([])
+        }
+    }
+    
+    func viewWillAppear() {
+        
+        if !isViewShown {
+            self.isViewShown = true
+            trendingGIFs()
         }
     }
     

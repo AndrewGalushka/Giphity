@@ -16,7 +16,7 @@ class RandomGifModule: ViewControllerModule {
         self.randomGifView = view
         self.presentor = presentor
         
-        randomGifView.presentor = presentor
+        randomGifView.presenter = presentor
         presentor.view = randomGifView
     }
     
