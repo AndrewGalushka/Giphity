@@ -28,7 +28,7 @@ class TrendingGIFsViewController: UIViewController {
         super.viewDidLoad()
         
         self.setupUI()
-        self.presenter?.viewLoaded()
+        self.presenter?.trendingGIFs()
     }
     
     func setupUI() {
@@ -45,8 +45,11 @@ class TrendingGIFsViewController: UIViewController {
     }
 }
 
-extension TrendingGIFsViewController: TrendingCollectionViewControllerDelegate {
+extension TrendingGIFsViewController: TrendingGIFsCollectionViewControllerDelegate {
     
+    func trendingCollectionViewControllerNextBatch(_ controller: TrendingGIFsCollectionViewController) {
+        self.presenter?.nextBatchOfGIFs()
+    }
 }
 
 extension TrendingGIFsViewController: TrendingGIFsView {

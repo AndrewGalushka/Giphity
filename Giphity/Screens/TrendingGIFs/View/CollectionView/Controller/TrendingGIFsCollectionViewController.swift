@@ -20,7 +20,7 @@ class TrendingGIFsCollectionViewController: NSObject {
     // MARK: - Properties(Public)
     
     let collectionView: UICollectionView
-    weak var delegate: TrendingCollectionViewControllerDelegate?
+    weak var delegate: TrendingGIFsCollectionViewControllerDelegate?
     
     // MARK: - Initializers
     
@@ -75,6 +75,14 @@ extension TrendingGIFsCollectionViewController: UICollectionViewDelegate {
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>)  {
+        let percentThreshold: CGFloat = 0.9
+        
+        let scrollViewContentHeight = scrollView.contentSize.height
+        let threshold = scrollViewContentHeight * percentThreshold
+        
+        if (targetContentOffset.pointee.y + scrollView.bounds.height) >= threshold {
+            self.delegate?.trendingCollectionViewControllerNextBatch(self)
+        }
     }
 }
 

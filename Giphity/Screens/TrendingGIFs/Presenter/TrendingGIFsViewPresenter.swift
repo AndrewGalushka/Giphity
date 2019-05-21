@@ -9,6 +9,6 @@
 import Foundation
 
 protocol TrendingGIFsViewPresenter: AnyObject {
-    func viewLoaded()
     func trendingGIFs()
+    func nextBatchOfGIFs()
 }

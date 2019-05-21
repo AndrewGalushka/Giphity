@@ -8,5 +8,6 @@
 
 import Foundation
 
-protocol TrendingCollectionViewControllerDelegate: AnyObject {
+protocol TrendingGIFsCollectionViewControllerDelegate: AnyObject {
+    func trendingCollectionViewControllerNextBatch(_ controller: TrendingGIFsCollectionViewController)
 }

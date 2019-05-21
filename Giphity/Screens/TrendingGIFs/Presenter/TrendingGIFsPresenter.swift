@@ -9,6 +9,7 @@
 import Foundation
 
 class TrendingGIFsPresenter: TrendingGIFsViewPresenter {
+    
     // MARK: - Properties(Private)
     
     private let trendingGIFsService: TrendingGIFsServiceType
@@ -27,16 +28,16 @@ class TrendingGIFsPresenter: TrendingGIFsViewPresenter {
     
     // MARK: - TrendingGIFsViewPresenter Imp
     
-    func viewLoaded() {
+    func trendingGIFs() {
         self.trendingGIFsService.trendingGIFs().done { (response) in
             let viewModels = self.convertToCollectionViewModels(response: response)
             self.view?.displaySearchResults(viewModels)
-        }.catch { (error) in
-            self.view?.displaySearchResults([])
+            }.catch { (error) in
+                self.view?.displaySearchResults([])
         }
     }
     
-    func trendingGIFs() {
+    func nextBatchOfGIFs() {
     }
     
     // MARK: - Methods(Private)
