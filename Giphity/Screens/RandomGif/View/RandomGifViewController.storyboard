@@ -35,7 +35,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EaB-M4-jVE">
-                                <rect key="frame" x="160.5" y="446" width="54" height="34"/>
+                                <rect key="frame" x="160.5" y="583" width="54" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
@@ -43,8 +43,8 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by GIPHY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uY8-5v-C6M">
-                                <rect key="frame" x="0.0" y="627" width="375" height="20"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <rect key="frame" x="0.0" y="640" width="375" height="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
                                 <color key="textColor" red="1" green="0.64675538119999998" blue="0.20150102650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -53,10 +53,10 @@
                         <constraints>
                             <constraint firstItem="Lci-bJ-zsv" firstAttribute="trailing" secondItem="kgC-vb-AWq" secondAttribute="trailing" constant="5" id="33w-VB-h3l"/>
                             <constraint firstItem="kgC-vb-AWq" firstAttribute="centerY" secondItem="Lci-bJ-zsv" secondAttribute="centerY" constant="-20" id="JaY-br-ldf"/>
+                            <constraint firstItem="Lci-bJ-zsv" firstAttribute="bottom" secondItem="EaB-M4-jVE" secondAttribute="bottom" constant="50" id="LPn-bQ-Rto"/>
                             <constraint firstItem="Lci-bJ-zsv" firstAttribute="trailing" secondItem="uY8-5v-C6M" secondAttribute="trailing" id="Oar-Gu-4RV"/>
-                            <constraint firstItem="EaB-M4-jVE" firstAttribute="top" secondItem="kgC-vb-AWq" secondAttribute="bottom" constant="20" id="aXw-uS-jer"/>
                             <constraint firstItem="kgC-vb-AWq" firstAttribute="leading" secondItem="Lci-bJ-zsv" secondAttribute="leading" constant="5" id="dCS-L8-bun"/>
-                            <constraint firstItem="Lci-bJ-zsv" firstAttribute="bottom" secondItem="uY8-5v-C6M" secondAttribute="bottom" constant="20" id="g68-XC-eKX"/>
+                            <constraint firstItem="Lci-bJ-zsv" firstAttribute="bottom" secondItem="uY8-5v-C6M" secondAttribute="bottom" constant="10" id="g68-XC-eKX"/>
                             <constraint firstItem="EaB-M4-jVE" firstAttribute="centerX" secondItem="Lci-bJ-zsv" secondAttribute="centerX" id="ufI-qp-qfl"/>
                             <constraint firstItem="uY8-5v-C6M" firstAttribute="leading" secondItem="Lci-bJ-zsv" secondAttribute="leading" id="uhg-Qg-CRk"/>
                         </constraints>
