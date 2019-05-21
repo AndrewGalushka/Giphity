@@ -87,6 +87,7 @@ extension RandomGifViewController: RandomGifView {
     }
     
     func displayGif(_ image: UIImage) {
+        UIView.transition(with: self.imageView, duration: 0.25, options: .transitionFlipFromRight, animations: nil, completion: nil)
         self.imageView.image = image
     }
     
