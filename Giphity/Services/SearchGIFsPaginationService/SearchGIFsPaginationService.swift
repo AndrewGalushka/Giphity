@@ -13,7 +13,7 @@ class SearchGIFsPaginationService: SearchGIFsPaginationServiceType {
     // MARK: - Properties(Public)
     
     weak var delegate: SearchGIFsPaginationServiceDelegate?
-    /// Max value can't be highter the 25
+    /// Max value can't be highter then 25
     var limit: UInt = UInt(15)
     
     // MARK: - Properties(Private)
