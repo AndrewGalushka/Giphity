@@ -9,6 +9,6 @@
 import Foundation
 
 protocol TrendingGIFsView: AnyObject {
-    func displaySearchResults(_ searchResults: [TrendingGIFCollectionViewCell.ViewModel])
+    func displayTrendingGIFsResults(_ searchResults: [TrendingGIFCollectionViewCell.ViewModel])
     func displayNextBatchOfResults(_ searchResults: [TrendingGIFCollectionViewCell.ViewModel])
 }

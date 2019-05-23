@@ -85,6 +85,8 @@
 		8DDBFBAE22561FBB009F7286 /* InterfaceBuilderIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBFBAD22561FBB009F7286 /* InterfaceBuilderIdentifiable.swift */; };
 		8DDBFBB122562594009F7286 /* UIStoryboard+ViewControllerInstantiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBFBB022562594009F7286 /* UIStoryboard+ViewControllerInstantiation.swift */; };
 		8DDCF24722968962002EAF98 /* PaginationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCF24622968962002EAF98 /* PaginationController.swift */; };
+		8DDCF24B2296DD6A002EAF98 /* TrendingGIFsPaginationServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCF24A2296DD6A002EAF98 /* TrendingGIFsPaginationServiceType.swift */; };
+		8DDCF24D2296DD78002EAF98 /* TrendingGIFsPaginationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDCF24C2296DD78002EAF98 /* TrendingGIFsPaginationService.swift */; };
 		8DF57042226DAB8700DFA9B3 /* RandomGifViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF57041226DAB8700DFA9B3 /* RandomGifViewPresenter.swift */; };
 		8DF57044226DB0A600DFA9B3 /* RandomGifView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF57043226DB0A600DFA9B3 /* RandomGifView.swift */; };
 		8DF57046226DC00B00DFA9B3 /* ViewControllerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF57045226DC00B00DFA9B3 /* ViewControllerModule.swift */; };
@@ -182,6 +184,8 @@
 		8DDBFBAD22561FBB009F7286 /* InterfaceBuilderIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceBuilderIdentifiable.swift; sourceTree = "<group>"; };
 		8DDBFBB022562594009F7286 /* UIStoryboard+ViewControllerInstantiation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+ViewControllerInstantiation.swift"; sourceTree = "<group>"; };
 		8DDCF24622968962002EAF98 /* PaginationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationController.swift; sourceTree = "<group>"; };
+		8DDCF24A2296DD6A002EAF98 /* TrendingGIFsPaginationServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingGIFsPaginationServiceType.swift; sourceTree = "<group>"; };
+		8DDCF24C2296DD78002EAF98 /* TrendingGIFsPaginationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingGIFsPaginationService.swift; sourceTree = "<group>"; };
 		8DF57041226DAB8700DFA9B3 /* RandomGifViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomGifViewPresenter.swift; sourceTree = "<group>"; };
 		8DF57043226DB0A600DFA9B3 /* RandomGifView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomGifView.swift; sourceTree = "<group>"; };
 		8DF57045226DC00B00DFA9B3 /* ViewControllerModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerModule.swift; sourceTree = "<group>"; };
@@ -272,6 +276,7 @@
 				8D1AAF312271EB8E00B0E078 /* GifFetchingService */,
 				8DF57055226E0BD800DFA9B3 /* SearchGIFsService */,
 				8D003C4B2282D31200AAFAB0 /* SearchGIFsPaginationService */,
+				8DDCF2492296DB00002EAF98 /* TrendingGIFsPaginationService */,
 				8D0D624222687E720011FF04 /* RandomGifService */,
 			);
 			path = Services;
@@ -772,6 +777,15 @@
 			path = PaginationController;
 			sourceTree = "<group>";
 		};
+		8DDCF2492296DB00002EAF98 /* TrendingGIFsPaginationService */ = {
+			isa = PBXGroup;
+			children = (
+				8DDCF24A2296DD6A002EAF98 /* TrendingGIFsPaginationServiceType.swift */,
+				8DDCF24C2296DD78002EAF98 /* TrendingGIFsPaginationService.swift */,
+			);
+			path = TrendingGIFsPaginationService;
+			sourceTree = "<group>";
+		};
 		8DF5704E226E08A400DFA9B3 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -999,9 +1013,11 @@
 				8D3253462269C90200A0F090 /* AppCoordinator.swift in Sources */,
 				8D09203D225C83C8004D6F90 /* CollectionViewCellConfigurator.swift in Sources */,
 				8D08DB88225DD36C004959D8 /* CollectionViewDataSource.swift in Sources */,
+				8DDCF24B2296DD6A002EAF98 /* TrendingGIFsPaginationServiceType.swift in Sources */,
 				8D625FA7228C0C0800D96079 /* GiphySearchResponseConvertor.swift in Sources */,
 				8D0D6233226857B90011FF04 /* RandomGifService.swift in Sources */,
 				8DFCF4582268C0CF007327F6 /* GifFetcher+Error.swift in Sources */,
+				8DDCF24D2296DD78002EAF98 /* TrendingGIFsPaginationService.swift in Sources */,
 				8D410E46225B68DB001F5132 /* ImagesObject.swift in Sources */,
 				8DF5705F226E195500DFA9B3 /* SearchGIFsModule.swift in Sources */,
 				8D2ADE58228EBC02003C9B84 /* TrendingGIFsCollectionViewLayout.swift in Sources */,

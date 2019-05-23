@@ -34,7 +34,7 @@ class MainFlowCoordinatorModulesAssembler: MainFlowCoordinatorModulesAssemblerTy
     }
     
     func assembleTrendingGIFsModule() -> TrendingGIFsModule {
-        let trendingGIFsService = self.assembleTrendingGIFsService()
+        let trendingGIFsService = self.assembleTrendingGIFsPaginationService()
         
         let view = TrendingGIFsViewController.loadFromStoryboard()
         let presenter = TrendingGIFsPresenter(trendingGIFsService: trendingGIFsService)
@@ -58,5 +58,10 @@ class MainFlowCoordinatorModulesAssembler: MainFlowCoordinatorModulesAssemblerTy
     
     private func assembleTrendingGIFsService() -> TrendingGIFsServiceType {
         return TrendingGIFsService(requestManager: self.assembler.assembleGiphyRequestManager())
+    }
+    
+    private func assembleTrendingGIFsPaginationService() -> TrendingGIFsPaginationServiceType {
+        let trendingGIFsService: TrendingGIFsServiceType = self.assembleTrendingGIFsService()
+        return TrendingGIFsPaginationService(trendingGIFsService: trendingGIFsService)
     }
 }
