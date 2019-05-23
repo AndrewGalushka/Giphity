@@ -50,12 +50,12 @@ class PaginationController {
             let identifierAtMomementOfExectionStart = self.identifier,
             let pagination = self.pagination
         else {
-            return Promise.init(error: NextExecutuinError.nextExecutionCalledBeforeFirst)
+            return Promise.init(error: NextExecutionError.nextExecutionCalledBeforeFirst)
         }
         
         let nextOffset = self.calcutateNextOffset(for: pagination)
         guard nextOffset < pagination.totalCount else {
-            return Promise.init(error: NextExecutuinError.endOfList)
+            return Promise.init(error: NextExecutionError.endOfList)
         }
         
         let (resultPromise, resolver) = Promise<Promise<T>>.pending()
@@ -69,7 +69,7 @@ class PaginationController {
                 let currentIdentifier = self.identifier,
                 identifierAtMomementOfExectionStart == currentIdentifier
             else {
-                resolver.reject(NextExecutuinError.identifierExpired)
+                resolver.reject(NextExecutionError.identifierExpired)
                 return
             }
             
@@ -109,7 +109,7 @@ extension PaginationController {
         case identifierExpired
     }
     
-    enum NextExecutuinError: Error {
+    enum NextExecutionError: Error {
         case nextExecutionCalledBeforeFirst
         case endOfList
         case identifierExpired
