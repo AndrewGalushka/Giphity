@@ -268,7 +268,6 @@
 		8D0D62312268578A0011FF04 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				8DDCF24622968962002EAF98 /* PaginationController.swift */,
 				8D42CFCE2292A2AF00835029 /* TrandingGIFService */,
 				8D1AAF312271EB8E00B0E078 /* GifFetchingService */,
 				8DF57055226E0BD800DFA9B3 /* SearchGIFsService */,
@@ -457,6 +456,7 @@
 		8D410E54225BA2C0001F5132 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				8DDCF2482296A17F002EAF98 /* PaginationController */,
 				8DA08809227095060042DC05 /* TimeSpentLogger */,
 				8D08DB86225DD357004959D8 /* CollectionView */,
 				8D410E51225BA1D0001F5132 /* DataSource */,
@@ -762,6 +762,14 @@
 				8DAF8A91226771D4007E15A2 /* Resolver+SwiftResult.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8DDCF2482296A17F002EAF98 /* PaginationController */ = {
+			isa = PBXGroup;
+			children = (
+				8DDCF24622968962002EAF98 /* PaginationController.swift */,
+			);
+			path = PaginationController;
 			sourceTree = "<group>";
 		};
 		8DF5704E226E08A400DFA9B3 /* Presenter */ = {
