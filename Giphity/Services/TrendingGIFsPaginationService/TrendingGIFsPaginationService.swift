@@ -47,7 +47,7 @@ class TrendingGIFsPaginationService: TrendingGIFsPaginationServiceType {
     func firstBatch() {
         let paginationSessionID = self.createUniqueID()
         
-        let searchTask = trendingGIFsService.trendingGIFs()
+        let searchTask = trendingGIFsService.trendingGIFs(limit: Int(self.limit), offset: 0)
         
         paginationController.firstExecution(sessionID: paginationSessionID, task: searchTask).done { (searchTaskPromise) -> Void in
             
@@ -89,7 +89,7 @@ class TrendingGIFsPaginationService: TrendingGIFsPaginationServiceType {
     func nextBatch() {
         
         let nextBatchTask = { (sessionID: String, limit: UInt, offset: Int) -> Promise<GiphySearchResponse> in
-            return self.trendingGIFsService.trendingGIFs()
+            return self.trendingGIFsService.trendingGIFs(limit: Int(limit), offset: offset)
         }
         
         self.paginationController.nextExecution(task: nextBatchTask).done { nextBatchTaskPromise in
