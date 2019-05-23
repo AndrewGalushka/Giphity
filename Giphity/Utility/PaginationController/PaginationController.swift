@@ -46,11 +46,12 @@ class PaginationController {
     }
     
     func nextExecution<T>(task: (_ sessionID: String, _ limit: UInt,_ offset: Int) -> Promise<T>) -> Promise<Promise<T>> {
-        guard
-            let identifierAtMomementOfExectionStart = self.identifier,
-            let pagination = self.pagination
-        else {
+        guard let identifierAtMomementOfExectionStart = self.identifier else {
             return Promise.init(error: NextExecutionError.nextExecutionCalledBeforeFirst)
+        }
+        
+        guard let pagination = self.pagination else {
+            return Promise.init(error: NextExecutionError.paginationIsEmpty)
         }
         
         let nextOffset = self.calcutateNextOffset(for: pagination)
@@ -111,7 +112,22 @@ extension PaginationController {
     
     enum NextExecutionError: Error {
         case nextExecutionCalledBeforeFirst
+        case paginationIsEmpty
         case endOfList
         case identifierExpired
+        
+        var localizedDescription: String {
+            
+            switch self {
+            case .nextExecutionCalledBeforeFirst:
+                return "nextExecutionCalledBeforeFirst"
+            case .paginationIsEmpty:
+                return "Pagination is empty. You mast call savePagination() after first execution"
+            case .endOfList:
+                return "endOfList"
+            case .identifierExpired:
+                return "identifierExpired"
+            }
+        }
     }
 }
