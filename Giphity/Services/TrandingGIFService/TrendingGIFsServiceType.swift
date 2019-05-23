@@ -10,4 +10,6 @@ import PromiseKit
 
 protocol TrendingGIFsServiceType {
     func trendingGIFs() -> Promise<GiphySearchResponse>
+    func trendingGIFs(offset: Int) -> Promise<GiphySearchResponse>
+    func trendingGIFs(limit: Int, offset: Int) -> Promise<GiphySearchResponse>
 }
