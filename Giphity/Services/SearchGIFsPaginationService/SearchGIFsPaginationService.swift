@@ -7,22 +7,33 @@
 //
 
 import Foundation
+import PromiseKit
 
 class SearchGIFsPaginationService: SearchGIFsPaginationServiceType {
     
     // MARK: - Properties(Public)
     
     weak var delegate: SearchGIFsPaginationServiceDelegate?
-    /// Max value can't be highter then 25
-    var limit: UInt = UInt(15)
+    
+    /// Maximum of result can be fetched is 25
+    var limit: UInt {
+        get {
+            return paginationController.limit
+        }
+        
+        set (value) {
+            paginationController.limit = value
+        }
+    }
+    
+    var isFetchingInProcess: Bool {
+        return paginationController.isFetchingInProgress
+    }
     
     // MARK: - Properties(Private)
     
     private let searchGIFsService: SearchGIFsServiceType
-    private var searchQuery: String?
-    private var pagination: GiphyPagination?
-    private(set) var isFetchingInProcess: Bool = false
-    
+    private let paginationController = PaginationController()
     private var errorDomain: String { return "com.search.gifs.pagination.service" }
     
     // MARK: - Initializers
@@ -33,95 +44,92 @@ class SearchGIFsPaginationService: SearchGIFsPaginationServiceType {
     
     // MARK: - SearchGIFsPaginationServiceType imp
     
-    func searchGIFs(by name: String) {
-        self.searchQuery = name
-        self.isFetchingInProcess = true
+    func searchGIFs(by query: String) {
+
+        let searchTask = searchGIFsService.searchGifs(by: query, limit: Int(self.limit), offset: 0)
         
-        searchGIFsService.searchGifs(by: name, limit: Int(self.limit), offset: 0).done { [weak self] (response) in
-            guard let strongSelf = self, name == strongSelf.searchQuery else {
-                return
-            }
+        paginationController.firstExecution(sessionID: query, task: searchTask).done { (searchTaskPromise) -> Void in
             
-            guard let gifObjects = response.gifObjects else {
-                strongSelf.reset()
-    
-                let error = NSError(domain: strongSelf.errorDomain, code: -1, userInfo: nil)
+            searchTaskPromise.done { [weak self] (response) in
+                guard let strongSelf = self else { return }
+                
+                guard let gifObjects = response.gifObjects else {
+                    
+                    let error = NSError(domain: strongSelf.errorDomain, code: -1, userInfo: nil)
+                    strongSelf.delegate?.searchGIFsPaginationService(strongSelf,
+                                                                     didFailToFetchFirstBatch: error)
+                    return
+                }
+                
+                if let pagination = response.pagination {
+                    self?.paginationController.savePagination(pagination)
+                }
+                
                 strongSelf.delegate?.searchGIFsPaginationService(strongSelf,
-                                                            didFailToFetchFirstBatch: error)
-                return
+                                                                 didFetchFirstBatch: gifObjects)
+                }.catch { [weak self] (error) in
+                    guard let strongSelf = self else { return }
+                    strongSelf.paginationController.reset()
+                    strongSelf.delegate?.searchGIFsPaginationService(strongSelf, didFailToFetchFirstBatch: error)
             }
-        
-            if let pagination = response.pagination {
-                strongSelf.save(pagination: pagination)
+ 
+        }.catch {
+            
+            if let error = $0 as? PaginationController.FirstExecutionError {
+                
+                switch error {
+                case .identifierExpired:
+                    break
+                }
             }
-            
-            strongSelf.delegate?.searchGIFsPaginationService(strongSelf,
-                                                             didFetchFirstBatch: gifObjects)
-        }.catch { [weak self] (error) in
-            guard let strongSelf = self, name == self?.searchQuery else { return }
-            
-            strongSelf.reset()
-            strongSelf.delegate?.searchGIFsPaginationService(strongSelf, didFailToFetchFirstBatch: error)
-        }.finally { [weak self] in
-            guard let strongSelf = self, name == strongSelf.searchQuery else {
-                return
-            }
-            
-            self?.isFetchingInProcess = false
         }
     }
     
     func nextBatch() {
-        guard let searchQuery = self.searchQuery, let pagination = self.pagination else {
-            return
+        
+        let nextBatchTask = { (sessionID: String, limit: UInt, offset: Int) -> Promise<GiphySearchResponse> in
+            return self.searchGIFsService.searchGifs(by: sessionID, limit: Int(limit), offset: offset)
         }
         
-        let offset = pagination.offset + pagination.count
-        guard offset < pagination.totalCount else {
-            return
-        }
-        
-        self.isFetchingInProcess = true
-        
-        self.searchGIFsService.searchGifs(by: searchQuery, limit: Int(self.limit), offset: offset).done { [weak self] (response) in
-            guard let strongSelf = self, searchQuery == strongSelf.searchQuery else { return }
+        self.paginationController.nextExecution(task: nextBatchTask).done { nextBatchTaskPromise in
             
-            guard let gifObjects = response.gifObjects else {
-                let error = NSError(domain: strongSelf.errorDomain, code: -1, userInfo: nil)
+            nextBatchTaskPromise.done { [weak self] (response) in
+                guard let strongSelf = self else { return }
+                
+                guard let gifObjects = response.gifObjects else {
+                    let error = NSError(domain: strongSelf.errorDomain, code: -1, userInfo: nil)
+                    strongSelf.delegate?.searchGIFsPaginationService(strongSelf,
+                                                                     didFailToFetchNextBatch: error)
+                    return
+                }
+                
+                if let pagination = response.pagination {
+                    self?.paginationController.savePagination(pagination)
+                }
+                
                 strongSelf.delegate?.searchGIFsPaginationService(strongSelf,
-                                                                 didFailToFetchNextBatch: error)
-                return
+                                                                 didFetchNextBatch: gifObjects)
+            }.catch { [weak self] (error) in
+                guard let strongSelf = self else { return }
+                strongSelf.delegate?.searchGIFsPaginationService(strongSelf, didFailToFetchNextBatch: error)
             }
             
-            if let pagination = response.pagination {
-                strongSelf.save(pagination: pagination)
+        }.catch { (error) in
+            
+            if let error = error as? PaginationController.NextExecutionError {
+                
+                switch error {
+                case .nextExecutionCalledBeforeFirst:
+                    break
+                case .paginationIsEmpty:
+                    break
+                case .endOfList:
+                    break
+                case .identifierExpired:
+                    break
+                
+                }
             }
-            
-            strongSelf.delegate?.searchGIFsPaginationService(strongSelf,
-                                                             didFetchNextBatch: gifObjects)
-            
-        }.catch { [weak self] (error) in
-            guard let strongSelf = self, searchQuery == self?.searchQuery else {
-                return
-            }
-            
-            strongSelf.delegate?.searchGIFsPaginationService(strongSelf, didFailToFetchNextBatch: error)
-        }.finally { [weak self] in
-            guard let strongSelf = self, searchQuery == strongSelf.searchQuery else {
-                return
-            }
-            
-            self?.isFetchingInProcess = false
         }
-    }
-    
-    func reset() {
-        self.searchQuery = nil
-        self.pagination = nil
-        self.isFetchingInProcess = false
-    }
-    
-    func save(pagination giphyPagination: GiphyPagination) {
-        self.pagination = giphyPagination
     }
 }
