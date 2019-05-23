@@ -45,22 +45,22 @@ class PaginationController {
         })
     }
     
-    func nextExecution<T>(task: () -> Promise<T>) -> Promise<Promise<T>> {
+    func nextExecution<T>(task: (_ limit: UInt,_ offset: Int) -> Promise<T>) -> Promise<Promise<T>> {
         guard
             let identifierAtMomementOfExectionStart = self.identifier,
-            let pagination = pagination
+            let pagination = self.pagination
         else {
             return Promise.init(error: NextExecutuinError.nextExecutionCalledBeforeFirst)
         }
         
-        let offset = pagination.offset + pagination.count
-        guard offset < pagination.totalCount else {
+        let nextOffset = self.calcutateNextOffset(for: pagination)
+        guard nextOffset < pagination.totalCount else {
             return Promise.init(error: NextExecutuinError.endOfList)
         }
         
         let (resultPromise, resolver) = Promise<Promise<T>>.pending()
         
-        let taskPromise = task()
+        let taskPromise = task(self.limit, nextOffset)
         
         _ = taskPromise.ensure {
             self.isFetchingInProgress = false
@@ -87,6 +87,19 @@ class PaginationController {
     
     func savePagination(_ pagination: PaginationType) {
         self.pagination = pagination
+    }
+    
+    func calculateNextOffset() -> Int? {
+        
+        if let pagination = self.pagination {
+            return self.calcutateNextOffset(for: pagination)
+        }
+        
+        return nil
+    }
+    
+    func calcutateNextOffset(for pagination: PaginationType) -> Int {
+        return pagination.offset + pagination.count
     }
 }
 
