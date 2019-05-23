@@ -23,6 +23,7 @@ class PaginationController {
     private(set) var isFetchingInProgress: Bool = false
     
     func firstExecution<T>(sessionID: String, task: Promise<T>) -> Promise<Promise<T>> {
+        self.reset()
         self.identifier = sessionID
         self.isFetchingInProgress = true
         
