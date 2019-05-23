@@ -60,7 +60,7 @@ extension TrendingGIFsViewController: TrendingGIFsCollectionViewControllerDelega
 }
 
 extension TrendingGIFsViewController: TrendingGIFsView {
-    func displaySearchResults(_ gifVMs: [TrendingGIFCollectionViewCell.ViewModel]) {
+    func displayTrendingGIFsResults(_ gifVMs: [TrendingGIFCollectionViewCell.ViewModel]) {
         self.collectionViewController.displaySearchResults(gifVMs)
     }
     
