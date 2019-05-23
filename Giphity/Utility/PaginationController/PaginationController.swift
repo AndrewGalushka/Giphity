@@ -45,7 +45,7 @@ class PaginationController {
         })
     }
     
-    func nextExecution<T>(task: (_ limit: UInt,_ offset: Int) -> Promise<T>) -> Promise<Promise<T>> {
+    func nextExecution<T>(task: (_ sessionID: String, _ limit: UInt,_ offset: Int) -> Promise<T>) -> Promise<Promise<T>> {
         guard
             let identifierAtMomementOfExectionStart = self.identifier,
             let pagination = self.pagination
@@ -60,7 +60,7 @@ class PaginationController {
         
         let (resultPromise, resolver) = Promise<Promise<T>>.pending()
         
-        let taskPromise = task(self.limit, nextOffset)
+        let taskPromise = task(identifierAtMomementOfExectionStart, self.limit, nextOffset)
         
         _ = taskPromise.ensure {
             self.isFetchingInProgress = false
