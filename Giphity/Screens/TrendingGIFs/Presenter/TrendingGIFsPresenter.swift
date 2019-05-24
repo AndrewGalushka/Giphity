@@ -69,9 +69,9 @@ class TrendingGIFsPresenter: TrendingGIFsViewPresenter {
     }
     
     private func convertGifObjectsToViewModels(gifObjects: [GifObject],
-                                               ofImageType imageObjectType: ImageObject.ImageType = .downsized) -> [TrendingGIFCollectionViewCell.ViewModel] {
+                                               ofImageType type: ImageObject.ImageType = .fixedHeight_downsampled) -> [TrendingGIFCollectionViewCell.ViewModel] {
         
-        let viewModels = searchResponseConvertor.convertToAssociatedImages(gifObjects, ofType: imageObjectType).map {
+        let viewModels = searchResponseConvertor.convertToAssociatedImages(gifObjects, ofType: type).map {
             return TrendingGIFCollectionViewCell.ViewModel(identifier: $0.gifObject.identifier, gifURL: $0.image.url)
         }
         
