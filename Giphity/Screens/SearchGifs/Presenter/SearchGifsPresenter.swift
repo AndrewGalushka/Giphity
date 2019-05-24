@@ -43,7 +43,7 @@ class SearchGifsPresenter: SearchGifsViewPresenter {
     }
     
     private func convertGifObjectsToViewModels(gifObjects: [GifObject],
-                                             ofImageType imageObjectType: ImageObject.ImageType = .downsized) -> [GifCollectionViewCell.ViewModel] {
+                                             ofImageType imageObjectType: ImageObject.ImageType = .fixedHeight_downsampled) -> [GifCollectionViewCell.ViewModel] {
 
         let viewModels = searchResponseConvertor.convertToAssociatedImages(gifObjects, ofType: imageObjectType).map {
             return GifCollectionViewCell.ViewModel(identifier: $0.gifObject.identifier, gifURL: $0.image.url)
@@ -55,12 +55,12 @@ class SearchGifsPresenter: SearchGifsViewPresenter {
 
 extension SearchGifsPresenter: SearchGIFsPaginationServiceDelegate {
     func searchGIFsPaginationService(_ service: SearchGIFsPaginationServiceType, didFetchFirstBatch gifObjects: [GifObject]) {
-        let viewModels = self.convertGifObjectsToViewModels(gifObjects: gifObjects, ofImageType: .fixedHeight_downsampled)
+        let viewModels = self.convertGifObjectsToViewModels(gifObjects: gifObjects)
         self.view?.displaySearchResults(viewModels)
     }
     
     func searchGIFsPaginationService(_ service: SearchGIFsPaginationServiceType, didFetchNextBatch gifObjects: [GifObject]) {
-        let viewModels = self.convertGifObjectsToViewModels(gifObjects: gifObjects, ofImageType: .fixedHeight_downsampled)
+        let viewModels = self.convertGifObjectsToViewModels(gifObjects: gifObjects)
         self.view?.displayNextBatchOfResults(viewModels)
     }
     

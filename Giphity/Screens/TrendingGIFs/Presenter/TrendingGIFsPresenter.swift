@@ -81,12 +81,12 @@ class TrendingGIFsPresenter: TrendingGIFsViewPresenter {
 
 extension TrendingGIFsPresenter : TrendingGIFsPaginationServiceDelegate {
     func searchGIFsPaginationService(_ service: TrendingGIFsPaginationServiceType, didFetchFirstBatch gifObjects: [GifObject]) {
-        let viewModels = self.convertGifObjectsToViewModels(gifObjects: gifObjects, ofImageType: .fixedHeight_downsampled)
+        let viewModels = self.convertGifObjectsToViewModels(gifObjects: gifObjects)
         self.view?.displayTrendingGIFsResults(viewModels)
     }
     
     func searchGIFsPaginationService(_ service: TrendingGIFsPaginationServiceType, didFetchNextBatch gifObjects: [GifObject]) {
-        let viewModels = self.convertGifObjectsToViewModels(gifObjects: gifObjects, ofImageType: .fixedHeight_downsampled)
+        let viewModels = self.convertGifObjectsToViewModels(gifObjects: gifObjects)
         self.view?.displayNextBatchOfResults(viewModels)
     }
     
