@@ -19,6 +19,7 @@ class TrendingGIFsPresenter: TrendingGIFsViewPresenter {
     
     // MARK: - Properties(Public)
     
+    weak var output: TrendingGIFsPresenterOutput?
     weak var view: TrendingGIFsView?
 
     // MARK: - Initializers
@@ -52,7 +53,7 @@ class TrendingGIFsPresenter: TrendingGIFsViewPresenter {
     }
     
     func didSelectItem(_ item: TrendingGIFCollectionViewCell.ViewModel) {
-        print(item)
+        self.output?.trendingGIFsPresenter(self, didSelectGIFByID: item.identifier)
     }
     
     // MARK: - Methods(Private)
