@@ -31,7 +31,7 @@ class MainFlowCoordinator: FlowCoordinatorType {
         self.addModules(initialTabbarModules)
         
         tabbarController.setViewControllers(initialTabbarModules.map { $0.asViewController }, animated: true)
-        tabbarController.selectedIndex = 2
+        tabbarController.selectedIndex = 1
         
         navigationController.setViewControllers([tabbarController], animated: false)
         navigationController.setNavigationBarHidden(true, animated: false)
