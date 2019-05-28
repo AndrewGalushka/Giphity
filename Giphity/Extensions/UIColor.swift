@@ -16,4 +16,8 @@ extension UIColor {
         
         return UIColor(red: fRed, green: fBlue, blue: fBreen, alpha: alpha)
     }
+    
+    static func random() -> UIColor {
+        return UIColor(red: .random(in: 0.0...1.0), green: .random(in: 0.0...1.0), blue: .random(in: 0.0...1.0), alpha: 1.0)
+    }
 }
