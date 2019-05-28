@@ -10,7 +10,7 @@ import UIKit
 
 class GIFDetailViewController: UIViewController, GIFDetailView {
 
-    private weak var presenter: GIFDetailViewPresenter?
+    weak var presenter: GIFDetailViewPresenter?
     private let gradient: CAGradientLayer =  CAGradientLayer()
     
     // MARK: Lifecycle
