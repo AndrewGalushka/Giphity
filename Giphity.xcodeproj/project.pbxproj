@@ -74,6 +74,12 @@
 		8D9A491D225B2EC500F0AFE8 /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9A491C225B2EC500F0AFE8 /* MainFlowCoordinator.swift */; };
 		8DA0880B227095230042DC05 /* TimeSpentLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA0880A227095230042DC05 /* TimeSpentLogger.swift */; };
 		8DAF8A92226771D4007E15A2 /* Resolver+SwiftResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAF8A91226771D4007E15A2 /* Resolver+SwiftResult.swift */; };
+		8DB9384D229C3A1A006F6D88 /* GIFDetailModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB9384C229C3A1A006F6D88 /* GIFDetailModule.swift */; };
+		8DB9384F229C3A49006F6D88 /* GIFDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB9384E229C3A49006F6D88 /* GIFDetailViewController.swift */; };
+		8DB93852229C3A5B006F6D88 /* GIFDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DB93851229C3A5B006F6D88 /* GIFDetailViewController.storyboard */; };
+		8DB93855229C3ACC006F6D88 /* GIFDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB93854229C3ACC006F6D88 /* GIFDetailPresenter.swift */; };
+		8DB93857229C3ADA006F6D88 /* GIFDetailViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB93856229C3ADA006F6D88 /* GIFDetailViewPresenter.swift */; };
+		8DB93859229C3AEC006F6D88 /* GIFDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB93858229C3AEC006F6D88 /* GIFDetailView.swift */; };
 		8DC6C418225642E600C2FAF2 /* GifDataEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC6C417225642E600C2FAF2 /* GifDataEngine.swift */; };
 		8DDBFB8F22560BC7009F7286 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBFB8E22560BC7009F7286 /* AppDelegate.swift */; };
 		8DDBFB9122560BC7009F7286 /* RandomGifViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DDBFB9022560BC7009F7286 /* RandomGifViewController.swift */; };
@@ -171,6 +177,12 @@
 		8D9A491C225B2EC500F0AFE8 /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
 		8DA0880A227095230042DC05 /* TimeSpentLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSpentLogger.swift; sourceTree = "<group>"; };
 		8DAF8A91226771D4007E15A2 /* Resolver+SwiftResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resolver+SwiftResult.swift"; sourceTree = "<group>"; };
+		8DB9384C229C3A1A006F6D88 /* GIFDetailModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFDetailModule.swift; sourceTree = "<group>"; };
+		8DB9384E229C3A49006F6D88 /* GIFDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFDetailViewController.swift; sourceTree = "<group>"; };
+		8DB93851229C3A5B006F6D88 /* GIFDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GIFDetailViewController.storyboard; sourceTree = "<group>"; };
+		8DB93854229C3ACC006F6D88 /* GIFDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFDetailPresenter.swift; sourceTree = "<group>"; };
+		8DB93856229C3ADA006F6D88 /* GIFDetailViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFDetailViewPresenter.swift; sourceTree = "<group>"; };
+		8DB93858229C3AEC006F6D88 /* GIFDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFDetailView.swift; sourceTree = "<group>"; };
 		8DC6C417225642E600C2FAF2 /* GifDataEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifDataEngine.swift; sourceTree = "<group>"; };
 		8DDBFB8B22560BC7009F7286 /* Giphity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Giphity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DDBFB8E22560BC7009F7286 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -641,6 +653,35 @@
 			path = TimeSpentLogger;
 			sourceTree = "<group>";
 		};
+		8DB9384B229C39DB006F6D88 /* GIFDetail */ = {
+			isa = PBXGroup;
+			children = (
+				8DB9384C229C3A1A006F6D88 /* GIFDetailModule.swift */,
+				8DB93853229C3AB0006F6D88 /* Presenter */,
+				8DB93850229C3A4C006F6D88 /* View */,
+			);
+			path = GIFDetail;
+			sourceTree = "<group>";
+		};
+		8DB93850229C3A4C006F6D88 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8DB93858229C3AEC006F6D88 /* GIFDetailView.swift */,
+				8DB9384E229C3A49006F6D88 /* GIFDetailViewController.swift */,
+				8DB93851229C3A5B006F6D88 /* GIFDetailViewController.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8DB93853229C3AB0006F6D88 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				8DB93854229C3ACC006F6D88 /* GIFDetailPresenter.swift */,
+				8DB93856229C3ADA006F6D88 /* GIFDetailViewPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		8DC6C416225642CD00C2FAF2 /* GifDataEngine */ = {
 			isa = PBXGroup;
 			children = (
@@ -711,6 +752,7 @@
 				8D625F9B228BF7BF00D96079 /* TrendingGIFs */,
 				8D6F924222576AAF00D43279 /* SearchGifs */,
 				8DDBFBA322561865009F7286 /* RandomGif */,
+				8DB9384B229C39DB006F6D88 /* GIFDetail */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -892,6 +934,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DB93852229C3A5B006F6D88 /* GIFDetailViewController.storyboard in Resources */,
 				8D6F924822576B0900D43279 /* SearchGifsViewController.storyboard in Resources */,
 				8D0986BC228C621C00C42F2A /* TrendingGIFsViewController.storyboard in Resources */,
 				8DDBFB9922560BC9009F7286 /* LaunchScreen.storyboard in Resources */,
@@ -971,6 +1014,7 @@
 				8D42CFDE2292E37B00835029 /* TrendingGIFsCollectionViewController.swift in Sources */,
 				8D2ADE55228EA9C4003C9B84 /* TrendingGIFsModule.swift in Sources */,
 				8D325348226A12E500A0F090 /* CoordinatorsFactory.swift in Sources */,
+				8DB9384D229C3A1A006F6D88 /* GIFDetailModule.swift in Sources */,
 				8DAF8A92226771D4007E15A2 /* Resolver+SwiftResult.swift in Sources */,
 				8DF57048226DC08100DFA9B3 /* RandomGifModule.swift in Sources */,
 				8D0986BE228C62CE00C42F2A /* TrendingGIFsView.swift in Sources */,
@@ -979,6 +1023,7 @@
 				8DDBFBAE22561FBB009F7286 /* InterfaceBuilderIdentifiable.swift in Sources */,
 				8DF5705C226E0DDE00DFA9B3 /* SearchGIFsView.swift in Sources */,
 				8D42CFD22292A2E200835029 /* TrendingGIFsServiceType.swift in Sources */,
+				8DB93857229C3ADA006F6D88 /* GIFDetailViewPresenter.swift in Sources */,
 				8D32533C2269C26A00A0F090 /* ApplicationAssembler.swift in Sources */,
 				8DDBFB9122560BC7009F7286 /* RandomGifViewController.swift in Sources */,
 				8DDCF24722968962002EAF98 /* PaginationController.swift in Sources */,
@@ -988,12 +1033,14 @@
 				8D9A491D225B2EC500F0AFE8 /* MainFlowCoordinator.swift in Sources */,
 				8D1AAF332271EBA700B0E078 /* GifPrefetchingService.swift in Sources */,
 				8DF57057226E0BEC00DFA9B3 /* SearchGIFsService.swift in Sources */,
+				8DB93859229C3AEC006F6D88 /* GIFDetailView.swift in Sources */,
 				8DF57046226DC00B00DFA9B3 /* ViewControllerModule.swift in Sources */,
 				8D410E4F225B9FE8001F5132 /* DataSource.swift in Sources */,
 				8D410E40225B4B45001F5132 /* GifObject.swift in Sources */,
 				8D1AAF352271EBB800B0E078 /* GifPrefetchingServiceType.swift in Sources */,
 				8D42CFD72292D40900835029 /* SearchGIFsCollectionViewControllerDelegate.swift in Sources */,
 				8D42CFE02292E4C800835029 /* TrendingCollectionViewControllerDelegate.swift in Sources */,
+				8DB93855229C3ACC006F6D88 /* GIFDetailPresenter.swift in Sources */,
 				8D2ADE60228EE6F3003C9B84 /* TrendingGIFCollectionViewCell.swift in Sources */,
 				8DF57050226E08D100DFA9B3 /* SearchGifsPresenter.swift in Sources */,
 				8D003C4F2282D33F00AAFAB0 /* SearchGIFsPaginationService.swift in Sources */,
@@ -1036,6 +1083,7 @@
 				8D625F9E228BF80700D96079 /* TrendingGIFsPresenter.swift in Sources */,
 				8D3253442269C8F900A0F090 /* AppCoordinatorType.swift in Sources */,
 				8D410E4D225B91F2001F5132 /* GiphyResponse.swift in Sources */,
+				8DB9384F229C3A49006F6D88 /* GIFDetailViewController.swift in Sources */,
 				8D954DD8225CF1AD003A0195 /* GifCollectionViewCellViewModel.swift in Sources */,
 				8D4087C72294013C00C895EB /* TrendingGIFCollectionViewCell+ViewModel.swift in Sources */,
 				8D2ADE4F228EA541003C9B84 /* MVPModule.swift in Sources */,
