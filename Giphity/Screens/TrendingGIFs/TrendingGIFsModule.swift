@@ -25,3 +25,8 @@ class TrendingGIFsModule: ViewControllerModule {
         return trendingGIFsView
     }
 }
+
+extension TrendingGIFsModule: TrendingGIFsPresenterOutput {
+    func trendingGIFsPresenter(_ presenter: TrendingGIFsPresenter, gifSelectedWithID gifID: String) {
+    }
+}

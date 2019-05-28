@@ -9,5 +9,5 @@
 import Foundation
 
 protocol TrendingGIFsPresenterOutput: AnyObject {
-    func trendingGIFsPresenter(_ presenter: TrendingGIFsPresenter, didSelectGIFByID gifID: String)
+    func trendingGIFsPresenter(_ presenter: TrendingGIFsPresenter, gifSelectedWithID gifID: String)
 }

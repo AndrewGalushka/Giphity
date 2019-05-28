@@ -53,7 +53,7 @@ class TrendingGIFsPresenter: TrendingGIFsViewPresenter {
     }
     
     func didSelectItem(_ item: TrendingGIFCollectionViewCell.ViewModel) {
-        self.output?.trendingGIFsPresenter(self, didSelectGIFByID: item.identifier)
+        self.output?.trendingGIFsPresenter(self, gifSelectedWithID: item.identifier)
     }
     
     // MARK: - Methods(Private)
