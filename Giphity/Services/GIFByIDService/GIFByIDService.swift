@@ -26,8 +26,6 @@ class GIFByIDService: GIFByIDServiceType {
     func gifObjectByID(_ gifID: String) -> Promise<GiphyResponse<GifObject>> {
         return requestManager.gifByID(gifID)
     }
-    
-    // MARK: Methods(Private)
 }
 
 
