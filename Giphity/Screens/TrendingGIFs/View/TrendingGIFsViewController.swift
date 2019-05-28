@@ -54,6 +54,12 @@ class TrendingGIFsViewController: UIViewController {
 
 extension TrendingGIFsViewController: TrendingGIFsCollectionViewControllerDelegate {
     
+    func trendingCollectionView(_ controller: TrendingGIFsCollectionViewController,
+                                didSelectItem selectedItem: TrendingGIFCollectionViewCell.ViewModel) {
+        presenter?.didSelectItem(selectedItem)
+    }
+    
+    
     func trendingCollectionViewControllerNextBatch(_ controller: TrendingGIFsCollectionViewController) {
         self.presenter?.nextBatchOfGIFs()
     }

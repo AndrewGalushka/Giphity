@@ -84,6 +84,11 @@ extension TrendingGIFsCollectionViewController: UICollectionViewDelegate {
             self.delegate?.trendingCollectionViewControllerNextBatch(self)
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedItem = self.collectionViewDataSource.dataSource.item(at: indexPath)
+        delegate?.trendingCollectionView(self, didSelectItem: selectedItem)
+    }
 }
 
 // MARK: - Factory

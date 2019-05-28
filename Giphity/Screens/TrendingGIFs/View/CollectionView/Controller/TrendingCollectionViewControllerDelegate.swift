@@ -10,4 +10,5 @@ import Foundation
 
 protocol TrendingGIFsCollectionViewControllerDelegate: AnyObject {
     func trendingCollectionViewControllerNextBatch(_ controller: TrendingGIFsCollectionViewController)
+    func trendingCollectionView(_ controller: TrendingGIFsCollectionViewController, didSelectItem: TrendingGIFCollectionViewCell.ViewModel)
 }

@@ -12,4 +12,5 @@ protocol TrendingGIFsViewPresenter: AnyObject {
     func viewWillAppear()
     func trendingGIFs()
     func nextBatchOfGIFs()
+    func didSelectItem(_ item: TrendingGIFCollectionViewCell.ViewModel)
 }

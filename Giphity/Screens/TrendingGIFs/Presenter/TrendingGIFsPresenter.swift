@@ -34,13 +34,6 @@ class TrendingGIFsPresenter: TrendingGIFsViewPresenter {
     
     func trendingGIFs() {
         self.trendingGIFsService.firstBatch()
-            
-//            .done { (response) in
-//            let viewModels = self.convertToCollectionViewModels(response: response)
-//            self.view?.displaySearchResults(viewModels)
-//        }.catch { (error) in
-//            self.view?.displaySearchResults([])
-//        }
     }
     
     func viewWillAppear() {
@@ -56,6 +49,10 @@ class TrendingGIFsPresenter: TrendingGIFsViewPresenter {
         if !self.trendingGIFsService.isFetchingInProcess {
             self.trendingGIFsService.nextBatch()
         }
+    }
+    
+    func didSelectItem(_ item: TrendingGIFCollectionViewCell.ViewModel) {
+        print(item)
     }
     
     // MARK: - Methods(Private)
