@@ -64,6 +64,6 @@ class TrendingGIFCollectionViewCell: UICollectionViewCell {
         contentView.clipsToBounds = true
         
         self.imageView.backgroundColor = .clear
-        self.contentView.backgroundColor = UIColor.clear.withAlphaComponent(0.3)
+        self.contentView.backgroundColor = UIColor.random().withAlphaComponent(0.4)
     }
 }
