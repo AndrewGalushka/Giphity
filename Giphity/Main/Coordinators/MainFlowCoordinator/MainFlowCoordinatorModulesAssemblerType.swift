@@ -12,4 +12,5 @@ protocol MainFlowCoordinatorModulesAssemblerType {
     func assembleRandomGifModule() -> RandomGifModule
     func assembleSearchGIFsModule() -> ViewControllerModule
     func assembleTrendingGIFsModule() -> TrendingGIFsModule
+    func assembleGIFDetailModule() -> GIFDetailModule
 }
