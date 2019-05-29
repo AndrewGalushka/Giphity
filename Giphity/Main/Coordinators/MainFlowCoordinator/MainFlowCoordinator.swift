@@ -78,7 +78,8 @@ extension MainFlowCoordinator: TrendingGIFsModuleOutput {
         
         let settings = NavigationControllerRouterSettings(willPopAction: {
             self.navigationController.setNavigationBarHidden(true, animated: true)
-        }, didPopAction: {
+        }, didPopAction: { [weak gifDetailModule] in
+            guard let gifDetailModule = gifDetailModule else { return }
             self.removeModule(gifDetailModule)
         })
         
