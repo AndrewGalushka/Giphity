@@ -13,6 +13,8 @@ class TrendingGIFsModule: ViewControllerModule {
     let presenter: TrendingGIFsPresenter
     let trendingGIFsView: TrendingGIFsViewController
     
+    weak var moduleOutput: TrendingGIFsModuleOutput?
+    
     init(view: TrendingGIFsViewController, presenter: TrendingGIFsPresenter) {
         self.trendingGIFsView = view
         self.presenter = presenter
@@ -28,5 +30,6 @@ class TrendingGIFsModule: ViewControllerModule {
 
 extension TrendingGIFsModule: TrendingGIFsPresenterOutput {
     func trendingGIFsPresenter(_ presenter: TrendingGIFsPresenter, gifSelectedWithID gifID: String) {
+        self.moduleOutput?.trendingGIFsModule(self, didSelectGIFWithID: gifID)
     }
 }

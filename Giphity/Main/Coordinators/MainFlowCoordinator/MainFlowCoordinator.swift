@@ -12,6 +12,7 @@ class MainFlowCoordinator: FlowCoordinatorType {
     private let window: UIWindow
     private let navigationController: UINavigationController
     private let tabbarController: UITabBarController
+    private let navigationControllerRouter: NavigationControllerRouterType
     private let assembler: ApplicationAssemblerType
     private let modulesAssembler: MainFlowCoordinatorModulesAssemblerType
     
@@ -24,6 +25,7 @@ class MainFlowCoordinator: FlowCoordinatorType {
         
         self.tabbarController = UITabBarController()
         self.navigationController = UINavigationController()
+        self.navigationControllerRouter = NavigationControllerRouter(navigationController: navigationController)
     }
     
     func start() {
@@ -63,5 +65,10 @@ class MainFlowCoordinator: FlowCoordinatorType {
         searchGIFsModule.asViewController.tabBarItem = UITabBarItem(title: "SEARCH", image: UIImage(named: "tab_bar_icon_selected"), selectedImage: UIImage(named: "tab_bar_icon_selected"))
         
         return initialTabbarModules
+    }
+}
+
+extension MainFlowCoordinator: TrendingGIFsModuleOutput {
+    func trendingGIFsModule(_ trendingGIFsModule: TrendingGIFsModule, didSelectGIFWithID gifID: String) {
     }
 }
