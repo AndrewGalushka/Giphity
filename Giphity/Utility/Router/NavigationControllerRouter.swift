@@ -9,9 +9,15 @@
 import UIKit
 
 struct NavigationControllerRouterSettings: NavigationControllerRouterSettingsType {
-    typealias OnPopAction = () -> Void
+    var animated: Bool
+    var willPopAction: WillPopAction?
+    var didPopAction: DidPopAction?
     
-    var onPopAction: OnPopAction?
+    init(animated: Bool = true, willPopAction: WillPopAction? = nil, didPopAction: DidPopAction? = nil) {
+        self.animated = animated
+        self.willPopAction = willPopAction
+        self.didPopAction = didPopAction
+    }
 }
 
 class NavigationControllerRouter: NSObject, NavigationControllerRouterType {
@@ -22,7 +28,7 @@ class NavigationControllerRouter: NSObject, NavigationControllerRouterType {
     
     // MARK: - Properties(Private)
     
-    private var onPopActions = [UIViewController: NavigationControllerRouterSettings.OnPopAction]()
+    private var pushedModulesSettings = [UIViewController: NavigationControllerRouterSettingsType]()
     
     // MARK: - Initializers
     
@@ -35,10 +41,13 @@ class NavigationControllerRouter: NSObject, NavigationControllerRouterType {
     
     // MARK: - NavigationControllerRouterType Imp
     
-    func push(module: ViewControllerModule, animated: Bool, settings: NavigationControllerRouterSettingsType?, completion: (() -> Void)?) {
+    func push(module: ViewControllerModule, settings: NavigationControllerRouterSettingsType? = nil) {
         assertNavigationControllerDelegate()
         
+        let settings = settings ?? NavigationControllerRouterSettings()
         
+        self.registerSettings(settings, for: module)
+        navigationController.pushViewController(module.asViewController, animated: settings.animated)
     }
     
     // MARK: - Methods(Private)
@@ -47,25 +56,35 @@ class NavigationControllerRouter: NSObject, NavigationControllerRouterType {
         assert(navigationController.delegate === self, "Delegate of navigation controller must be Self")
     }
     
-    private func registerSettings(_ settings: NavigationControllerRouterSettingsType, for module: ViewControllerModule) {
-        
-        if let onPopAction = settings.onPopAction {
-            self.onPopActions[module.asViewController] = onPopAction
-        }
+    private func registerSettings(_ settings: NavigationControllerRouterSettingsType, for module: ViewControllerModule) { self.pushedModulesSettings[module.asViewController] = settings
+    }
+    
+    private func unregisterSettings(for viewController: UIViewController) {
+        self.pushedModulesSettings.removeValue(forKey: viewController)
     }
 }
 
 extension NavigationControllerRouter: UINavigationControllerDelegate {
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        guard let poppedViewController = navigationController.transitionCoordinator?.viewController(forKey: .from), !navigationController.viewControllers.contains(poppedViewController) else {
+            return
+        }
+
+        if let settings = pushedModulesSettings[poppedViewController] {
+            settings.willPopAction?()
+        }
+    }
     
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         
         guard let poppedViewController = navigationController.transitionCoordinator?.viewController(forKey: .from), !navigationController.viewControllers.contains(poppedViewController) else {
             return
         }
-        
-        if let onPopAction = onPopActions[poppedViewController] {
-            onPopAction()
-            onPopActions.removeValue(forKey: poppedViewController)
+
+        if let settings = pushedModulesSettings[poppedViewController] {
+            settings.didPopAction?()
+            unregisterSettings(for: poppedViewController)
         }
     }
 }

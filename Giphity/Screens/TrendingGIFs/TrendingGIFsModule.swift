@@ -21,6 +21,7 @@ class TrendingGIFsModule: ViewControllerModule {
         
         self.trendingGIFsView.presenter = presenter
         self.presenter.view = view
+        self.presenter.output = self
     }
     
     var asViewController: UIViewController {

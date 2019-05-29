@@ -64,11 +64,26 @@ class MainFlowCoordinator: FlowCoordinatorType {
         randomGIFsModule.asViewController.tabBarItem = UITabBarItem(title: "RANDOM", image: UIImage(named: "tab_bar_icon_selected"), selectedImage: UIImage(named: "tab_bar_icon_selected"))
         searchGIFsModule.asViewController.tabBarItem = UITabBarItem(title: "SEARCH", image: UIImage(named: "tab_bar_icon_selected"), selectedImage: UIImage(named: "tab_bar_icon_selected"))
         
+        trendingGIFsModule.moduleOutput = self
+        
         return initialTabbarModules
     }
 }
 
 extension MainFlowCoordinator: TrendingGIFsModuleOutput {
     func trendingGIFsModule(_ trendingGIFsModule: TrendingGIFsModule, didSelectGIFWithID gifID: String) {
+        let gifDetailModule = self.modulesAssembler.assembleGIFDetailModule()
+        
+        self.addModule(gifDetailModule)
+        
+        let settings = NavigationControllerRouterSettings(willPopAction: {
+            self.navigationController.setNavigationBarHidden(true, animated: true)
+        }, didPopAction: {
+            self.removeModule(gifDetailModule)
+        })
+        
+        self.navigationControllerRouter.push(module: gifDetailModule, settings: settings)
+        self.navigationController.setNavigationBarHidden(false, animated: true)
+        
     }
 }

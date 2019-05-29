@@ -9,11 +9,14 @@
 import Foundation
 
 protocol NavigationControllerRouterSettingsType {
-    typealias OnPopAction = () -> Void
+    typealias WillPopAction = () -> Void
+    typealias DidPopAction = () -> Void
     
-    var onPopAction: OnPopAction? { get }
+    var animated: Bool { get }
+    var willPopAction: WillPopAction? { get }
+    var didPopAction: DidPopAction? { get }
 }
 
 protocol NavigationControllerRouterType {
-    func push(module: ViewControllerModule, animated: Bool, settings: NavigationControllerRouterSettingsType?, completion: (() -> Void)?)
+    func push(module: ViewControllerModule, settings: NavigationControllerRouterSettingsType?)
 }
