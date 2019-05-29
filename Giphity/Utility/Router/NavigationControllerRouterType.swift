@@ -9,7 +9,9 @@
 import Foundation
 
 protocol NavigationControllerRouterSettingsType {
-    var onPopAction: (() -> Void)? { get }
+    typealias OnPopAction = () -> Void
+    
+    var onPopAction: OnPopAction? { get }
 }
 
 protocol NavigationControllerRouterType {

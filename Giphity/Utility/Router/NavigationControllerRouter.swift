@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct NavigationControllerRouterSettings {
+struct NavigationControllerRouterSettings: NavigationControllerRouterSettingsType {
     typealias OnPopAction = () -> Void
     
     var onPopAction: OnPopAction?
