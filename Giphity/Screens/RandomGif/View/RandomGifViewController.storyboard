@@ -42,23 +42,22 @@
                                     <action selector="nextRandomGifButtonTouchUpInsideActionHandler:" destination="AfZ-R9-eH6" eventType="touchUpInside" id="221-hO-1Wp"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by GIPHY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uY8-5v-C6M">
-                                <rect key="frame" x="0.0" y="640" width="375" height="17"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
-                                <color key="textColor" red="1" green="0.64675538119999998" blue="0.20150102650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="powered_by_giphy_white_bg_horiz_text" translatesAutoresizingMaskIntoConstraints="NO" id="kqs-fV-zea">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Lci-bJ-zsv" firstAttribute="trailing" secondItem="kgC-vb-AWq" secondAttribute="trailing" constant="5" id="33w-VB-h3l"/>
+                            <constraint firstItem="Lci-bJ-zsv" firstAttribute="trailing" secondItem="kqs-fV-zea" secondAttribute="trailing" id="40v-Hh-pcm"/>
+                            <constraint firstItem="kqs-fV-zea" firstAttribute="leading" secondItem="Lci-bJ-zsv" secondAttribute="leading" id="I5u-Vf-S8c"/>
                             <constraint firstItem="kgC-vb-AWq" firstAttribute="centerY" secondItem="Lci-bJ-zsv" secondAttribute="centerY" constant="-20" id="JaY-br-ldf"/>
                             <constraint firstItem="Lci-bJ-zsv" firstAttribute="bottom" secondItem="EaB-M4-jVE" secondAttribute="bottom" constant="50" id="LPn-bQ-Rto"/>
-                            <constraint firstItem="Lci-bJ-zsv" firstAttribute="trailing" secondItem="uY8-5v-C6M" secondAttribute="trailing" id="Oar-Gu-4RV"/>
                             <constraint firstItem="kgC-vb-AWq" firstAttribute="leading" secondItem="Lci-bJ-zsv" secondAttribute="leading" constant="5" id="dCS-L8-bun"/>
-                            <constraint firstItem="Lci-bJ-zsv" firstAttribute="bottom" secondItem="uY8-5v-C6M" secondAttribute="bottom" constant="10" id="g68-XC-eKX"/>
+                            <constraint firstItem="kqs-fV-zea" firstAttribute="bottom" secondItem="Lci-bJ-zsv" secondAttribute="bottom" id="fPl-AI-8m1"/>
                             <constraint firstItem="EaB-M4-jVE" firstAttribute="centerX" secondItem="Lci-bJ-zsv" secondAttribute="centerX" id="ufI-qp-qfl"/>
-                            <constraint firstItem="uY8-5v-C6M" firstAttribute="leading" secondItem="Lci-bJ-zsv" secondAttribute="leading" id="uhg-Qg-CRk"/>
+                            <constraint firstItem="kqs-fV-zea" firstAttribute="top" secondItem="EaB-M4-jVE" secondAttribute="bottom" id="yuR-pp-401"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Lci-bJ-zsv"/>
                     </view>
@@ -69,7 +68,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="elI-24-ajO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="278" y="-230"/>
+            <point key="canvasLocation" x="277.60000000000002" y="-230.73463268365819"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="powered_by_giphy_white_bg_horiz_text" width="100" height="11"/>
+    </resources>
 </document>
