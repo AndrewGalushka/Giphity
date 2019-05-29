@@ -13,15 +13,18 @@ class MainFlowCoordinator: FlowCoordinatorType {
     private let navigationController: UINavigationController
     private let tabbarController: UITabBarController
     private let navigationControllerRouter: NavigationControllerRouterType
+    
     private let assembler: ApplicationAssemblerType
+    private let servicesAssembler: ServicesAssemblerType
     private let modulesAssembler: MainFlowCoordinatorModulesAssemblerType
     
     private var modules = [ViewControllerModule]()
     
-    init(window: UIWindow, assembler: ApplicationAssemblerType) {
+    init(window: UIWindow, assembler: ApplicationAssemblerType, servicesAssembler: ServicesAssemblerType) {
         self.window = window
         self.assembler = assembler
-        self.modulesAssembler = MainFlowCoordinatorModulesAssembler(assembler: assembler)
+        self.servicesAssembler = servicesAssembler
+        self.modulesAssembler = MainFlowCoordinatorModulesAssembler(servicesAssembler: servicesAssembler)
         
         self.tabbarController = UITabBarController()
         self.navigationController = UINavigationController()

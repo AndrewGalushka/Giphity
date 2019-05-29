@@ -9,9 +9,9 @@
 import UIKit
 
 class CoordinatorsFactory: CoordinatorsFactoryType {
-    
     func makeMainFlowCoordinator(window: UIWindow, assemler: ApplicationAssemblerType) -> MainFlowCoordinator {
-        let mainFlowCoordinator = MainFlowCoordinator(window: window, assembler: assemler)
+        let servicesAssembler = ServicesAssembler(appAssembler: assemler)
+        let mainFlowCoordinator = MainFlowCoordinator(window: window, assembler: assemler, servicesAssembler: servicesAssembler)
         return mainFlowCoordinator
     }
 }
