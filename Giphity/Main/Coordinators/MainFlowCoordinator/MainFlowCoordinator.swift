@@ -9,6 +9,9 @@
 import UIKit
 
 class MainFlowCoordinator: FlowCoordinatorType {
+    
+    // MARK: - Properties(Private)
+    
     private let window: UIWindow
     private let navigationController: UINavigationController
     private let tabbarController: UITabBarController
@@ -20,6 +23,8 @@ class MainFlowCoordinator: FlowCoordinatorType {
     
     private var modules = [ViewControllerModule]()
     
+    // MARK: - Initializers
+    
     init(window: UIWindow, assembler: ApplicationAssemblerType, servicesAssembler: ServicesAssemblerType) {
         self.window = window
         self.assembler = assembler
@@ -30,6 +35,8 @@ class MainFlowCoordinator: FlowCoordinatorType {
         self.navigationController = UINavigationController()
         self.navigationControllerRouter = NavigationControllerRouter(navigationController: navigationController)
     }
+    
+    // MARK: - FlowCoordinatorType Imp
     
     func start() {
         let initialTabbarModules = makeInitialTabbarModules()
@@ -44,6 +51,8 @@ class MainFlowCoordinator: FlowCoordinatorType {
         window.rootViewController = navigationController
     }
 
+    // MARK: -
+    
     func addModule(_ module: ViewControllerModule) {
         modules.append(module)
     }
@@ -55,6 +64,8 @@ class MainFlowCoordinator: FlowCoordinatorType {
     func removeModule(_ module: ViewControllerModule) {
         modules.removeAll { $0 === module }
     }
+    
+    // MARK: Methods(Private)
     
     private func makeInitialTabbarModules() -> [ViewControllerModule] {
         let trendingGIFsModule = self.modulesAssembler.assembleTrendingGIFsModule()
@@ -72,6 +83,8 @@ class MainFlowCoordinator: FlowCoordinatorType {
         return initialTabbarModules
     }
 }
+
+// MARK: - TrendingGIFsModuleOutput
 
 extension MainFlowCoordinator: TrendingGIFsModuleOutput {
     func trendingGIFsModule(_ trendingGIFsModule: TrendingGIFsModule, didSelectGIFWithID gifID: String) {
