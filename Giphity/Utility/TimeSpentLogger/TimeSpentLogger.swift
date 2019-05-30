@@ -22,7 +22,9 @@ struct TimeSpentLogger {
         endDate = Date()
         self.totalTimeSpent = endDate.timeIntervalSince1970 - startDate.timeIntervalSince1970
         
+        #if DEBUG
         print("\(textBeforeTimeLog) \(totalTimeSpent)")
+        #endif
     }
     
     private mutating func reset() {
