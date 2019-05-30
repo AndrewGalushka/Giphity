@@ -14,4 +14,5 @@ protocol ServicesAssemblerType {
     func assembleSearchGIFsPaginationService() -> SearchGIFsPaginationServiceType
     func assembleTrendingGIFsService() -> TrendingGIFsServiceType
     func assembleTrendingGIFsPaginationService() -> TrendingGIFsPaginationServiceType
+    func assembleSingleGIFObjectService(gifID: String) -> SingleGIFObjectServiceType
 }

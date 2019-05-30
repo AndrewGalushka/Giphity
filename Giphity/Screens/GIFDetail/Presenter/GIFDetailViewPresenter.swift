@@ -9,4 +9,6 @@
 import Foundation
 
 protocol GIFDetailViewPresenter: AnyObject {
+    func viewLoaded()
+    func retry()
 }

@@ -12,8 +12,7 @@ import PromiseKit
 extension GiphyRequestManager: GIFByIDRequestPerformable {
     
     func gifByID(_ gifID: String) -> Promise<GiphyResponse<GifObject>> {
-        let queryItems = [URLQueryItem(name: "gif_id", value: gifID)]
-        let requestCommand = HTTPRequestCommand(method: .get, path: "/gifs/", queryItems: queryItems)
+        let requestCommand = HTTPRequestCommand(method: .get, path: "/gifs/\(gifID)", queryItems: nil)
         
         return self.execute(requestCommand)
     }

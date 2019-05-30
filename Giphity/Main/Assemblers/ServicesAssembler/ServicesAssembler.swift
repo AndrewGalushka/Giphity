@@ -44,4 +44,17 @@ class ServicesAssembler: ServicesAssemblerType {
         let trendingGIFsService: TrendingGIFsServiceType = self.assembleTrendingGIFsService()
         return TrendingGIFsPaginationService(trendingGIFsService: trendingGIFsService)
     }
+    
+    func assembleSingleGIFObjectService(gifID: String) -> SingleGIFObjectServiceType {
+        let singleGIFObjectService = SingleGIFObjectService(gifID: gifID,
+                                                            gifByIDService: self.assembleGIFByIDService(),
+                                                            gifFetcher: self.appAssembler.assembleGifFetcher())
+        
+        return singleGIFObjectService
+    }
+    
+    private func assembleGIFByIDService() -> GIFByIDServiceType {
+        let requestManager = appAssembler.assembleGiphyRequestManager()
+        return GIFByIDService(requestManager: requestManager)
+    }
 }

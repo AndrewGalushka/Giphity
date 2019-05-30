@@ -23,7 +23,7 @@ class GIFByIDService: GIFByIDServiceType {
     
     // MARK: GIFByIDServiceType Imp
 
-    func gifObjectByID(_ gifID: String) -> Promise<GiphyResponse<GifObject>> {
+    func fetchGifObjectByID(_ gifID: String) -> Promise<GiphyResponse<GifObject>> {
         return requestManager.gifByID(gifID)
     }
 }

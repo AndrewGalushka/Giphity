@@ -49,9 +49,11 @@ class MainFlowCoordinatorModulesAssembler: MainFlowCoordinatorModulesAssemblerTy
         return TrendingGIFsModule(view: view, presenter: presenter)
     }
     
-    func assembleGIFDetailModule() -> GIFDetailModule {
+    func assembleGIFDetailModule(gifIdentifier: String) -> GIFDetailModule {
+        let singleGIFObjectService = self.assembler.assembleSingleGIFObjectService(gifID: gifIdentifier)
+        
         let view = GIFDetailViewController.loadFromStoryboard()
-        let presenter = GIFDetailPresenter()
+        let presenter = GIFDetailPresenter(singleGIFObjectService: singleGIFObjectService)
         
         return GIFDetailModule(view: view, presenter: presenter)
     }

@@ -88,7 +88,7 @@ class MainFlowCoordinator: FlowCoordinatorType {
 
 extension MainFlowCoordinator: TrendingGIFsModuleOutput {
     func trendingGIFsModule(_ trendingGIFsModule: TrendingGIFsModule, didSelectGIFWithID gifID: String) {
-        let gifDetailModule = self.modulesAssembler.assembleGIFDetailModule()
+        let gifDetailModule = self.modulesAssembler.assembleGIFDetailModule(gifIdentifier: gifID)
         
         self.addModule(gifDetailModule)
         

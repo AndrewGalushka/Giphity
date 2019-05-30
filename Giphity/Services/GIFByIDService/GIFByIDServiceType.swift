@@ -9,5 +9,5 @@
 import PromiseKit
 
 protocol GIFByIDServiceType {
-    func gifObjectByID(_ gifID: String) -> Promise<GiphyResponse<GifObject>>
+    func fetchGifObjectByID(_ gifID: String) -> Promise<GiphyResponse<GifObject>>
 }

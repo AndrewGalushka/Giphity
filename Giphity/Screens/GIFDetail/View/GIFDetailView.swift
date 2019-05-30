@@ -6,8 +6,11 @@
 //  Copyright © 2019 Galushka. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol GIFDetailView: AnyObject {
-    
+    func showLoadingGIFIndicator()
+    func hideLoadingGIFIndicator()
+    func displayGIF(_ image: UIImage)
+    func displayError(_ error: Error)
 }
