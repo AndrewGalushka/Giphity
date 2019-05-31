@@ -34,6 +34,14 @@ class GIFDetailPresenter: GIFDetailViewPresenter {
         self.retryGIFFetchAndDisplay()
     }
     
+    func shareGIF() {
+        self.singleGIFObjectService.gifRawData().done {
+            self.view?.shareGIF(data: $0)
+        }.catch {
+            print($0)
+        }
+    }
+    
     // MARK: - Methods(Private)
     
     private func fetchAndDisplayGIF() {

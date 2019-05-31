@@ -50,7 +50,12 @@
                         <viewLayoutGuide key="safeArea" id="adR-Ui-glw"/>
                     </view>
                     <navigationItem key="navigationItem" id="8Ek-58-fo5">
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="61C-Gm-joI"/>
+                        <nil key="title"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="61C-Gm-joI">
+                            <connections>
+                                <action selector="shareButtonTouchUpInside:" destination="bof-U6-D2V" id="ZiB-fk-XoG"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>

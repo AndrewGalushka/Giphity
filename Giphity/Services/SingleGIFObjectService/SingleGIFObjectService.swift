@@ -8,9 +8,10 @@
 
 import Foundation
 import PromiseKit
+import Alamofire
 
 class SingleGIFObjectService: SingleGIFObjectServiceType {
-    
+   
     // MARK: - Properties(Public)
     
     let gifID: String
@@ -43,6 +44,10 @@ class SingleGIFObjectService: SingleGIFObjectServiceType {
         _ = self.reloadInitialData()
     }
     
+    func gifRawData() -> Promise<Data> {
+        return fetchGIFRawData(size: .downsized_medium)
+    }
+    
     // MARK: - Methods(Private)
     
     private func fetchGIF(size: ImageObject.ImageType) -> Promise<UIImage> {
@@ -62,6 +67,31 @@ class SingleGIFObjectService: SingleGIFObjectServiceType {
         }
         
         return self.gifFetcher.fetchGIF(by: url)
+    }
+    
+    private func fetchGIFRawData(size: ImageObject.ImageType) -> Promise<Data> {
+        return firstly {
+            return self.initialTask
+        }.then { gifObject -> Promise<Data> in
+            return self.fetchGIFRawData(size: size, gifObject: gifObject)
+        }
+    }
+    
+    private func fetchGIFRawData(size: ImageObject.ImageType, gifObject: GifObject) -> Promise<Data> {
+        
+        guard
+            let stringURL = gifObject.images?.imageObject(for: size)?.url,
+            let url = URL(string: stringURL)
+        else {
+            return Promise.init(error: NSError(domain: NSURLErrorDomain, code: NSURLErrorBadURL, userInfo: nil))
+        }
+        
+        return Promise<Data>.init { (resolver) in
+            
+            Alamofire.request(url).responseData(completionHandler: { (dataResponse) in
+                resolver.resolve(dataResponse.error, dataResponse.data)
+            })
+        }
     }
     
     private func loadInitialData() -> Promise<GifObject> {

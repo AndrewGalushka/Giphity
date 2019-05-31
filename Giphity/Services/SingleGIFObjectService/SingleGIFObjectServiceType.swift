@@ -11,4 +11,5 @@ import PromiseKit
 protocol SingleGIFObjectServiceType {
     func gifImage(for size: ImageObject.ImageType) -> Promise<UIImage>
     func reload()
+    func gifRawData() -> Promise<Data>
 }

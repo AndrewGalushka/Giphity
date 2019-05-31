@@ -13,4 +13,5 @@ protocol GIFDetailView: AnyObject {
     func hideLoadingGIFIndicator()
     func displayGIF(_ image: UIImage)
     func displayError(_ error: Error)
+    func shareGIF(data: Data)
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class GIFDetailViewController: UIViewController, GIFDetailView {
 
@@ -58,10 +59,21 @@ class GIFDetailViewController: UIViewController, GIFDetailView {
         self.stateMachine.setState(.retryButtonActive)
     }
     
+    func shareGIF(data: Data) {
+        let activityVC = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+        activityVC.popoverPresentationController?.sourceView = self.view
+        
+        self.present(activityVC, animated: true, completion: nil)
+    }
+    
     // MARK: - Methods(IBAction)
     
     @IBAction func retryButtonTouchUpInsideActionHandler(_ sender: Any) {
         self.presenter?.retry()
+    }
+    
+    @IBAction func shareButtonTouchUpInside(_ sender: Any) {
+        self.presenter?.shareGIF()
     }
     
     // MARK: Methods(Private)

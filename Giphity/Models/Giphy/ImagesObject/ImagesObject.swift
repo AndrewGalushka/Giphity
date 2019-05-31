@@ -31,7 +31,7 @@ struct ImagesObject: Decodable {
                 continue
             }
             
-            let imageObject = ImageObject(url: url, width: width, height: height, imageType: imageType)
+            let imageObject = ImageObject(url: url, width: width, height: height, mp4URL: value["mp4"], imageType: imageType)
             imageObjects.append(imageObject)
         }
         
@@ -43,6 +43,7 @@ struct ImageObject {
     let url: String
     let width: String
     let height: String
+    let mp4URL: String?
     
     let imageType: ImageType
 }
